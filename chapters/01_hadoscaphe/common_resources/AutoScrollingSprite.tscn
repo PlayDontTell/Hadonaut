@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/space.png" type="Texture" id=1]
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.gd" type="Script" id=2]
+
+[node name="AutoScrollingSprite" type="Sprite"]
+use_parent_material = true
+texture = ExtResource( 1 )
+centered = false
+region_rect = Rect2( 0, 0, 1440, 810 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}

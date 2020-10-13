@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/HadDoorButton.gd" type="Script" id=1]
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/door_button.png" type="Texture" id=2]
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/door_button.wav" type="AudioStream" id=3]
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/door_error.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[node name="HadDoorButton" type="Area2D" groups=[
+"cursor_hover",
+]]
+use_parent_material = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "off"
+anims/off = SubResource( 2 )
+anims/on = SubResource( 3 )
+
+[node name="PointOfInteraction" type="Position2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 2 )
+hframes = 2
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "Fx"
+
+[node name="ButtonError" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "Fx"

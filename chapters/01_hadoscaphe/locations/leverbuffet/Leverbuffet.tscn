@@ -1,0 +1,467 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_background.png" type="Texture" id=1]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright.png" type="Texture" id=2]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorleft.png" type="Texture" id=3]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_foreground.png" type="Texture" id=4]
+[ext_resource path="res://ui/hud/BackZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/LeverBuffetScrew.tscn" type="PackedScene" id=6]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_screwdriver.png" type="Texture" id=7]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorleft_detached.png" type="Texture" id=8]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright_detached.png" type="Texture" id=9]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/Leverbuffet.gd" type="Script" id=10]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_screws.png" type="Texture" id=11]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/screw.wav" type="AudioStream" id=12]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/metal_panel_sliding_sound.wav" type="AudioStream" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "day"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "night"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 11 )
+region = Rect2( 72, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 11 )
+region = Rect2( 144, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 11 )
+region = Rect2( 216, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 288, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 11 )
+region = Rect2( 360, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 11 )
+region = Rect2( 432, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 11 )
+region = Rect2( 504, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 11 )
+region = Rect2( 576, 0, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 11 )
+region = Rect2( 72, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 11 )
+region = Rect2( 144, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 11 )
+region = Rect2( 216, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 11 )
+region = Rect2( 288, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 11 )
+region = Rect2( 360, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 11 )
+region = Rect2( 432, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 11 )
+region = Rect2( 504, 35, 72, 35 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 11 )
+region = Rect2( 576, 35, 72, 35 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=22]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Set:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foreground:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorLeft:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorLeftDetached:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DoorRight:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("DoorRightDetached:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=23]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Set:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foreground:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorLeft:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorLeftDetached:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DoorRight:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("DoorRightDetached:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[node name="Leverbuffet" type="Node2D"]
+position = Vector2( 0, 1 )
+script = ExtResource( 10 )
+
+[node name="Set" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Foreground" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+centered = false
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DoorLeft" type="Sprite" parent="."]
+visible = false
+position = Vector2( 136, 135 )
+texture = ExtResource( 3 )
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeverBuffetScrew" parent="DoorLeft" instance=ExtResource( 6 )]
+position = Vector2( -69, 42 )
+door = "left"
+
+[node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew" index="0"]
+needed_item = "screwdriver"
+
+[node name="LeverBuffetScrew2" parent="DoorLeft" instance=ExtResource( 6 )]
+position = Vector2( 66, 54 )
+initial_orientation = 3.0
+door = "left"
+screw_id = 1
+
+[node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew2" index="0"]
+needed_item = "screwdriver"
+
+[node name="LeverBuffetScrew3" parent="DoorLeft" instance=ExtResource( 6 )]
+position = Vector2( 71, -48 )
+initial_orientation = 5.0
+door = "left"
+screw_id = 2
+
+[node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew3" index="0"]
+needed_item = "screwdriver"
+
+[node name="LeverBuffetScrew4" parent="DoorLeft" instance=ExtResource( 6 )]
+position = Vector2( -69, -56 )
+initial_orientation = 2.0
+door = "left"
+screw_id = 3
+
+[node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew4" index="0"]
+needed_item = "screwdriver"
+
+[node name="DoorLeftDetached" type="Sprite" parent="."]
+position = Vector2( 79, 222 )
+texture = ExtResource( 8 )
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DoorRight" type="Sprite" parent="."]
+position = Vector2( 329, 130 )
+texture = ExtResource( 2 )
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeverBuffetScrew" parent="DoorRight" instance=ExtResource( 6 )]
+position = Vector2( 78, 54 )
+initial_orientation = 4.0
+door = "right"
+
+[node name="LongActionObject" parent="DoorRight/LeverBuffetScrew" index="0"]
+needed_item = "screwdriver"
+
+[node name="LeverBuffetScrew2" parent="DoorRight" instance=ExtResource( 6 )]
+position = Vector2( 69, -56 )
+initial_orientation = 5.0
+door = "right"
+screw_id = 1
+
+[node name="LongActionObject" parent="DoorRight/LeverBuffetScrew2" index="0"]
+needed_item = "screwdriver"
+
+[node name="LeverBuffetScrew3" parent="DoorRight" instance=ExtResource( 6 )]
+position = Vector2( -70, 57 )
+initial_orientation = 2.0
+door = "right"
+screw_id = 2
+
+[node name="LongActionObject" parent="DoorRight/LeverBuffetScrew3" index="0"]
+needed_item = "screwdriver"
+
+[node name="LeverBuffetScrew4" parent="DoorRight" instance=ExtResource( 6 )]
+position = Vector2( -78, -50 )
+initial_orientation = 4.0
+door = "right"
+screw_id = 3
+
+[node name="LongActionObject" parent="DoorRight/LeverBuffetScrew4" index="0"]
+needed_item = "screwdriver"
+
+[node name="DoorRightDetached" type="Sprite" parent="."]
+position = Vector2( 450, 146 )
+texture = ExtResource( 9 )
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BackZone" parent="." instance=ExtResource( 5 )]
+to_room = "maintenance"
+
+[node name="CollisionPolygon2D" parent="BackZone" index="0"]
+polygon = PoolVector2Array( 0, 238, 0, 53, 40, 53, 34, 118, 40, 210, 442, 211, 433, 57, 480, 57, 480, 238 )
+
+[node name="Screwdriver" type="Area2D" parent="." groups=[
+"cursor_hand",
+"cursor_hover",
+]]
+position = Vector2( 224, 190 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Screwdriver"]
+polygon = PoolVector2Array( -14, -33, -9, -38, -1, -38, 2, -35, 9, -8, 9, -2, 5, 2, 14, 37, 9, 39, 0, 2, -4, 2, -8, -4 )
+
+[node name="Sprite" type="Sprite" parent="Screwdriver"]
+texture = ExtResource( 7 )
+hframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Screwdriver"]
+anims/day = SubResource( 1 )
+anims/night = SubResource( 2 )
+
+[node name="Screws" type="AnimatedSprite" parent="."]
+position = Vector2( 394, 214 )
+frames = SubResource( 21 )
+frame = 8
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ScrewSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 394, 222 )
+stream = ExtResource( 12 )
+bus = "Fx"
+
+[node name="SlidingPanelSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 240, 135 )
+stream = ExtResource( 13 )
+volume_db = 6.0
+bus = "Fx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/day = SubResource( 22 )
+anims/night = SubResource( 23 )
+[connection signal="input_event" from="Screwdriver" to="." method="_on_Screwdriver_input_event"]
+
+[editable path="DoorLeft/LeverBuffetScrew"]
+
+[editable path="DoorLeft/LeverBuffetScrew2"]
+
+[editable path="DoorLeft/LeverBuffetScrew3"]
+
+[editable path="DoorLeft/LeverBuffetScrew4"]
+
+[editable path="DoorRight/LeverBuffetScrew"]
+
+[editable path="DoorRight/LeverBuffetScrew2"]
+
+[editable path="DoorRight/LeverBuffetScrew3"]
+
+[editable path="DoorRight/LeverBuffetScrew4"]
+
+[editable path="BackZone"]

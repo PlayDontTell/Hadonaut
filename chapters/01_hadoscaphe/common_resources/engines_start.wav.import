@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/engines_start.wav-ff4fb4e1ca46f3ddc985d570a14961e0.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/common_resources/engines_start.wav"
+dest_files=[ "res://.import/engines_start.wav-ff4fb4e1ca46f3ddc985d570a14961e0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

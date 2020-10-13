@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sliding_had_door.wav-395345077d62d99f55e756381d464304.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/common_resources/sliding_had_door.wav"
+dest_files=[ "res://.import/sliding_had_door.wav-395345077d62d99f55e756381d464304.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

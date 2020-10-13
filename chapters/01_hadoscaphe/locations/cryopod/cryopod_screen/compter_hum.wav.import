@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/compter_hum.wav-dc1162748cc3f2cd6ae17048c40e8f08.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryopod/cryopod_screen/compter_hum.wav"
+dest_files=[ "res://.import/compter_hum.wav-dc1162748cc3f2cd6ae17048c40e8f08.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="CableJoint" type="PinJoint2D"]
+rotation = 1.5708
+disable_collision = false
+softness = 5.0

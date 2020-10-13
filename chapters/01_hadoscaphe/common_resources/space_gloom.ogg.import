@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/space_gloom.ogg-d82e33941f014cb813dc6ebc2571534c.oggstr"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/common_resources/space_gloom.ogg"
+dest_files=[ "res://.import/space_gloom.ogg-d82e33941f014cb813dc6ebc2571534c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

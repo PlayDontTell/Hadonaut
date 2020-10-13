@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cryopod_locker_opening.wav-e6684fd983c295bbe0f6caadc48d6fb7.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryopod/cryopod_locker_opening.wav"
+dest_files=[ "res://.import/cryopod_locker_opening.wav-e6684fd983c295bbe0f6caadc48d6fb7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

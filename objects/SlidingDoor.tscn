@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://objects/SlidingDoor.gd" type="Script" id=1]
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/door_error.wav" type="AudioStream" id=2]
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/sliding_had_door.wav" type="AudioStream" id=3]
+
+[node name="SlidingDoor" type="Area2D" groups=[
+"cursor_arrow",
+]]
+use_parent_material = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="PointToRoom" type="Position2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="DoorOperatingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "Fx"
+
+[node name="DoorErrorSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+bus = "Fx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[connection signal="input_event" from="." to="." method="_on_Passage_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_SlidingDoor_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_SlidingDoor_mouse_exited"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_screw.png" type="Texture" id=1]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/LeverBuffetScrew.gd" type="Script" id=2]
+[ext_resource path="res://objects/LongActionObject.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/items/items_sounds/screwdriver.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "day"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "night"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
+
+[node name="LeverBuffetScrew" type="Sprite" groups=[
+"cursor_hover",
+"long_action",
+]]
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 6
+script = ExtResource( 2 )
+
+[node name="LongActionObject" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LongActionObject"]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "day"
+anims/day = SubResource( 2 )
+anims/night = SubResource( 3 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "Fx"
+[connection signal="long_action_started" from="LongActionObject" to="." method="_on_LongActionObject_long_action_started"]
+[connection signal="long_action_stopped" from="LongActionObject" to="." method="_on_LongActionObject_long_action_stopped"]
+[connection signal="ready_for_long_action_effects" from="LongActionObject" to="." method="_on_LongActionObject_ready_for_long_action_effects"]

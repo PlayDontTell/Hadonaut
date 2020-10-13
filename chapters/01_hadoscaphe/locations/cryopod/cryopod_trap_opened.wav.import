@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cryopod_trap_opened.wav-abca2499847377fa892294347e3b790b.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryopod/cryopod_trap_opened.wav"
+dest_files=[ "res://.import/cryopod_trap_opened.wav-abca2499847377fa892294347e3b790b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

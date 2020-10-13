@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rising_sound.wav-2c22bcc48019316f339b333b3f4675d4.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryopod/rising_sound.wav"
+dest_files=[ "res://.import/rising_sound.wav-2c22bcc48019316f339b333b3f4675d4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/menu_slide.wav-4ca4a3f1ccca3336c67f00422a3a2819.sample"
+
+[deps]
+
+source_file="res://ui/menu/menu_slide.wav"
+dest_files=[ "res://.import/menu_slide.wav-4ca4a3f1ccca3336c67f00422a3a2819.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

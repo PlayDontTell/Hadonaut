@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/metal_panel_sliding_sound.wav-6cd4e25b8e05356665f8c45e8feb032f.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/leverbuffet/metal_panel_sliding_sound.wav"
+dest_files=[ "res://.import/metal_panel_sliding_sound.wav-6cd4e25b8e05356665f8c45e8feb032f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

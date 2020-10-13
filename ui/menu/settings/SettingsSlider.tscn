@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/menu/menu_click2.wav" type="AudioStream" id=1]
+[ext_resource path="res://ui/menu/settings/settings_grabber.png" type="Texture" id=2]
+[ext_resource path="res://ui/menu/settings/settings_reset.png" type="Texture" id=3]
+[ext_resource path="res://ui/menu/settings/settings_reset_hover.png" type="Texture" id=4]
+[ext_resource path="res://ui/menu/settings/settings_progress.png" type="Texture" id=5]
+[ext_resource path="res://ui/menu/settings/SettingsSlider.gd" type="Script" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 12
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 16, 8 )
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="SettingsSlider" type="HSlider"]
+margin_left = 152.0
+margin_top = 63.0
+margin_right = 328.0
+margin_bottom = 79.0
+size_flags_horizontal = 0
+size_flags_vertical = 1
+custom_icons/grabber_highlight = ExtResource( 2 )
+custom_icons/grabber = ExtResource( 2 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+max_value = 10.0
+value = 8.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="TextureButton" parent="."]
+margin_left = 179.0
+margin_right = 195.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+[connection signal="pressed" from="Reset" to="." method="_on_Reset_pressed"]

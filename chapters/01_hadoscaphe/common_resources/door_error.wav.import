@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/door_error.wav-1e6062c8e1de25ce9f04feeba368cb77.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/common_resources/door_error.wav"
+dest_files=[ "res://.import/door_error.wav-1e6062c8e1de25ce9f04feeba368cb77.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

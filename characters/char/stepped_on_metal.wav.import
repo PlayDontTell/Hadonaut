@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/stepped_on_metal.wav-5d147fdf588f36c008e75379d2c9ee00.sample"
+
+[deps]
+
+source_file="res://characters/char/stepped_on_metal.wav"
+dest_files=[ "res://.import/stepped_on_metal.wav-5d147fdf588f36c008e75379d2c9ee00.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

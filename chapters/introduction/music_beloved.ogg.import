@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music_beloved.ogg-5df4abe3ad77cb87a332cf3e9586f35c.oggstr"
+
+[deps]
+
+source_file="res://chapters/introduction/music_beloved.ogg"
+dest_files=[ "res://.import/music_beloved.ogg-5df4abe3ad77cb87a332cf3e9586f35c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

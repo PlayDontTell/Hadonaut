@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cryopod_cryopod_door_closing.wav-57a90d12fa6494cd48238bee8c1981e9.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryopod/cryopod_cryopod_door_closing.wav"
+dest_files=[ "res://.import/cryopod_cryopod_door_closing.wav-57a90d12fa6494cd48238bee8c1981e9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

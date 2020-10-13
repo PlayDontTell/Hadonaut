@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://objects/InteractiveObject.gd" type="Script" id=2]
+
+[node name="InteractiveObject" type="Area2D" groups=[
+"cursor_hover",
+]]
+use_parent_material = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+
+[node name="PointOfInteraction" type="Position2D" parent="."]

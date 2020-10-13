@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/screw.wav-6daa766bd851dfe121088589da5a2d25.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/leverbuffet/screw.wav"
+dest_files=[ "res://.import/screw.wav-6daa766bd851dfe121088589da5a2d25.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/510214__heavenly-roads__crawling-1.wav-51e2d9001ffa66756eae5ace397c4314.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryopod/510214__heavenly-roads__crawling-1.wav"
+dest_files=[ "res://.import/510214__heavenly-roads__crawling-1.wav-51e2d9001ffa66756eae5ace397c4314.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

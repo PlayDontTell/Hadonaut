@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/space_hum.ogg-4c28470c901641a50f9528e8d4a5ddee.oggstr"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/common_resources/space_hum.ogg"
+dest_files=[ "res://.import/space_hum.ogg-4c28470c901641a50f9528e8d4a5ddee.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

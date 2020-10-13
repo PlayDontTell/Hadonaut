@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pad_radar.wav-fec475f1783770c4d1b8d7a51c80b16c.sample"
+
+[deps]
+
+source_file="res://ui/pad/pad_radar.wav"
+dest_files=[ "res://.import/pad_radar.wav-fec475f1783770c4d1b8d7a51c80b16c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

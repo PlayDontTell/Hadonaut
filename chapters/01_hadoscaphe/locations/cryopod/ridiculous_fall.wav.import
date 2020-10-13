@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ridiculous_fall.wav-09da36f066261799e80525d0dd831c32.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryopod/ridiculous_fall.wav"
+dest_files=[ "res://.import/ridiculous_fall.wav-09da36f066261799e80525d0dd831c32.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

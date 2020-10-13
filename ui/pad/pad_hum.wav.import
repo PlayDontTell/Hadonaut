@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pad_hum.wav-1e7d1e3cea72e2d858378430f30c7b10.sample"
+
+[deps]
+
+source_file="res://ui/pad/pad_hum.wav"
+dest_files=[ "res://.import/pad_hum.wav-1e7d1e3cea72e2d858378430f30c7b10.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=true
+compress/mode=0

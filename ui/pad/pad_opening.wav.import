@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pad_opening.wav-69bad3e9391cb6031e86a6785f479dcb.sample"
+
+[deps]
+
+source_file="res://ui/pad/pad_opening.wav"
+dest_files=[ "res://.import/pad_opening.wav-69bad3e9391cb6031e86a6785f479dcb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0
