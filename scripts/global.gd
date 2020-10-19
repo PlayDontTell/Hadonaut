@@ -2,7 +2,7 @@ extends Node
 
 
 # Meta variables
-const DEV_MODE: bool = true
+const DEV_MODE: bool = false
 
 # Story variables
 var chapter_name: String

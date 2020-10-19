@@ -7,6 +7,14 @@
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/engines_start.wav" type="AudioStream" id=5]
 [ext_resource path="res://ui/UI.tscn" type="PackedScene" id=6]
 
+
+
+
+
+
+
+
+
 [sub_resource type="Environment" id=1]
 background_mode = 4
 adjustment_enabled = true

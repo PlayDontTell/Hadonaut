@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/char/Char.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://objects/SlidingDoor.tscn" type="PackedScene" id=12]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/maintenance/maintenance_door.png" type="Texture" id=13]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/maintenance/maintenance_door_cache.png" type="Texture" id=14]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/maintenance/maintenance_leftbuffetdoor.png" type="Texture" id=15]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/maintenance/maintenance_rightbuffetdoor.png" type="Texture" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -32,36 +34,6 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/u_amount = 0.01
-
-[sub_resource type="Animation" id=3]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=4]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
 
 [sub_resource type="Animation" id=5]
 loop = true
@@ -93,38 +65,64 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=7]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=8]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5, 4 )
 
 [sub_resource type="Animation" id=10]
+resource_name = "off_day"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PointOfInteraction:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -4, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "off_night"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PointOfInteraction:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -4, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -147,10 +145,11 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -4, 0 ) ]
+"values": [ Vector2( 3, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
+resource_name = "on_night"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -176,10 +175,136 @@ tracks/1/keys = {
 "values": [ Vector2( 3, 0 ) ]
 }
 
-[sub_resource type="NavigationPolygon" id=12]
+[sub_resource type="NavigationPolygon" id=14]
 vertices = PoolVector2Array( 95.3074, 139, 30.3074, 109, 50.3074, 104, 112.307, 124, 123.307, 139, 129, 124, 139.307, 136, 133, 152, 436.307, 152, 445.307, 162, 388.307, 168, 374.307, 153, 321.307, 151, 307.307, 137, 277.307, 154, 268.307, 137, 164.307, 153, 154.307, 138, 154.307, 136, 161.307, 138, 161.307, 136, 171.307, 136, 174.307, 125, 187.307, 125, 188, 128, 171.307, 130, 285.307, 170, 274.307, 181, 171.307, 180, 162.307, 169, 197, 128, 240, 129, 268.307, 132, 244.307, 125, 255.307, 125 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 11, 10, 12, 13 ), PoolIntArray( 13, 12, 14, 15 ), PoolIntArray( 16, 7, 6, 17 ), PoolIntArray( 6, 18, 17 ), PoolIntArray( 16, 17, 19 ), PoolIntArray( 16, 19, 20, 21, 15 ), PoolIntArray( 22, 23, 24, 25 ), PoolIntArray( 15, 14, 26, 27, 28, 29, 16 ), PoolIntArray( 30, 31, 32, 15, 21, 25, 24 ), PoolIntArray( 31, 33, 34, 32 ), PoolIntArray( 22, 25, 22 ) ]
 outlines = [ PoolVector2Array( 50.3074, 104, 112.307, 124, 129, 124, 139.307, 136, 154.307, 136, 154.307, 138, 161.307, 138, 161.307, 136, 171.307, 136, 171.307, 130, 174.307, 125, 174.307, 125, 187.307, 125, 188, 128, 197, 128, 240, 129, 244.307, 125, 255.307, 125, 268.307, 132, 268.307, 137, 307.307, 137, 374.307, 153, 436.307, 152, 445.307, 162, 388.307, 168, 321.307, 151, 277.307, 154, 285.307, 170, 274.307, 181, 171.307, 180, 162.307, 169, 164.307, 153, 133, 152, 123.307, 139, 95.3074, 139, 30.3074, 109 ) ]
+
+[sub_resource type="Animation" id=15]
+resource_name = "day"
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorLeft/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Set:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LeverBuffet_LeftDoor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("LeverBuffet_RightDoor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "night"
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorLeft/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Set:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LeverBuffet_LeftDoor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("LeverBuffet_RightDoor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
 
 [node name="Maintenance" type="Node2D"]
 material = SubResource( 2 )
@@ -193,11 +318,6 @@ use_parent_material = true
 position = Vector2( 38, 88 )
 texture = ExtResource( 14 )
 hframes = 2
-frame = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
-anims/day = SubResource( 3 )
-anims/night = SubResource( 4 )
 
 [node name="DoorLeft" parent="." instance=ExtResource( 12 )]
 position = Vector2( 38, 88 )
@@ -216,7 +336,6 @@ position = Vector2( 3, 18 )
 [node name="Sprite" parent="DoorLeft" index="2"]
 texture = ExtResource( 13 )
 hframes = 2
-frame = 1
 
 [node name="AnimationPlayer" parent="DoorLeft" index="6"]
 anims/day = SubResource( 5 )
@@ -228,14 +347,9 @@ position = Vector2( -1, 0 )
 texture = ExtResource( 4 )
 centered = false
 hframes = 2
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Set"]
-anims/day = SubResource( 7 )
-anims/night = SubResource( 8 )
 
 [node name="LeftDoorButton" parent="." instance=ExtResource( 3 )]
 position = Vector2( 53, 90 )
@@ -245,7 +359,7 @@ flip_h = true
 door_id = 7
 
 [node name="Lever" parent="." instance=ExtResource( 8 )]
-position = Vector2( 225, 109 )
+position = Vector2( 210, 109 )
 action_name = "Lever"
 action_type = "push"
 
@@ -254,20 +368,34 @@ position = Vector2( -1, 0 )
 shape = SubResource( 9 )
 
 [node name="Animation" parent="Lever" index="2"]
-autoplay = "off"
-anims/off = SubResource( 10 )
-anims/on = SubResource( 11 )
+autoplay = "off_day"
+anims/off_day = SubResource( 10 )
+anims/off_night = SubResource( 11 )
+anims/on_day = SubResource( 12 )
+anims/on_night = SubResource( 13 )
 
 [node name="PointOfInteraction" parent="Lever" index="3"]
-position = Vector2( -4, 0 )
+position = Vector2( 3, 0 )
 
 [node name="Sprite" type="Sprite" parent="Lever"]
 texture = ExtResource( 10 )
+vframes = 2
 hframes = 2
+frame = 1
 
 [node name="LeverSound" type="AudioStreamPlayer2D" parent="Lever"]
 stream = ExtResource( 11 )
 bus = "Fx"
+
+[node name="LeverBuffet_LeftDoor" type="Sprite" parent="."]
+position = Vector2( 200, 126 )
+texture = ExtResource( 15 )
+hframes = 2
+
+[node name="LeverBuffet_RightDoor" type="Sprite" parent="."]
+position = Vector2( 238, 122 )
+texture = ExtResource( 16 )
+hframes = 2
 
 [node name="Screwdriver" type="Sprite" parent="."]
 position = Vector2( 217, 126 )
@@ -296,7 +424,7 @@ visible = false
 [node name="NavigationPolygonInstance" parent="Char/Navigation2D" index="0"]
 visible = false
 position = Vector2( -1, 0 )
-navpoly = SubResource( 12 )
+navpoly = SubResource( 14 )
 
 [node name="Foreground" type="Sprite" parent="."]
 use_parent_material = true
@@ -335,6 +463,10 @@ polygon = PoolVector2Array( -29, -5, 14, -6, 14, 9, -29, 8 )
 
 [node name="PointToRoom" parent="Leverbuffet" index="1"]
 position = Vector2( -8, 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/day = SubResource( 15 )
+anims/night = SubResource( 16 )
 [connection signal="order_interaction" from="LeftDoorButton" to="." method="_on_LeftDoorButton_order_interaction"]
 [connection signal="order_interaction" from="Lever" to="." method="_on_Lever_order_interaction"]
 

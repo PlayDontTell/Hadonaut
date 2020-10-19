@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_background.png" type="Texture" id=1]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright.png" type="Texture" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_screws.png" type="Texture" id=11]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/screw.wav" type="AudioStream" id=12]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/metal_panel_sliding_sound.wav" type="AudioStream" id=13]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_lever_back1.png" type="Texture" id=14]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_lever_top.png" type="Texture" id=15]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_lever_back2.png" type="Texture" id=16]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_lever_back3.png" type="Texture" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "day"
@@ -197,6 +201,54 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("LeverTop:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("LeverBack/LeverBack1:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("LeverBack/LeverBack2:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("LeverBack/LeverBack3:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=23]
 tracks/0/type = "value"
@@ -271,66 +323,150 @@ tracks/5/keys = {
 "update": 1,
 "values": [ 1 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("LeverTop:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("LeverBack/LeverBack1:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("LeverBack/LeverBack2:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("LeverBack/LeverBack3:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
 
 [node name="Leverbuffet" type="Node2D"]
 position = Vector2( 0, 1 )
 script = ExtResource( 10 )
 
+[node name="BackZone" parent="." instance=ExtResource( 5 )]
+to_room = "maintenance"
+
+[node name="CollisionPolygon2D" parent="BackZone" index="0"]
+polygon = PoolVector2Array( 0, 238, 0, 53, 40, 53, 34, 118, 40, 210, 442, 211, 433, 57, 480, 57, 480, 238 )
+
 [node name="Set" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 hframes = 2
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="LeverBack" type="Node2D" parent="."]
+position = Vector2( 133, 72 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LeverBack1" type="Sprite" parent="LeverBack"]
+position = Vector2( 8, 68 )
+texture = ExtResource( 14 )
+hframes = 2
+frame = 1
+
+[node name="LeverBack2" type="Sprite" parent="LeverBack"]
+position = Vector2( 8, 40 )
+texture = ExtResource( 16 )
+hframes = 2
+frame = 1
+
+[node name="LeverBack3" type="Sprite" parent="LeverBack"]
+position = Vector2( 8, 66 )
+texture = ExtResource( 17 )
+hframes = 2
+frame = 1
 
 [node name="Foreground" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 centered = false
 hframes = 2
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="LeverTop" type="Sprite" parent="."]
+position = Vector2( 141, 13 )
+texture = ExtResource( 15 )
+hframes = 2
+frame = 1
 
 [node name="DoorLeft" type="Sprite" parent="."]
 visible = false
 position = Vector2( 136, 135 )
 texture = ExtResource( 3 )
 hframes = 2
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="LeverBuffetScrew" parent="DoorLeft" instance=ExtResource( 6 )]
 position = Vector2( -69, 42 )
-door = "left"
+initial_frame = 5
 
 [node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew" index="0"]
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew2" parent="DoorLeft" instance=ExtResource( 6 )]
 position = Vector2( 66, 54 )
-initial_orientation = 3.0
-door = "left"
-screw_id = 1
+initial_frame = 3
+id = 1
 
 [node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew2" index="0"]
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew3" parent="DoorLeft" instance=ExtResource( 6 )]
 position = Vector2( 71, -48 )
-initial_orientation = 5.0
-door = "left"
-screw_id = 2
+initial_frame = 4
+id = 2
 
 [node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew3" index="0"]
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew4" parent="DoorLeft" instance=ExtResource( 6 )]
 position = Vector2( -69, -56 )
-initial_orientation = 2.0
-door = "left"
-screw_id = 3
+initial_frame = 1
+id = 3
 
 [node name="LongActionObject" parent="DoorLeft/LeverBuffetScrew4" index="0"]
 needed_item = "screwdriver"
@@ -339,49 +475,54 @@ needed_item = "screwdriver"
 position = Vector2( 79, 222 )
 texture = ExtResource( 8 )
 hframes = 2
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="LeftArea2D" type="Area2D" parent="DoorLeftDetached" groups=[
+"cursor_hover",
+]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorLeftDetached/LeftArea2D"]
+polygon = PoolVector2Array( -79, 16, -79, -17, 70, -4, 80, 1, 71, 16 )
 
 [node name="DoorRight" type="Sprite" parent="."]
 position = Vector2( 329, 130 )
 texture = ExtResource( 2 )
 hframes = 2
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="LeverBuffetScrew" parent="DoorRight" instance=ExtResource( 6 )]
 position = Vector2( 78, 54 )
-initial_orientation = 4.0
-door = "right"
+id = 4
 
 [node name="LongActionObject" parent="DoorRight/LeverBuffetScrew" index="0"]
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew2" parent="DoorRight" instance=ExtResource( 6 )]
 position = Vector2( 69, -56 )
-initial_orientation = 5.0
-door = "right"
-screw_id = 1
+initial_frame = 3
+id = 5
 
 [node name="LongActionObject" parent="DoorRight/LeverBuffetScrew2" index="0"]
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew3" parent="DoorRight" instance=ExtResource( 6 )]
 position = Vector2( -70, 57 )
-initial_orientation = 2.0
-door = "right"
-screw_id = 2
+initial_frame = 5
+id = 6
 
 [node name="LongActionObject" parent="DoorRight/LeverBuffetScrew3" index="0"]
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew4" parent="DoorRight" instance=ExtResource( 6 )]
 position = Vector2( -78, -50 )
-initial_orientation = 4.0
-door = "right"
-screw_id = 3
+initial_frame = 2
+id = 7
 
 [node name="LongActionObject" parent="DoorRight/LeverBuffetScrew4" index="0"]
 needed_item = "screwdriver"
@@ -390,15 +531,17 @@ needed_item = "screwdriver"
 position = Vector2( 450, 146 )
 texture = ExtResource( 9 )
 hframes = 2
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BackZone" parent="." instance=ExtResource( 5 )]
-to_room = "maintenance"
+[node name="RightArea2D" type="Area2D" parent="DoorRightDetached" groups=[
+"cursor_hover",
+]]
 
-[node name="CollisionPolygon2D" parent="BackZone" index="0"]
-polygon = PoolVector2Array( 0, 238, 0, 53, 40, 53, 34, 118, 40, 210, 442, 211, 433, 57, 480, 57, 480, 238 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorRightDetached/RightArea2D"]
+polygon = PoolVector2Array( 30, 67, -12, 75, -31, -63, 30, -76 )
 
 [node name="Screwdriver" type="Area2D" parent="." groups=[
 "cursor_hand",
@@ -438,7 +581,7 @@ stream = ExtResource( 12 )
 bus = "Fx"
 
 [node name="SlidingPanelSound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 240, 135 )
+position = Vector2( 248, 135 )
 stream = ExtResource( 13 )
 volume_db = 6.0
 bus = "Fx"
@@ -446,7 +589,13 @@ bus = "Fx"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/day = SubResource( 22 )
 anims/night = SubResource( 23 )
+[connection signal="mouse_entered" from="BackZone" to="BackZone" method="_on_BackZone_mouse_entered"]
+[connection signal="mouse_exited" from="BackZone" to="BackZone" method="_on_BackZone_mouse_exited"]
+[connection signal="input_event" from="DoorLeftDetached/LeftArea2D" to="." method="_on_LeftArea2D_input_event"]
+[connection signal="input_event" from="DoorRightDetached/RightArea2D" to="." method="_on_RightArea2D_input_event"]
 [connection signal="input_event" from="Screwdriver" to="." method="_on_Screwdriver_input_event"]
+
+[editable path="BackZone"]
 
 [editable path="DoorLeft/LeverBuffetScrew"]
 
@@ -463,5 +612,3 @@ anims/night = SubResource( 23 )
 [editable path="DoorRight/LeverBuffetScrew3"]
 
 [editable path="DoorRight/LeverBuffetScrew4"]
-
-[editable path="BackZone"]
