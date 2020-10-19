@@ -42,10 +42,18 @@ func _init():
 	
 	
 func _ready():
-	go_to_room(starting_room, false, 253, 131)
+	
 	$ChapterRes/Atmo/SpaceHum.play()
 	if not Global.DEV_MODE:
+		
+		var message = $UI/UpdateMessageScreen.display_version_message()
+		if message is GDScriptFunctionState: # Still working.
+			message = yield(message, "completed")
+			
 		$ChapterRes/Music/AirPrelude.play()
+
+	go_to_room(starting_room, false, 253, 131)
+	
 #	else:
 #		for item in GlobalInventory.existing_items:
 #			$UI/Inventory.add(item)

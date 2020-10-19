@@ -90,7 +90,7 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/u_amount = 0.01
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -105,7 +105,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -120,7 +120,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 
 uniform float u_amount = 0.04;
@@ -134,15 +134,15 @@ void fragment() {
     COLOR = texture(TEXTURE, UV) + n * u_amount;
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/u_amount = 0.04
 
-[sub_resource type="StreamTexture" id=8]
+[sub_resource type="StreamTexture" id=7]
 flags = 2
 load_path = "res://.import/space.png-87a212a2522168a6687dcd23813c9859.stex"
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=8]
 script/source = "extends Sprite
 
 
@@ -186,7 +186,7 @@ func _physics_process(_delta):
 	position = current_position
 "
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -200,15 +200,15 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 12
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 53 )
 
-[sub_resource type="Theme" id=12]
-default_font = SubResource( 11 )
+[sub_resource type="Theme" id=11]
+default_font = SubResource( 10 )
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -223,7 +223,7 @@ tracks/0/keys = {
 "values": [ 80 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=13]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -238,7 +238,7 @@ tracks/0/keys = {
 "values": [ 81 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=14]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -253,7 +253,7 @@ tracks/0/keys = {
 "values": [ 82 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=15]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -268,7 +268,7 @@ tracks/0/keys = {
 "values": [ 83 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=16]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -283,7 +283,7 @@ tracks/0/keys = {
 "values": [ 84 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=17]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -298,7 +298,7 @@ tracks/0/keys = {
 "values": [ 85 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=18]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -313,7 +313,7 @@ tracks/0/keys = {
 "values": [ 86 ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=19]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -328,7 +328,7 @@ tracks/0/keys = {
 "values": [ 87 ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=20]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -343,7 +343,7 @@ tracks/0/keys = {
 "values": [ 80 ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=21]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -358,7 +358,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=22]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -372,7 +372,7 @@ tracks/0/keys = {
 "values": [ 100 ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=23]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -386,7 +386,7 @@ tracks/0/keys = {
 "values": [ 102 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=24]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -400,7 +400,7 @@ tracks/0/keys = {
 "values": [ 120 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=25]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -415,7 +415,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=26]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -429,7 +429,7 @@ tracks/0/keys = {
 "values": [ 101 ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=27]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -443,7 +443,7 @@ tracks/0/keys = {
 "values": [ 102 ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=28]
 length = 0.95
 step = 0.05
 tracks/0/type = "value"
@@ -459,7 +459,7 @@ tracks/0/keys = {
 "values": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 59 ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=29]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -474,7 +474,7 @@ tracks/0/keys = {
 "values": [ 60 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=30]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -489,7 +489,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=31]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -503,7 +503,7 @@ tracks/0/keys = {
 "values": [ 102 ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=32]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -517,7 +517,7 @@ tracks/0/keys = {
 "values": [ 103 ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=33]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -532,7 +532,7 @@ tracks/0/keys = {
 "values": [ 20 ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=34]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -546,7 +546,7 @@ tracks/0/keys = {
 "values": [ 100 ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=35]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -560,7 +560,7 @@ tracks/0/keys = {
 "values": [ 101 ]
 }
 
-[sub_resource type="CircleShape2D" id=37]
+[sub_resource type="CircleShape2D" id=36]
 radius = 1.0
 
 [node name="UI" type="Node2D"]
@@ -579,8 +579,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade"]
 autoplay = "fade_in"
-anims/fade_in = SubResource( 4 )
-anims/fade_out = SubResource( 5 )
+anims/fade_in = SubResource( 3 )
+anims/fade_out = SubResource( 4 )
 
 [node name="Pad" type="Node2D" parent="."]
 use_parent_material = true
@@ -593,13 +593,13 @@ position = Vector2( 0, 5 )
 script = ExtResource( 34 )
 
 [node name="Background" type="Sprite" parent="Pad/PadSprite"]
-material = SubResource( 7 )
+material = SubResource( 6 )
 use_parent_material = true
 position = Vector2( -6, -18 )
 texture = ExtResource( 38 )
 
 [node name="MapModule" type="Node2D" parent="Pad/PadSprite"]
-material = SubResource( 7 )
+material = SubResource( 6 )
 script = ExtResource( 33 )
 
 [node name="Background" type="Sprite" parent="Pad/PadSprite/MapModule"]
@@ -609,8 +609,8 @@ texture = ExtResource( 58 )
 [node name="AutoScrollingSprite" parent="Pad/PadSprite/MapModule" instance=ExtResource( 57 )]
 modulate = Color( 1, 1, 1, 0.333333 )
 position = Vector2( -240, -135 )
-texture = SubResource( 8 )
-script = SubResource( 9 )
+texture = SubResource( 7 )
+script = SubResource( 8 )
 speed_x = -0.2
 
 [node name="ShipIn" type="Sprite" parent="Pad/PadSprite/MapModule"]
@@ -703,7 +703,7 @@ position = Vector2( 204, 6 )
 texture = ExtResource( 35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pad/PadSprite/Module"]
-anims/map_module = SubResource( 10 )
+anims/map_module = SubResource( 9 )
 
 [node name="Tween" type="Tween" parent="Pad/PadSprite/Module"]
 
@@ -1009,7 +1009,7 @@ margin_right = 327.0
 margin_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource( 12 )
+theme = SubResource( 11 )
 custom_colors/font_color = Color( 0.486275, 0.486275, 0.486275, 1 )
 custom_colors/font_color_shadow = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
 custom_constants/shadow_offset_x = 1
@@ -1137,37 +1137,37 @@ script = ExtResource( 63 )
 
 [node name="CursorAnimation" type="AnimationPlayer" parent="Cursor"]
 autoplay = "default"
-anims/back0 = SubResource( 13 )
-anims/back1 = SubResource( 14 )
-anims/back2 = SubResource( 15 )
-anims/back3 = SubResource( 16 )
-anims/back4 = SubResource( 17 )
-anims/back5 = SubResource( 18 )
-anims/back6 = SubResource( 19 )
-anims/back7 = SubResource( 20 )
-anims/back8 = SubResource( 21 )
-anims/default = SubResource( 22 )
-anims/default_hand = SubResource( 23 )
-anims/default_point = SubResource( 24 )
-anims/eye = SubResource( 25 )
-anims/ground = SubResource( 26 )
-anims/ground_hand = SubResource( 27 )
-anims/ground_point = SubResource( 28 )
-anims/long_action = SubResource( 29 )
-anims/menu = SubResource( 30 )
-anims/pressed = SubResource( 31 )
-anims/pressed_hand = SubResource( 32 )
-anims/pressed_point = SubResource( 33 )
-anims/select = SubResource( 34 )
-anims/select_hand = SubResource( 35 )
-anims/select_point = SubResource( 36 )
+anims/back0 = SubResource( 12 )
+anims/back1 = SubResource( 13 )
+anims/back2 = SubResource( 14 )
+anims/back3 = SubResource( 15 )
+anims/back4 = SubResource( 16 )
+anims/back5 = SubResource( 17 )
+anims/back6 = SubResource( 18 )
+anims/back7 = SubResource( 19 )
+anims/back8 = SubResource( 20 )
+anims/default = SubResource( 21 )
+anims/default_hand = SubResource( 22 )
+anims/default_point = SubResource( 23 )
+anims/eye = SubResource( 24 )
+anims/ground = SubResource( 25 )
+anims/ground_hand = SubResource( 26 )
+anims/ground_point = SubResource( 27 )
+anims/long_action = SubResource( 28 )
+anims/menu = SubResource( 29 )
+anims/pressed = SubResource( 30 )
+anims/pressed_hand = SubResource( 31 )
+anims/pressed_point = SubResource( 32 )
+anims/select = SubResource( 33 )
+anims/select_hand = SubResource( 34 )
+anims/select_point = SubResource( 35 )
 
 [node name="Area2D" type="Area2D" parent="Cursor" groups=[
 "cursor",
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
-shape = SubResource( 37 )
+shape = SubResource( 36 )
 
 [node name="Sounds" type="Node2D" parent="Cursor"]
 
@@ -1218,8 +1218,8 @@ polygon = PoolVector2Array( 0, 0, 480, 0, 480, 270, 0, 270, 0, 0, 13, 13, 8, 18,
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/InWindowTab" to="Menu/MenuFrame/WindowTab" method="_on_InWindowTab_mouse_entered"]
 [connection signal="mouse_exited" from="Menu/MenuFrame/WindowTab/InWindowTab" to="Menu/MenuFrame/WindowTab" method="_on_InWindowTab_mouse_exited"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_mouse_entered"]
-[connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame" method="_on_NoButton_pressed"]
+[connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_pressed"]
 [connection signal="mouse_entered" from="UpdateMessageScreen/UpdateMessageButton" to="UpdateMessageScreen" method="_on_TextureButton_mouse_entered"]
