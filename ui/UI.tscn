@@ -515,10 +515,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=33]
 <<<<<<< HEAD
-<<<<<<< HEAD
 length = 0.4
-=======
->>>>>>> parent of aa20730... Welcome screen.
 =======
 >>>>>>> parent of aa20730... Welcome screen.
 loop = true
