@@ -13,7 +13,7 @@ var ui = null
 # CHAPTER GLOBAL VARIABLES
 var chapter_has_begun: bool = Global.DEV_MODE
 # Doors' state's list :
-var had_doors = [
+var had_doors: Array = [
 #   [is active, is open]
 	[false, false], #0 flora | cryopod
 	[false, true], #1 cryopod | safebay_top
@@ -31,8 +31,14 @@ var cloths_taken: bool = false
 var trap_keys_taken: bool = false
 var trap_is_closed: bool = true
 var cryopod_door_closed: bool = false
+
 # Maintenance global variables :
 var screwdriver_taken: bool = false
+var maintenance_lever: bool = false
+var buffet_screws: Array = [true, true, true, true, true, true, true, true]
+var left_buffet_door: bool = false
+var right_buffet_door: bool = false
+
 # Flora global variables :
 var pad_taken: bool = false
 
