@@ -2,7 +2,7 @@ extends Node
 
 
 # Meta variables
-const DEV_MODE: bool = true
+const DEV_MODE: bool = false
 
 # Story variables
 var chapter_name: String
@@ -16,6 +16,7 @@ var last_y: int
 # UI states
 var pad_visible: bool = false
 var menu_visible: bool = false
+var update_message_visible: bool = false
 # Cursor states.
 var mouse_hovering_ground: bool = false
 var mouse_hovering_count: int = 0

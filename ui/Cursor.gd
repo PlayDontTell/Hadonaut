@@ -33,7 +33,7 @@ func _process(delta):
 		and GlobalInventory.item_used in ["screwdriver"]):
 		special_cursor = "_point"
 
-	if Global.menu_visible:
+	if Global.menu_visible or Global.update_message_visible:
 		change_cursor_animation("menu")
 	else:
 		if mouse_arrow and not mouse_on_ui and not Global.mouse_hovering_count > 0:

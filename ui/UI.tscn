@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://ui/hud/hud2.png" type="Texture" id=1]
 [ext_resource path="res://ui/inventory.gd" type="Script" id=2]
@@ -67,10 +67,7 @@
 [ext_resource path="res://ui/Items.gd" type="Script" id=65]
 [ext_resource path="res://ui/hud/button_mask.png" type="BitMap" id=66]
 [ext_resource path="res://ui/pad/pad_hum.wav" type="AudioStream" id=67]
-[ext_resource path="res://ui/update_message_screen/update_screen_button_hover.png" type="Texture" id=68]
-[ext_resource path="res://ui/update_message_screen/update_screen_button.png" type="Texture" id=69]
-[ext_resource path="res://ui/update_message_screen/update_message_theme.tres" type="Theme" id=70]
-[ext_resource path="res://ui/UpdateMessageScreen.gd" type="Script" id=71]
+[ext_resource path="res://ui/update_message_screen/UpdateMessageScreen.tscn" type="PackedScene" id=68]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -1069,63 +1066,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UpdateMessageScreen" type="Node2D" parent="."]
-script = ExtResource( 71 )
-
-[node name="Blackscreen" type="Sprite" parent="UpdateMessageScreen"]
-scale = Vector2( 15, 9 )
-texture = ExtResource( 5 )
-centered = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="UpdateMessage" type="RichTextLabel" parent="UpdateMessageScreen"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 90.0
-margin_top = 53.0
-margin_right = 390.0
-margin_bottom = 216.0
-theme = ExtResource( 70 )
-bbcode_enabled = true
-bbcode_text = "[center]Hadonaut version a_0.04[/center]
-
-[color=gray]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page or the Github page.[/color]
-
-[u]version note :[/u]
-...
-
-
-[center][color=gray]Have fun![/color][/center]"
-text = "Hadonaut version a_0.04
-
-Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page or the Github page.
-
-version note :
-...
-
-
-Have fun!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UpdateMessageButton" type="TextureButton" parent="UpdateMessageScreen" groups=[
-"cursor_hover",
-]]
-margin_left = 226.0
-margin_top = 219.0
-margin_right = 254.0
-margin_bottom = 244.0
-texture_normal = ExtResource( 69 )
-texture_pressed = ExtResource( 69 )
-texture_hover = ExtResource( 68 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="UpdateMessageScreen" parent="." instance=ExtResource( 68 )]
 
 [node name="Cursor" type="Sprite" parent="."]
 position = Vector2( -46, -35 )
@@ -1222,7 +1163,5 @@ polygon = PoolVector2Array( 0, 0, 480, 0, 480, 270, 0, 270, 0, 0, 13, 13, 8, 18,
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_pressed"]
-[connection signal="mouse_entered" from="UpdateMessageScreen/UpdateMessageButton" to="UpdateMessageScreen" method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="UpdateMessageScreen/UpdateMessageButton" to="UpdateMessageScreen" method="_on_TextureButton_mouse_exited"]
 [connection signal="area_entered" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_exited"]
