@@ -514,6 +514,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=33]
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -522,10 +523,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 20 ]
+"values": [ 21, 22, 21, 20 ]
 }
 
 [sub_resource type="Animation" id=34]
@@ -1070,7 +1071,7 @@ position = Vector2( -46, -35 )
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 20
-frame = 59
+frame = 20
 script = ExtResource( 63 )
 
 [node name="CursorAnimation" type="AnimationPlayer" parent="Cursor"]
@@ -1156,8 +1157,8 @@ polygon = PoolVector2Array( 0, 0, 480, 0, 480, 270, 0, 270, 0, 0, 13, 13, 8, 18,
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/InWindowTab" to="Menu/MenuFrame/WindowTab" method="_on_InWindowTab_mouse_entered"]
 [connection signal="mouse_exited" from="Menu/MenuFrame/WindowTab/InWindowTab" to="Menu/MenuFrame/WindowTab" method="_on_InWindowTab_mouse_exited"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_mouse_entered"]
-[connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame" method="_on_NoButton_pressed"]
+[connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_pressed"]
 [connection signal="area_entered" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_entered"]
