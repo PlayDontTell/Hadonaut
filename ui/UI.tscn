@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://ui/hud/hud2.png" type="Texture" id=1]
 [ext_resource path="res://ui/inventory.gd" type="Script" id=2]
@@ -67,6 +67,10 @@
 [ext_resource path="res://ui/Items.gd" type="Script" id=65]
 [ext_resource path="res://ui/hud/button_mask.png" type="BitMap" id=66]
 [ext_resource path="res://ui/pad/pad_hum.wav" type="AudioStream" id=67]
+[ext_resource path="res://ui/update_message_screen/update_screen_button_hover.png" type="Texture" id=68]
+[ext_resource path="res://ui/update_message_screen/update_screen_button.png" type="Texture" id=69]
+[ext_resource path="res://ui/update_message_screen/update_message_theme.tres" type="Theme" id=70]
+[ext_resource path="res://ui/UpdateMessageScreen.gd" type="Script" id=71]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -86,7 +90,7 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/u_amount = 0.01
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -101,7 +105,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -116,7 +120,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
 
 uniform float u_amount = 0.04;
@@ -130,15 +134,15 @@ void fragment() {
     COLOR = texture(TEXTURE, UV) + n * u_amount;
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
 shader_param/u_amount = 0.04
 
-[sub_resource type="StreamTexture" id=7]
+[sub_resource type="StreamTexture" id=8]
 flags = 2
 load_path = "res://.import/space.png-87a212a2522168a6687dcd23813c9859.stex"
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=9]
 script/source = "extends Sprite
 
 
@@ -182,7 +186,7 @@ func _physics_process(_delta):
 	position = current_position
 "
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -196,28 +200,13 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=11]
 size = 12
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 53 )
 
-[sub_resource type="Theme" id=11]
-default_font = SubResource( 10 )
-
-[sub_resource type="Animation" id=12]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 80 ]
-}
+[sub_resource type="Theme" id=12]
+default_font = SubResource( 11 )
 
 [sub_resource type="Animation" id=13]
 loop = true
@@ -231,7 +220,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 81 ]
+"values": [ 80 ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -246,7 +235,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 82 ]
+"values": [ 81 ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -261,7 +250,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 83 ]
+"values": [ 82 ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -276,7 +265,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 84 ]
+"values": [ 83 ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -291,7 +280,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 85 ]
+"values": [ 84 ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -306,7 +295,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 86 ]
+"values": [ 85 ]
 }
 
 [sub_resource type="Animation" id=19]
@@ -321,7 +310,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 87 ]
+"values": [ 86 ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -336,7 +325,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 80 ]
+"values": [ 87 ]
 }
 
 [sub_resource type="Animation" id=21]
@@ -351,10 +340,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 80 ]
 }
 
 [sub_resource type="Animation" id=22]
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -365,7 +355,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 100 ]
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=23]
@@ -379,7 +369,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 102 ]
+"values": [ 100 ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -393,10 +383,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 120 ]
+"values": [ 102 ]
 }
 
 [sub_resource type="Animation" id=25]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 120 ]
+}
+
+[sub_resource type="Animation" id=26]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -411,7 +415,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=27]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -425,7 +429,7 @@ tracks/0/keys = {
 "values": [ 101 ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=28]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -439,7 +443,7 @@ tracks/0/keys = {
 "values": [ 102 ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=29]
 length = 0.95
 step = 0.05
 tracks/0/type = "value"
@@ -455,7 +459,7 @@ tracks/0/keys = {
 "values": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 59 ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=30]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -470,7 +474,7 @@ tracks/0/keys = {
 "values": [ 60 ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=31]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -485,7 +489,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=32]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -499,7 +503,7 @@ tracks/0/keys = {
 "values": [ 102 ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=33]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -514,10 +518,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=33]
-<<<<<<< HEAD
 length = 0.4
-=======
->>>>>>> parent of aa20730... Welcome screen.
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -532,7 +533,7 @@ tracks/0/keys = {
 "values": [ 21, 22, 21, 20 ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=35]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -546,7 +547,7 @@ tracks/0/keys = {
 "values": [ 100 ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=36]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -560,7 +561,7 @@ tracks/0/keys = {
 "values": [ 101 ]
 }
 
-[sub_resource type="CircleShape2D" id=36]
+[sub_resource type="CircleShape2D" id=37]
 radius = 1.0
 
 [node name="UI" type="Node2D"]
@@ -579,8 +580,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade"]
 autoplay = "fade_in"
-anims/fade_in = SubResource( 3 )
-anims/fade_out = SubResource( 4 )
+anims/fade_in = SubResource( 4 )
+anims/fade_out = SubResource( 5 )
 
 [node name="Pad" type="Node2D" parent="."]
 use_parent_material = true
@@ -593,13 +594,13 @@ position = Vector2( 0, 5 )
 script = ExtResource( 34 )
 
 [node name="Background" type="Sprite" parent="Pad/PadSprite"]
-material = SubResource( 6 )
+material = SubResource( 7 )
 use_parent_material = true
 position = Vector2( -6, -18 )
 texture = ExtResource( 38 )
 
 [node name="MapModule" type="Node2D" parent="Pad/PadSprite"]
-material = SubResource( 6 )
+material = SubResource( 7 )
 script = ExtResource( 33 )
 
 [node name="Background" type="Sprite" parent="Pad/PadSprite/MapModule"]
@@ -609,8 +610,8 @@ texture = ExtResource( 58 )
 [node name="AutoScrollingSprite" parent="Pad/PadSprite/MapModule" instance=ExtResource( 57 )]
 modulate = Color( 1, 1, 1, 0.333333 )
 position = Vector2( -240, -135 )
-texture = SubResource( 7 )
-script = SubResource( 8 )
+texture = SubResource( 8 )
+script = SubResource( 9 )
 speed_x = -0.2
 
 [node name="ShipIn" type="Sprite" parent="Pad/PadSprite/MapModule"]
@@ -703,7 +704,7 @@ position = Vector2( 204, 6 )
 texture = ExtResource( 35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pad/PadSprite/Module"]
-anims/map_module = SubResource( 9 )
+anims/map_module = SubResource( 10 )
 
 [node name="Tween" type="Tween" parent="Pad/PadSprite/Module"]
 
@@ -1009,7 +1010,7 @@ margin_right = 327.0
 margin_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource( 11 )
+theme = SubResource( 12 )
 custom_colors/font_color = Color( 0.486275, 0.486275, 0.486275, 1 )
 custom_colors/font_color_shadow = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
 custom_constants/shadow_offset_x = 1
@@ -1069,6 +1070,64 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="UpdateMessageScreen" type="Node2D" parent="."]
+script = ExtResource( 71 )
+
+[node name="Blackscreen" type="Sprite" parent="UpdateMessageScreen"]
+scale = Vector2( 15, 9 )
+texture = ExtResource( 5 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="UpdateMessage" type="RichTextLabel" parent="UpdateMessageScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 90.0
+margin_top = 53.0
+margin_right = 390.0
+margin_bottom = 216.0
+theme = ExtResource( 70 )
+bbcode_enabled = true
+bbcode_text = "[center]Hadonaut version a_0.04[/center]
+
+[color=gray]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page or the Github page.[/color]
+
+[u]version note :[/u]
+...
+
+
+[center][color=gray]Have fun![/color][/center]"
+text = "Hadonaut version a_0.04
+
+Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page or the Github page.
+
+version note :
+...
+
+
+Have fun!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpdateMessageButton" type="TextureButton" parent="UpdateMessageScreen" groups=[
+"cursor_hover",
+]]
+margin_left = 226.0
+margin_top = 219.0
+margin_right = 254.0
+margin_bottom = 244.0
+texture_normal = ExtResource( 69 )
+texture_pressed = ExtResource( 69 )
+texture_hover = ExtResource( 68 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Cursor" type="Sprite" parent="."]
 position = Vector2( -46, -35 )
 texture = ExtResource( 3 )
@@ -1079,37 +1138,37 @@ script = ExtResource( 63 )
 
 [node name="CursorAnimation" type="AnimationPlayer" parent="Cursor"]
 autoplay = "default"
-anims/back0 = SubResource( 12 )
-anims/back1 = SubResource( 13 )
-anims/back2 = SubResource( 14 )
-anims/back3 = SubResource( 15 )
-anims/back4 = SubResource( 16 )
-anims/back5 = SubResource( 17 )
-anims/back6 = SubResource( 18 )
-anims/back7 = SubResource( 19 )
-anims/back8 = SubResource( 20 )
-anims/default = SubResource( 21 )
-anims/default_hand = SubResource( 22 )
-anims/default_point = SubResource( 23 )
-anims/eye = SubResource( 24 )
-anims/ground = SubResource( 25 )
-anims/ground_hand = SubResource( 26 )
-anims/ground_point = SubResource( 27 )
-anims/long_action = SubResource( 28 )
-anims/menu = SubResource( 29 )
-anims/pressed = SubResource( 30 )
-anims/pressed_hand = SubResource( 31 )
-anims/pressed_point = SubResource( 32 )
-anims/select = SubResource( 33 )
-anims/select_hand = SubResource( 34 )
-anims/select_point = SubResource( 35 )
+anims/back0 = SubResource( 13 )
+anims/back1 = SubResource( 14 )
+anims/back2 = SubResource( 15 )
+anims/back3 = SubResource( 16 )
+anims/back4 = SubResource( 17 )
+anims/back5 = SubResource( 18 )
+anims/back6 = SubResource( 19 )
+anims/back7 = SubResource( 20 )
+anims/back8 = SubResource( 21 )
+anims/default = SubResource( 22 )
+anims/default_hand = SubResource( 23 )
+anims/default_point = SubResource( 24 )
+anims/eye = SubResource( 25 )
+anims/ground = SubResource( 26 )
+anims/ground_hand = SubResource( 27 )
+anims/ground_point = SubResource( 28 )
+anims/long_action = SubResource( 29 )
+anims/menu = SubResource( 30 )
+anims/pressed = SubResource( 31 )
+anims/pressed_hand = SubResource( 32 )
+anims/pressed_point = SubResource( 33 )
+anims/select = SubResource( 34 )
+anims/select_hand = SubResource( 35 )
+anims/select_point = SubResource( 36 )
 
 [node name="Area2D" type="Area2D" parent="Cursor" groups=[
 "cursor",
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
-shape = SubResource( 36 )
+shape = SubResource( 37 )
 
 [node name="Sounds" type="Node2D" parent="Cursor"]
 
@@ -1164,5 +1223,7 @@ polygon = PoolVector2Array( 0, 0, 480, 0, 480, 270, 0, 270, 0, 0, 13, 13, 8, 18,
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_pressed"]
+[connection signal="mouse_entered" from="UpdateMessageScreen/UpdateMessageButton" to="UpdateMessageScreen" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="UpdateMessageScreen/UpdateMessageButton" to="UpdateMessageScreen" method="_on_TextureButton_mouse_exited"]
 [connection signal="area_entered" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_exited"]
