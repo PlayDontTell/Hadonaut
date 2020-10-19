@@ -167,22 +167,22 @@ func _ready():
 	centered = false
 	# position
 	position -= texture.get_size()
-
+	
 
 # Function to move the sprite each frame according to the speed parameters.
 func _physics_process(_delta):
-
+	
 	var current_position = position
-
+	
 	current_position.x = current_position.x + speed_x
 	current_position.y = current_position.y + speed_y
-
+	
 	if current_position.x < 0 - texture.get_width() * 2 or current_position.x > 0:
 		current_position.x = 0 - texture.get_width()
-
+	
 	if current_position.y < 0 - texture.get_height() * 2 or current_position.y > 0:
 		current_position.y = 0 - texture.get_height()
-
+	
 	position = current_position
 "
 
@@ -517,8 +517,7 @@ tracks/0/keys = {
 "values": [ 103 ]
 }
 
-[sub_resource type="Animation" id=33]
-length = 0.4
+[sub_resource type="Animation" id=34]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -527,10 +526,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 21, 22, 21, 20 ]
+"values": [ 20 ]
 }
 
 [sub_resource type="Animation" id=35]
@@ -970,7 +969,7 @@ bbcode_text = "[center][u]STORY, GRAPHICS and PROGRAMMING[/u][/center]
 [center][u]MUSIC[/u][/center]
 [color=#aaaaaa]Air Prelude[/color]
 by Kevin MacLeod (incompetech.com)
-Licensed under Creative Commons:
+Licensed under Creative Commons: 
 By Attribution 4.0
 
 [center][u]SOUND EFFECTS[/u][/center]
@@ -986,7 +985,7 @@ Ivan Voirol
 MUSIC
 Air Prelude
 by Kevin MacLeod (incompetech.com)
-Licensed under Creative Commons:
+Licensed under Creative Commons: 
 By Attribution 4.0
 
 SOUND EFFECTS
@@ -1133,7 +1132,7 @@ position = Vector2( -46, -35 )
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 20
-frame = 20
+frame = 59
 script = ExtResource( 63 )
 
 [node name="CursorAnimation" type="AnimationPlayer" parent="Cursor"]
@@ -1219,8 +1218,8 @@ polygon = PoolVector2Array( 0, 0, 480, 0, 480, 270, 0, 270, 0, 0, 13, 13, 8, 18,
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/InWindowTab" to="Menu/MenuFrame/WindowTab" method="_on_InWindowTab_mouse_entered"]
 [connection signal="mouse_exited" from="Menu/MenuFrame/WindowTab/InWindowTab" to="Menu/MenuFrame/WindowTab" method="_on_InWindowTab_mouse_exited"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_mouse_entered"]
-[connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame" method="_on_NoButton_pressed"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame/WindowTab" method="_on_NoButton_pressed"]
+[connection signal="pressed" from="Menu/MenuFrame/WindowTab/NoButton" to="Menu/MenuFrame" method="_on_NoButton_pressed"]
 [connection signal="mouse_entered" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuFrame/WindowTab/YesButton" to="Menu/MenuFrame/WindowTab" method="_on_YesButton_pressed"]
 [connection signal="mouse_entered" from="UpdateMessageScreen/UpdateMessageButton" to="UpdateMessageScreen" method="_on_TextureButton_mouse_entered"]
