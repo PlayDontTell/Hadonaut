@@ -31,10 +31,19 @@ var cloths_taken: bool = false
 var trap_keys_taken: bool = false
 var trap_is_closed: bool = true
 var cryopod_door_closed: bool = false
+
 # Maintenance global variables :
 var screwdriver_taken: bool = false
+var maintenance_lever: bool = false
+
+#Lever buffet global variables :
+var left_buffet_door: bool = false
+var right_buffet_door: bool = false
+var buffet_screws = [true, true, true, true, true, true, true, true]
+
 # Flora global variables :
 var pad_taken: bool = false
+
 
 
 func _init():
@@ -42,10 +51,19 @@ func _init():
 	
 	
 func _ready():
-	go_to_room(starting_room, false, 253, 131)
+	# Starting music and atmosphere.
 	$ChapterRes/Atmo/SpaceHum.play()
 	if not Global.DEV_MODE:
 		$ChapterRes/Music/AirPrelude.play()
+	
+	# Displaying the update message if not in DEV MODE.
+	var message = $UI/UpdateMessageScreen.display_version_message()
+	if message is GDScriptFunctionState:
+		 message = yield(message, "completed")
+	
+	# Loading the first room.
+	go_to_room(starting_room, false, 253, 131)
+	
 #	else:
 #		for item in GlobalInventory.existing_items:
 #			$UI/Inventory.add(item)
