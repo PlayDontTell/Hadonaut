@@ -18,3 +18,5 @@ __meta__ = {
 [node name="Animation" type="AnimationPlayer" parent="."]
 
 [node name="PointOfInteraction" type="Position2D" parent="."]
+[connection signal="area_entered" from="." to="." method="_on_InteractiveObject_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_InteractiveObject_area_exited"]

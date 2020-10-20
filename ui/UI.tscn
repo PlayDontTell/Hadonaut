@@ -515,7 +515,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=33]
-loop = true
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -526,7 +526,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 20 ]
+"values": [ 21 ]
 }
 
 [sub_resource type="Animation" id=34]
@@ -750,9 +750,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuButton" type="TextureButton" parent="HUD" groups=[
-"cursor_hover",
-]]
+[node name="MenuButton" type="TextureButton" parent="HUD"]
 use_parent_material = true
 margin_left = 416.0
 margin_top = 238.0
@@ -1073,7 +1071,7 @@ position = Vector2( -46, -35 )
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 20
-frame = 59
+frame = 20
 script = ExtResource( 63 )
 
 [node name="CursorAnimation" type="AnimationPlayer" parent="Cursor"]

@@ -31,10 +31,10 @@ func _ready():
 		inventory_node.item_spawn_positions[item_name] = Vector2(0, 0)
 		# When first created, the item slowly appears.
 		$Tween.interpolate_property($ItemTexture, "modulate"
-		, Color(1,1,1,0), Color(1,1,1,1), 
+		, Global.COLOR_TRANPARENT, Global.COLOR_DEFAULT, 
 		spawn_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 		$Tween.interpolate_property($ItemShade, "modulate"
-		, Color(0,0,0,0), Color(0,0,0,1), 
+		, Global.COLOR_TRANPARENT, Global.COLOR_BLACK, 
 		spawn_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 		$Tween.start()
 		
@@ -43,14 +43,14 @@ func _ready():
 		$ItemTexture.z_index = 0
 		
 		$Tween.interpolate_property($ItemTexture, "modulate"
-		, $ItemTexture.modulate, Color(0.7,0.7,0.7), 
+		, $ItemTexture.modulate, Global.COLOR_SHADED, 
 		0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
 
 
 func _on_Item_mouse_entered():
 	$ItemHover.visible = true
-	$ItemTexture.modulate = Color(1,1,1)
+	$ItemTexture.modulate = Global.COLOR_DEFAULT
 	Global.mouse_hovering_count += 1
 	Global.force_hand_cursor = true
 	Global.mouse_hovering_inventory = true
@@ -60,7 +60,7 @@ func _on_Item_mouse_entered():
 func _on_Item_mouse_exited():
 	$ItemHover.visible = false
 	if not GlobalInventory.item_used == item_name:
-		$ItemTexture.modulate = Color(0.7,0.7,0.7)
+		$ItemTexture.modulate = Global.COLOR_SHADED
 	if Global.mouse_hovering_count > 0:
 		Global.mouse_hovering_count -= 1
 		Global.force_hand_cursor = false
@@ -70,7 +70,7 @@ func _on_Item_mouse_exited():
 
 func draw_item():
 	$Tween.stop($ItemTexture, "modulate")
-	$ItemTexture.modulate = Color(0.7,0.7,0.7)
+	$ItemTexture.modulate = Global.COLOR_SHADED
 	$Tween.stop($ItemTexture, "position")
 	$ItemTexture.position = Vector2(0, 0)
 	$Tween.stop($ItemShade, "modulate")
@@ -78,7 +78,7 @@ func draw_item():
 	GlobalInventory.is_using_item = true
 	GlobalInventory.item_used = item_name
 	$ItemTexture.z_index = +32
-	$ItemTexture.modulate = Color(1,1,1)
+	$ItemTexture.modulate = Global.COLOR_DEFAULT
 	if item_name in ["cryopod_trap_key"]:
 		$Sounds/Keys.play()
 	if item_name in ["screwdriver"]:

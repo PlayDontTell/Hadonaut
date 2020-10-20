@@ -55,10 +55,10 @@ func _on_ModuleConnection_pressed():
 					$PadSprite/MapModule.visible = true
 					$PadSprite/Module/Tween.interpolate_property(
 					$PadSprite/MapModule, "modulate"
-					, Color(1,1,1,0), Color(1,1,1,1), 
+					, Global.COLOR_TRANPARENT, Global.COLOR_DEFAULT, 
 					1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 					$PadSprite/Module/Tween.start()
-					$PadSprite/MapModule.modulate =  Color(1,1,1,0)
+					$PadSprite/MapModule.modulate =  Global.COLOR_TRANPARENT
 					$PadSprite/MapModule.visible = true
 	else:
 		eject_module()
@@ -75,7 +75,7 @@ func insert_module(module_name):
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "position",
 	 Vector2(210, 7), Vector2(171, 7), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "modulate"
-		, Color(1,1,1,0), Color(1,1,1,1), 
+		, Global.COLOR_TRANPARENT, Global.COLOR_DEFAULT, 
 		0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$PadSprite/Module/Tween.start()
 	yield(get_tree().create_timer(0.6), "timeout")
@@ -94,7 +94,7 @@ func eject_module():
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "position",
 	Vector2(171, 7), Vector2(210, 7), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "modulate"
-		, Color(1,1,1,1), Color(1,1,1,0), 
+		, Global.COLOR_DEFAULT, Global.COLOR_TRANPARENT, 
 		0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$PadSprite/Module/Tween.start()
 	

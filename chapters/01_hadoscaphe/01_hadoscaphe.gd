@@ -79,8 +79,8 @@ func set_ship_power(setting):
 	if setting == "day" and not setting == ship_power:
 		# interpolating the brightness of the viewport.
 		var tween = current_room.get_node("Tween")
-		tween.interpolate_property(current_room, "modulate", Color(1.4, 1.4, 1.4),
-		Color(1, 1, 1), 3, Tween.TRANS_SINE, Tween.EASE_OUT)
+		tween.interpolate_property(current_room, "modulate", Global.COLOR_HIGHLIGHT,
+		Global.COLOR_DEFAULT, 3, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.start()
 	
 	# All the operations triggered by the change of the ship_power var are done,
@@ -97,9 +97,9 @@ func set_ship_power(setting):
 	# If the room contains Char, modulating its appearance.
 	if current_room.has_node("Char/Sprite"):
 		if ship_power == "day":
-			current_room.get_node("Char/Sprite").modulate = Color(1,1,1)
+			current_room.get_node("Char/Sprite").modulate = Global.COLOR_DEFAULT
 		else:
-			current_room.get_node("Char/Sprite").modulate = Color(0.5,0.5,0.7)
+			current_room.get_node("Char/Sprite").modulate = Global.COLOR_BLUE_TINTED
 
 
 # Function to order the change of the room.

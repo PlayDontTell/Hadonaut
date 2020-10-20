@@ -50,13 +50,13 @@ func _process(_delta):
 func initialize_light():
 	# Tint the objects which aren't the set.
 	if current_chapter.ship_power == "day":
-		$LeftDoorButton/Sprite.modulate = Color(1,1,1)
-		$AwakeningAnimation.modulate = Color(1,1,1)
-		$Cloths/Sprite.modulate = Color(1,1,1)
+		$LeftDoorButton/Sprite.modulate = Global.COLOR_DEFAULT
+		$AwakeningAnimation.modulate = Global.COLOR_DEFAULT
+		$Cloths/Sprite.modulate = Global.COLOR_DEFAULT
 	else:
-		$LeftDoorButton/Sprite.modulate = Color(0.5,0.5,0.7)
-		$AwakeningAnimation.modulate = Color(0.5,0.5,0.7)
-		$Cloths/Sprite.modulate = Color(0.5,0.5,0.7)
+		$LeftDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
+		$AwakeningAnimation.modulate = Global.COLOR_BLUE_TINTED
+		$Cloths/Sprite.modulate = Global.COLOR_BLUE_TINTED
 	$DoorLeft/AnimationPlayer.play(current_chapter.ship_power)
 	$DoorRight/AnimationPlayer.play(current_chapter.ship_power)
 	$Background/AnimationPlayer.play(current_chapter.ship_power)

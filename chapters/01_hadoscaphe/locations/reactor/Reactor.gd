@@ -18,9 +18,9 @@ func _ready():
 func initialize_light():
 	# Tint the objects which aren't the set.
 	if current_chapter.ship_power == "day":
-		$RightDoorButton/Sprite.modulate = Color(1,1,1)
+		$RightDoorButton/Sprite.modulate = Global.COLOR_DEFAULT
 	else:
-		$RightDoorButton/Sprite.modulate = Color(0.5,0.5,0.7)
+		$RightDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
 	$DoorRight/AnimationPlayer.play(current_chapter.ship_power)
 	$Background/AnimationPlayer.play(current_chapter.ship_power)
 	$Foreground/AnimationPlayer.play(current_chapter.ship_power)

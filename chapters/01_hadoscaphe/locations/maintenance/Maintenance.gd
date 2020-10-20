@@ -23,9 +23,9 @@ func _ready():
 func initialize_light():
 	# Tint the objects which aren't the set.
 	if current_chapter.ship_power == "day":
-		$LeftDoorButton/Sprite.modulate = Color(1,1,1)
+		$LeftDoorButton/Sprite.modulate = Global.COLOR_DEFAULT
 	else:
-		$LeftDoorButton/Sprite.modulate = Color(0.5,0.5,0.7)
+		$LeftDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
 	$AnimationPlayer.play(current_chapter.ship_power)
 	# initialize the animated objects (animations).
 # warning-ignore:standalone_ternary

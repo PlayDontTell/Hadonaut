@@ -48,11 +48,13 @@ func toggle_menu():
 
 func _on_MenuButton_mouse_entered():
 	Global.mouse_hovering_count += 1
+	Global.force_menu_cursor = true
 
 
 func _on_MenuButton_mouse_exited():
 	if Global.mouse_hovering_count > 0:
 		Global.mouse_hovering_count -= 1
+	Global.force_menu_cursor = false
 
 
 func empty_hands():

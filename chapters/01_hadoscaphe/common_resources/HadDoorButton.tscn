@@ -67,3 +67,5 @@ bus = "Fx"
 [node name="ButtonError" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 bus = "Fx"
+[connection signal="area_entered" from="." to="." method="_on_HadDoorButton_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_HadDoorButton_area_exited"]

@@ -9,6 +9,7 @@ export var action_type: String
 export var flip_h: bool = false
 export var door_id: int
 var is_active: bool = false
+var default_modulate: Color
 
 onready var current_room = get_node("..")
 
@@ -38,3 +39,13 @@ func set_state():
 	is_active = current_room.current_chapter.had_doors[door_id][0]
 	var animation = "on" if is_active else "off"
 	$Animation.play(animation)
+
+
+func _on_HadDoorButton_area_entered(area):
+	if area.is_in_group("cursor"):
+		default_modulate = modulate
+		modulate = Global.COLOR_HIGHLIGHT
+
+func _on_HadDoorButton_area_exited(area):
+	if area.is_in_group("cursor"):
+		modulate = default_modulate

@@ -33,7 +33,7 @@ func _process(delta):
 		and GlobalInventory.item_used in ["screwdriver"]):
 		special_cursor = "_point"
 
-	if Global.menu_visible or Global.update_message_visible:
+	if Global.menu_visible or Global.update_message_visible or Global.force_menu_cursor:
 		change_cursor_animation("menu")
 	else:
 		if mouse_arrow and not mouse_on_ui and not Global.mouse_hovering_count > 0:
@@ -112,6 +112,9 @@ func _on_Area2D_area_entered(area):
 		
 	if area.is_in_group("cursor_hand"):
 		Global.force_hand_cursor = true
+	
+	if area.is_in_group("cursor_menu"):
+		Global.force_menu_cursor = true
 
 
 func _on_Area2D_area_exited(area):
@@ -127,3 +130,6 @@ func _on_Area2D_area_exited(area):
 	
 	if area.is_in_group("cursor_hand"):
 		Global.force_hand_cursor = false
+		
+	if area.is_in_group("cursor_menu"):
+		Global.force_menu_cursor = false

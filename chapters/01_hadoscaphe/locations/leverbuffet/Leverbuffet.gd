@@ -74,10 +74,10 @@ func refresh_door():
 	if not $DoorRight/LeverBuffetScrew4.visible:
 		nbr_of_screws_on_door_right += 1
 	
-	if nbr_of_screws_on_door_left == 4 and $DoorLeft.modulate == Color(1, 1, 1, 1):
+	if nbr_of_screws_on_door_left == 4 and $DoorLeft.modulate == Global.COLOR_DEFAULT:
 		open_left_door(0.8)
 		$SlidingPanelSound.play()
-	if nbr_of_screws_on_door_right == 4 and $DoorRight.modulate == Color(1, 1, 1, 1):
+	if nbr_of_screws_on_door_right == 4 and $DoorRight.modulate == Global.COLOR_DEFAULT:
 		open_right_door(0.8)
 		$SlidingPanelSound.play()
 	
@@ -103,40 +103,40 @@ func initialize_unscrewed_screws():
 
 func open_left_door(trans_duration):
 	current_chapter.left_buffet_door = true
-	$Tween.interpolate_property($DoorLeft, "modulate", Color(1, 1, 1, 1)
-	, Color(1, 1, 1, 0), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.interpolate_property($DoorLeftDetached, "modulate", Color(1, 1, 1, 0)
-	, Color(1, 1, 1, 1), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property($DoorLeft, "modulate", Global.COLOR_DEFAULT
+	, Global.COLOR_TRANPARENT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property($DoorLeftDetached, "modulate", Global.COLOR_TRANPARENT
+	, Global.COLOR_DEFAULT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$DoorLeftDetached/LeftArea2D/CollisionPolygon2D.disabled = false
 	$Tween.start()
 
 
 func close_left_door(trans_duration):
 	current_chapter.left_buffet_door = false
-	$Tween.interpolate_property($DoorLeft, "modulate", Color(1, 1, 1, 0)
-	, Color(1, 1, 1, 1), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.interpolate_property($DoorLeftDetached, "modulate", Color(1, 1, 1, 1)
-	, Color(1, 1, 1, 0), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property($DoorLeft, "modulate", Global.COLOR_TRANPARENT
+	, Global.COLOR_DEFAULT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property($DoorLeftDetached, "modulate", Global.COLOR_DEFAULT
+	, Global.COLOR_TRANPARENT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$DoorLeftDetached/LeftArea2D/CollisionPolygon2D.disabled = true
 	$Tween.start()
 
 
 func open_right_door(trans_duration):
 	current_chapter.right_buffet_door = true
-	$Tween.interpolate_property($DoorRight, "modulate", Color(1, 1, 1, 1)
-	, Color(1, 1, 1, 0), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.interpolate_property($DoorRightDetached, "modulate", Color(1, 1, 1, 0)
-	, Color(1, 1, 1, 1), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property($DoorRight, "modulate", Global.COLOR_DEFAULT
+	, Global.COLOR_TRANPARENT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property($DoorRightDetached, "modulate", Global.COLOR_TRANPARENT
+	, Global.COLOR_DEFAULT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$DoorRightDetached/RightArea2D/CollisionPolygon2D.disabled = false
 	$Tween.start()
 
 
 func close_right_door(trans_duration):
 	current_chapter.right_buffet_door = false
-	$Tween.interpolate_property($DoorRight, "modulate", Color(1, 1, 1, 0)
-	, Color(1, 1, 1, 1), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.interpolate_property($DoorRightDetached, "modulate", Color(1, 1, 1, 1)
-	, Color(1, 1, 1, 0), trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property($DoorRight, "modulate", Global.COLOR_TRANPARENT
+	, Global.COLOR_DEFAULT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property($DoorRightDetached, "modulate", Global.COLOR_DEFAULT
+	, Global.COLOR_TRANPARENT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$DoorRightDetached/RightArea2D/CollisionPolygon2D.disabled = true
 	$Tween.start()
 

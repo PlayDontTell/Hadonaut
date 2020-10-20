@@ -88,11 +88,13 @@ func toggle_pad():
 
 func _on_PadButton_mouse_entered():
 	Global.mouse_hovering_count += 1
+	Global.force_menu_cursor = true
 
 
 func _on_PadButton_mouse_exited():
 	if Global.mouse_hovering_count > 0:
 		Global.mouse_hovering_count -= 1
+	Global.force_menu_cursor = false
 
 
 func _on_PadOffButton_mouse_entered():

@@ -35,7 +35,7 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/u_amount = 0.01
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -65,10 +65,10 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 5, 4 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=6]
 resource_name = "off_day"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -95,7 +95,7 @@ tracks/1/keys = {
 "values": [ Vector2( -4, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=7]
 resource_name = "off_night"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -122,7 +122,7 @@ tracks/1/keys = {
 "values": [ Vector2( -4, 0 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -148,7 +148,7 @@ tracks/1/keys = {
 "values": [ Vector2( 3, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=9]
 resource_name = "on_night"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -175,12 +175,12 @@ tracks/1/keys = {
 "values": [ Vector2( 3, 0 ) ]
 }
 
-[sub_resource type="NavigationPolygon" id=14]
+[sub_resource type="NavigationPolygon" id=10]
 vertices = PoolVector2Array( 95.3074, 139, 30.3074, 109, 50.3074, 104, 112.307, 124, 123.307, 139, 129, 124, 139.307, 136, 133, 152, 436.307, 152, 445.307, 162, 388.307, 168, 374.307, 153, 321.307, 151, 307.307, 137, 277.307, 154, 268.307, 137, 164.307, 153, 154.307, 138, 154.307, 136, 161.307, 138, 161.307, 136, 171.307, 136, 174.307, 125, 187.307, 125, 188, 128, 171.307, 130, 285.307, 170, 274.307, 181, 171.307, 180, 162.307, 169, 197, 128, 240, 129, 268.307, 132, 244.307, 125, 255.307, 125 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 11, 10, 12, 13 ), PoolIntArray( 13, 12, 14, 15 ), PoolIntArray( 16, 7, 6, 17 ), PoolIntArray( 6, 18, 17 ), PoolIntArray( 16, 17, 19 ), PoolIntArray( 16, 19, 20, 21, 15 ), PoolIntArray( 22, 23, 24, 25 ), PoolIntArray( 15, 14, 26, 27, 28, 29, 16 ), PoolIntArray( 30, 31, 32, 15, 21, 25, 24 ), PoolIntArray( 31, 33, 34, 32 ), PoolIntArray( 22, 25, 22 ) ]
 outlines = [ PoolVector2Array( 50.3074, 104, 112.307, 124, 129, 124, 139.307, 136, 154.307, 136, 154.307, 138, 161.307, 138, 161.307, 136, 171.307, 136, 171.307, 130, 174.307, 125, 174.307, 125, 187.307, 125, 188, 128, 197, 128, 240, 129, 244.307, 125, 255.307, 125, 268.307, 132, 268.307, 137, 307.307, 137, 374.307, 153, 436.307, 152, 445.307, 162, 388.307, 168, 321.307, 151, 277.307, 154, 285.307, 170, 274.307, 181, 171.307, 180, 162.307, 169, 164.307, 153, 133, 152, 123.307, 139, 95.3074, 139, 30.3074, 109 ) ]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=11]
 resource_name = "day"
 tracks/0/type = "value"
 tracks/0/path = NodePath("DoorLeft/Sprite:frame")
@@ -243,7 +243,7 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=12]
 resource_name = "night"
 tracks/0/type = "value"
 tracks/0/path = NodePath("DoorLeft/Sprite:frame")
@@ -338,8 +338,8 @@ texture = ExtResource( 13 )
 hframes = 2
 
 [node name="AnimationPlayer" parent="DoorLeft" index="6"]
-anims/day = SubResource( 5 )
-anims/night = SubResource( 6 )
+anims/day = SubResource( 3 )
+anims/night = SubResource( 4 )
 
 [node name="Set" type="Sprite" parent="."]
 use_parent_material = true
@@ -365,14 +365,14 @@ action_type = "push"
 
 [node name="CollisionShape2D" parent="Lever" index="0"]
 position = Vector2( -1, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 5 )
 
 [node name="Animation" parent="Lever" index="2"]
 autoplay = "off_day"
-anims/off_day = SubResource( 10 )
-anims/off_night = SubResource( 11 )
-anims/on_day = SubResource( 12 )
-anims/on_night = SubResource( 13 )
+anims/off_day = SubResource( 6 )
+anims/off_night = SubResource( 7 )
+anims/on_day = SubResource( 8 )
+anims/on_night = SubResource( 9 )
 
 [node name="PointOfInteraction" parent="Lever" index="3"]
 position = Vector2( 3, 0 )
@@ -424,7 +424,7 @@ visible = false
 [node name="NavigationPolygonInstance" parent="Char/Navigation2D" index="0"]
 visible = false
 position = Vector2( -1, 0 )
-navpoly = SubResource( 14 )
+navpoly = SubResource( 10 )
 
 [node name="Foreground" type="Sprite" parent="."]
 use_parent_material = true
@@ -451,22 +451,19 @@ position = Vector2( -5, 84 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="Leverbuffet" parent="." groups=[
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/day = SubResource( 11 )
+anims/night = SubResource( 12 )
+
+[node name="ToLeverbuffet" parent="." groups=[
 "cursor_eye",
 ] instance=ExtResource( 9 )]
-position = Vector2( 225, 120 )
+position = Vector2( 211, 131 )
 to_room = "leverbuffet"
 room_without_char = true
 
-[node name="CollisionPolygon2D" parent="Leverbuffet" index="0"]
-polygon = PoolVector2Array( -29, -5, 14, -6, 14, 9, -29, 8 )
-
-[node name="PointToRoom" parent="Leverbuffet" index="1"]
-position = Vector2( -8, 10 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/day = SubResource( 15 )
-anims/night = SubResource( 16 )
+[node name="CollisionPolygon2D" parent="ToLeverbuffet" index="0"]
+polygon = PoolVector2Array( -14, -17, 27, -18, 27, -3, -14, -4 )
 [connection signal="order_interaction" from="LeftDoorButton" to="." method="_on_LeftDoorButton_order_interaction"]
 [connection signal="order_interaction" from="Lever" to="." method="_on_Lever_order_interaction"]
 
@@ -480,4 +477,4 @@ anims/night = SubResource( 16 )
 
 [editable path="GoToCryopod"]
 
-[editable path="Leverbuffet"]
+[editable path="ToLeverbuffet"]

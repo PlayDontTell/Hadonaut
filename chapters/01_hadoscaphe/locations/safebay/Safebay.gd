@@ -41,15 +41,15 @@ func _ready():
 	$DoorRight2.initialize()
 	
 	if $DoorTop2.is_opened:
-		$Masks/Mask1.modulate = Color(1,1,1,1)
+		$Masks/Mask1.modulate = Global.COLOR_DEFAULT
 	if $DoorBottom2.is_opened:
-		$Masks/Mask2.modulate = Color(1,1,1,1)
+		$Masks/Mask2.modulate = Global.COLOR_DEFAULT
 	if $DoorRight2.is_opened:
-		$Masks/Mask3.modulate = Color(1,1,1,1)
+		$Masks/Mask3.modulate = Global.COLOR_DEFAULT
 	
 	if not $DoorTop2.is_opened or not $DoorBottom2.is_opened or not $DoorRight2.is_opened:
 		zone_0 = false
-		$Masks/Mask0.modulate = Color(1,1,1,1)
+		$Masks/Mask0.modulate = Global.COLOR_DEFAULT
 	else:
 		zone_0 = true
 	initialize_navmesh()
@@ -90,14 +90,14 @@ func initialize_light():
 	# Tint the objects which aren't the set.
 	if current_chapter.ship_power == "day":
 		# Buttons :
-		$TopDoorButton/Sprite.modulate = Color(1,1,1)
-		$BottomDoorButton/Sprite.modulate = Color(1,1,1)
-		$RightDoorButton/Sprite.modulate = Color(1,1,1)
+		$TopDoorButton/Sprite.modulate = Global.COLOR_DEFAULT
+		$BottomDoorButton/Sprite.modulate = Global.COLOR_DEFAULT
+		$RightDoorButton/Sprite.modulate = Global.COLOR_DEFAULT
 	else:
 		# Buttons :
-		$TopDoorButton/Sprite.modulate = Color(0.5,0.5,0.7)
-		$BottomDoorButton/Sprite.modulate = Color(0.5,0.5,0.7)
-		$RightDoorButton/Sprite.modulate = Color(0.5,0.5,0.7)
+		$TopDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
+		$BottomDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
+		$RightDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
 	# Doors :
 	$DoorTop1/AnimationPlayer.play(current_chapter.ship_power)
 	$DoorTop2/AnimationPlayer.play(current_chapter.ship_power)
@@ -160,16 +160,16 @@ func use_sas(sas_no, sas_var, button, door1, door2, smoke_position):
 					door2.command()
 					
 					$Tween.interpolate_property($Masks/Mask0, "modulate", $Masks/Mask0.modulate,
-					Color(1,1,1,0), 1,tween_curv , tween_ease)
+					Global.COLOR_TRANPARENT, 1,tween_curv , tween_ease)
 					if not sas_no == 1:
 						$Tween.interpolate_property($Masks/Mask1, "modulate", $Masks/Mask1.modulate,
-						Color(1,1,1,0), 1,tween_curv , tween_ease)
+						Global.COLOR_TRANPARENT, 1,tween_curv , tween_ease)
 					if not sas_no == 2:
 						$Tween.interpolate_property($Masks/Mask2, "modulate", $Masks/Mask2.modulate,
-						Color(1,1,1,0), 1,tween_curv , tween_ease)
+						Global.COLOR_TRANPARENT, 1,tween_curv , tween_ease)
 					if not sas_no == 3:
 						$Tween.interpolate_property($Masks/Mask3, "modulate", $Masks/Mask3.modulate,
-						Color(1,1,1,0), 1,tween_curv , tween_ease)
+						Global.COLOR_TRANPARENT, 1,tween_curv , tween_ease)
 					$Tween.start()
 					
 					yield(get_tree().create_timer(1.01), "timeout")
@@ -189,16 +189,16 @@ func use_sas(sas_no, sas_var, button, door1, door2, smoke_position):
 					smoke(smoke_position)
 					
 					$Tween.interpolate_property($Masks/Mask0, "modulate", $Masks/Mask0.modulate,
-					Color(1,1,1,1), 1,tween_curv , tween_ease)
+					Global.COLOR_DEFAULT, 1,tween_curv , tween_ease)
 					if not sas_no == 1:
 						$Tween.interpolate_property($Masks/Mask1, "modulate", $Masks/Mask1.modulate,
-						Color(1,1,1,1), 1,tween_curv , tween_ease)
+						Global.COLOR_DEFAULT, 1,tween_curv , tween_ease)
 					if not sas_no == 2:
 						$Tween.interpolate_property($Masks/Mask2, "modulate", $Masks/Mask2.modulate,
-						Color(1,1,1,1), 1,tween_curv , tween_ease)
+						Global.COLOR_DEFAULT, 1,tween_curv , tween_ease)
 					if not sas_no == 3:
 						$Tween.interpolate_property($Masks/Mask3, "modulate", $Masks/Mask3.modulate,
-						Color(1,1,1,1), 1,tween_curv , tween_ease)
+						Global.COLOR_DEFAULT, 1,tween_curv , tween_ease)
 					$Tween.start()
 					
 					yield(get_tree().create_timer(sas_duration), "timeout")
