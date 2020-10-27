@@ -44,7 +44,7 @@ func set_state():
 func _on_HadDoorButton_area_entered(area):
 	if area.is_in_group("cursor"):
 		default_modulate = modulate
-		modulate = Global.COLOR_HIGHLIGHT
+		modulate = Global.highlight_tint
 
 func _on_HadDoorButton_area_exited(area):
 	if area.is_in_group("cursor"):

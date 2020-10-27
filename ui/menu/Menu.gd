@@ -31,6 +31,11 @@ func _on_OutOfSettings_pressed():
 		empty_hands()
 
 
+func _on_Cross_pressed():
+	toggle_menu()
+	empty_hands()
+
+
 func toggle_menu():
 	var state = Global.menu_visible
 	$MenuFrame.visible = not state

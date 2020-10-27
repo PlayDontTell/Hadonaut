@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/Button.gd" type="Script" id=1]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_ok.png" type="Texture" id=2]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_pressed.wav" type="AudioStream" id=3]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_released.wav" type="AudioStream" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "default_day"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "default_night"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "pressed_day"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "pressed_night"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[node name="Button" type="Area2D" groups=[
+"cursor_hover",
+]]
+position = Vector2( 84, 138 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -17, 3, 14, 7, 17, -6, -13, -10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default_day = SubResource( 1 )
+anims/default_night = SubResource( 2 )
+anims/pressed_day = SubResource( 3 )
+anims/pressed_night = SubResource( 4 )
+
+[node name="ButtonPressed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "Fx"
+
+[node name="ButtonReleased" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "Fx"
+[connection signal="input_event" from="." to="." method="_on_Button_input_event"]

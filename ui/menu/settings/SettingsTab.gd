@@ -21,6 +21,7 @@ func _on_MusicSlider_value_changed(value):
 func _on_FxSlider_value_changed(value):
 	$FxCross.visible = value == 0
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Fx"), value * 6 - 48)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("FxMeta"), value * 6 - 48)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Atmo"), value * 6 - 48)
 	$FxSliderCheck.play()
 

@@ -15,16 +15,16 @@ func _ready():
 	$DoorRight.initialize()
 
 
+# warning-ignore:unused_argument
+func _process(delta):
+	var distance_to_lights = ($Char/Sprite.position.x - 200) / 500
+	$Char.modulate = Color(1.4 - distance_to_lights, 1, 1, 1)
+
+
 func initialize_light():
 	# Tint the objects which aren't the set.
-	if current_chapter.ship_power == "day":
-		$RightDoorButton/Sprite.modulate = Global.COLOR_DEFAULT
-	else:
-		$RightDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
-	$DoorRight/AnimationPlayer.play(current_chapter.ship_power)
-	$Background/AnimationPlayer.play(current_chapter.ship_power)
-	$Foreground/AnimationPlayer.play(current_chapter.ship_power)
-	$Engine/AnimationPlayer.play(current_chapter.ship_power)
+	$RightDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
+#	$Char.modulate = Global.COLOR_RED_TINTED
 
 
 func _on_RightDoorButton_order_interaction(action_name, position_ordered, flip_h, action_type):

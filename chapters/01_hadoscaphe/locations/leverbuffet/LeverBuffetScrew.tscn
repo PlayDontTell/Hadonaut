@@ -85,6 +85,8 @@ shape = SubResource( 14 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 bus = "Fx"
+[connection signal="area_entered" from="LongActionObject" to="." method="_on_LongActionObject_area_entered"]
+[connection signal="area_exited" from="LongActionObject" to="." method="_on_LongActionObject_area_exited"]
 [connection signal="long_action_started" from="LongActionObject" to="." method="_on_LongActionObject_long_action_started"]
 [connection signal="long_action_stopped" from="LongActionObject" to="." method="_on_LongActionObject_long_action_stopped"]
 [connection signal="ready_for_long_action_effects" from="LongActionObject" to="." method="_on_LongActionObject_ready_for_long_action_effects"]

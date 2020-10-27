@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/logo.wav-5a04d9e580bc054399d43d5264d32d33.sample"
+
+[deps]
+
+source_file="res://intro/logo.wav"
+dest_files=[ "res://.import/logo.wav-5a04d9e580bc054399d43d5264d32d33.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -17,6 +17,7 @@ var last_y: int
 var pad_visible: bool = false
 var menu_visible: bool = false
 var update_message_visible: bool = false
+var logo_visible: bool = false
 # Cursor states.
 var mouse_hovering_ground: bool = false
 var mouse_hovering_count: int = 0
@@ -32,12 +33,17 @@ var cursor_animation_frame: float
 
 # Colors
 const COLOR_DEFAULT = Color(1, 1, 1, 1)
-var COLOR_HIGHLIGHT = Color(1.8, 1.8, 1.8, 1)
-var COLOR_SLIGHT_HIGHLIGHT = Color(1.2, 1.2, 1.2, 1)
-var COLOR_BLUE_TINTED = Color(0.5, 0.5, 0.7, 1)
-var COLOR_TRANPARENT = Color(0, 0, 0, 0)
-var COLOR_SHADED = Color(0.7, 0.7, 0.7, 1)
-var COLOR_BLACK = Color(0, 0, 0, 1)
+const COLOR_NIGHT_HIGHLIGHT = Color(1.5, 1.5, 1.5, 1)
+const COLOR_DAY_HIGHLIGHT = Color(1.3, 1.3, 1.3, 1)
+const COLOR_BLUE_TINTED_HIGHLIGHT = Color(0.7, 0.7, 0.9, 1)
+const COLOR_BLUE_TINTED = Color(0.5, 0.5, 0.7, 1)
+const COLOR_RED_TINTED = Color(0.7, 0.5, 0.5, 1)
+const COLOR_TRANPARENT = Color(0, 0, 0, 0)
+const COLOR_SHADED = Color(0.7, 0.7, 0.7, 1)
+const COLOR_BLACK = Color(0, 0, 0, 1)
+var lighting_tint: Color
+var highlight_tint: Color
+var modulated_highlight_tint: Color
 
 
 func _ready():

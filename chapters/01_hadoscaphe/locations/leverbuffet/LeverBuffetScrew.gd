@@ -8,6 +8,7 @@ export var initial_frame: int = 0
 export var id: int
 var started: bool
 var screwed: bool = true
+var default_modulate: Color
 
 
 func _ready():
@@ -64,3 +65,14 @@ func _on_LongActionObject_long_action_started():
 	if not started:
 		started = true
 		$AudioStreamPlayer2D.play()
+
+
+func _on_LongActionObject_area_entered(area):
+	if area.is_in_group("cursor"):
+		default_modulate = modulate
+		modulate = Global.highlight_tint
+
+
+func _on_LongActionObject_area_exited(area):
+	if area.is_in_group("cursor"):
+		modulate = default_modulate

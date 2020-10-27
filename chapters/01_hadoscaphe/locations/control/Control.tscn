@@ -129,6 +129,7 @@ position = Vector2( 1, 0 )
 script = ExtResource( 6 )
 
 [node name="AutoScrollingSprite" parent="." instance=ExtResource( 1 )]
+speed_x = -0.2
 
 [node name="Background" type="Sprite" parent="."]
 use_parent_material = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/UpdateMessageScreen.gd" type="Script" id=1]
 [ext_resource path="res://ui/menu/window/yes_button_hover.png" type="Texture" id=2]
@@ -6,11 +6,30 @@
 [ext_resource path="res://ui/update_message_screen/update_message_theme.tres" type="Theme" id=4]
 [ext_resource path="res://ui/hud/black.png" type="Texture" id=5]
 [ext_resource path="res://ui/update_message_screen/update_message_window.png" type="Texture" id=6]
+[ext_resource path="res://ui/Cursor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/Fade.tscn" type="PackedScene" id=8]
+[ext_resource path="res://intro/night_ambience.wav" type="AudioStream" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "black_screen"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="UpdateMessageScreen" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Blackscreen" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 5 )
 centered = false
 region_enabled = true
@@ -29,26 +48,38 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 99.0
-margin_top = 49.0
+margin_left = 108.0
+margin_top = 53.0
 margin_right = 395.0
 margin_bottom = 197.0
 theme = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Hadonaut (version a_0.04)[/center]
 
-[color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page or the Github page.[/color]
+[color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page.[/color]
 
-version note :
-...
-
+version note :[color=#bbbbbb]
++ Added this welcoming screen.
++ Added a highlighting system to indicate available actions.
++ Added two new rooms (Reactor and Cryoscreen)
+* Finished prototyping the Maintenance room (blue room).
+* Modified the menu layout.
+* Minor visual changes.
+* Code improvement.
+[/color]
 [center][color=gray]Have fun![/color][/center]"
 text = "Hadonaut (version a_0.04)
 
-Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page or the Github page.
+Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page.
 
 version note :
-...
++ Added this welcoming screen.
++ Added a highlighting system to indicate available actions.
++ Added two new rooms (Reactor and Cryoscreen)
+* Finished prototyping the Maintenance room (blue room).
+* Modified the menu layout.
+* Minor visual changes.
+* Code improvement.
 
 Have fun!"
 __meta__ = {
@@ -68,5 +99,21 @@ texture_hover = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Fade" parent="." instance=ExtResource( 8 )]
+visible = false
+
+[node name="AnimationPlayer" parent="Fade" index="0"]
+anims/black_screen = SubResource( 1 )
+
+[node name="Cursor" parent="." instance=ExtResource( 7 )]
+
+[node name="NightAmbience" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 240, 135 )
+stream = ExtResource( 9 )
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="mouse_entered" from="UpdateMessageButton" to="." method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_exited" from="UpdateMessageButton" to="." method="_on_TextureButton_mouse_exited"]
+
+[editable path="Fade"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/night_ambience.wav-649b036bae3a463e5437ebafc252f6c4.sample"
+
+[deps]
+
+source_file="res://intro/night_ambience.wav"
+dest_files=[ "res://.import/night_ambience.wav-649b036bae3a463e5437ebafc252f6c4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

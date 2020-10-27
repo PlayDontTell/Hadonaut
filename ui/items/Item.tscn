@@ -35,12 +35,15 @@ centered = false
 
 [node name="Keys" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 3 )
+bus = "FxMeta"
 
 [node name="Tool" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 6 )
+bus = "FxMeta"
 
 [node name="PadModule" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 7 )
+bus = "FxMeta"
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="mouse_entered" from="." to="." method="_on_Item_mouse_entered"]

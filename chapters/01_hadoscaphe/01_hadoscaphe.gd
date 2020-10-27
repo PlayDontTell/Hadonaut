@@ -3,7 +3,7 @@ extends WorldEnvironment
 
 # Game start conditions
 export var ship_power: String = "night"
-export var starting_room: String = "leverbuffet" if Global.DEV_MODE else "cryopod"
+export var starting_room: String = "maintenance" if Global.DEV_MODE else "cryopod"
 
 # The instanced room the player is playing in (node).
 var current_room = null
@@ -22,7 +22,7 @@ var had_doors: Array = [
 	[false, false], #4 safebay_top
 	[false, false], #5 safebay_bottom
 	[false, false], #6 safebay_right
-	[false, false], #7 reactor | maintenance
+	[true, false], #7 reactor | maintenance
 ]
 # ROOMS GLOBAL VARIABLES
 # Cryopod global variables :
@@ -45,19 +45,24 @@ var pad_taken: bool = false
 
 func _init():
 	Global.chapter_name = "01_hadoscaphe"
-	
-	
+	set_tints()
+
+
 func _ready():
+	if not chapter_has_begun:
+		$UI.modulate = Global.COLOR_BLACK
+		$UI/Tween.interpolate_property($UI, "modulate", Global.COLOR_BLACK,
+			Global.COLOR_DEFAULT, 2, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+	
+	$ChapterRes/Atmo/SpaceHum.volume_db = -60
+	$UI/Tween.interpolate_property($ChapterRes/Atmo/SpaceHum, "volume_db",
+	-60, -6, 2, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+	$UI/Tween.start()
 	
 	$ChapterRes/Atmo/SpaceHum.play()
 	if not Global.DEV_MODE:
-		
-		var message = $UI/UpdateMessageScreen.display_version_message()
-		if message is GDScriptFunctionState: # Still working.
-			message = yield(message, "completed")
-			
 		$ChapterRes/Music/AirPrelude.play()
-
+	
 	go_to_room(starting_room, false, 253, 131)
 	
 #	else:
@@ -79,20 +84,18 @@ func set_ship_power(setting):
 	if setting == "day" and not setting == ship_power:
 		# interpolating the brightness of the viewport.
 		var tween = current_room.get_node("Tween")
-		tween.interpolate_property(current_room, "modulate", Global.COLOR_HIGHLIGHT,
+		tween.interpolate_property(current_room, "modulate", Global.highlight_tint,
 		Global.COLOR_DEFAULT, 3, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.start()
 	
 	# All the operations triggered by the change of the ship_power var are done,
 	# the new value can be stored in the ship_poer var.
 	ship_power = setting
+	set_tints()
+	
 	
 	# Initializinf all the light effects specified in the current room script.
 	current_room.initialize_light()
-
-	# Change the animation of the set ("day" or "night").
-	if current_room.has_node("Set/AnimationPlayer"):
-		current_room.get_node("Set/AnimationPlayer").play(ship_power)
 	
 	# If the room contains Char, modulating its appearance.
 	if current_room.has_node("Char/Sprite"):
@@ -108,13 +111,21 @@ func go_to_room(name, flip_h = Global.last_flip_h, to_x = Global.last_x, to_y = 
 	Global.last_x = to_x
 	Global.last_y = to_y
 	
+	
+	
 	# If an instance of the UI node is child of the chapter node,
 	# it plays a fade out effect (fade to black).
-	if has_node("UI/Fade/AnimationPlayer"):
+	if has_node("UI/Fade/AnimationPlayer") and chapter_has_begun:
 		var fade_node = get_node("UI/Fade/AnimationPlayer")
 		fade_node.play("fade_out")
 		# Waiting for the fade out to finish, before changing the current room.
 		yield(fade_node, "animation_finished")
+	
+	if chapter_has_begun:
+		$UI/Fade/AnimationPlayer.play("fade_in")
+	else:
+		$UI/Fade/AnimationPlayer.play("long_fade_in")
+	
 	
 	# Getting the room's node path from the list of the rooms of this chapter.
 	var path = ("res://chapters/01_hadoscaphe/locations/" + name + "/" 
@@ -147,6 +158,9 @@ func _deferred_go_to_room(path, flip_h, to_x, to_y):
 	# Reset cursor hovering count.
 	Global.mouse_hovering_count = 0
 	
+	
+	
+	
 	# If the room contains Char, positionning him and orienting him.
 	if current_room.has_node("Char/Sprite"):
 		current_room.get_node("Char/Sprite").position = Vector2(to_x, to_y)
@@ -154,4 +168,15 @@ func _deferred_go_to_room(path, flip_h, to_x, to_y):
 	
 	# The room is loaded.
 	print("Going to " + current_room.name)
-	$UI/Fade/AnimationPlayer.play("fade_in")
+
+
+func set_tints():
+	match ship_power:
+		"day":
+			Global.lighting_tint = Global.COLOR_DEFAULT
+			Global.highlight_tint = Global.COLOR_DAY_HIGHLIGHT
+			Global.modulated_highlight_tint = Global.COLOR_DAY_HIGHLIGHT
+		"night":
+			Global.lighting_tint = Global.COLOR_BLUE_TINTED
+			Global.highlight_tint = Global.COLOR_NIGHT_HIGHLIGHT
+			Global.modulated_highlight_tint = Global.COLOR_BLUE_TINTED_HIGHLIGHT

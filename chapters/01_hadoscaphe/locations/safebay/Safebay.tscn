@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/locations/safebay/safebay_background.png" type="Texture" id=1]
 [ext_resource path="res://characters/char/Char.tscn" type="PackedScene" id=2]
@@ -16,8 +16,7 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/safebay/safebay_cache_bottom.png" type="Texture" id=14]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/safebay/safebay_cache.png" type="Texture" id=15]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/safebay/safebay_cache__right.png" type="Texture" id=16]
-[ext_resource path="res://chapters/01_hadoscaphe/locations/safebay/smoke.png" type="Texture" id=17]
-[ext_resource path="res://chapters/01_hadoscaphe/common_resources/smoke.wav" type="AudioStream" id=18]
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/Smoke.tscn" type="PackedScene" id=17]
 [ext_resource path="res://objects/SlidingDoor.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Shader" id=1]
@@ -313,11 +312,7 @@ vertices = PoolVector2Array( 152.307, 104, 74.3074, 102, 98.3074, 95, 158.307, 9
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8, 9 ), PoolIntArray( 10, 11, 12, 13, 14, 15 ), PoolIntArray( 14, 16, 17 ), PoolIntArray( 18, 19, 20, 21 ), PoolIntArray( 22, 21, 20, 23, 24 ), PoolIntArray( 25, 26, 27, 28, 29, 30 ), PoolIntArray( 31, 32, 33, 34 ), PoolIntArray( 35, 36, 37 ), PoolIntArray( 38, 39, 40, 41, 42 ), PoolIntArray( 29, 43, 30 ), PoolIntArray( 44, 34, 33, 22, 24 ), PoolIntArray( 45, 9, 8, 25, 30, 39 ), PoolIntArray( 34, 44, 35, 37, 46 ), PoolIntArray( 28, 34, 46, 29 ), PoolIntArray( 47, 48, 45, 39, 49 ), PoolIntArray( 38, 49, 39 ), PoolIntArray( 50, 42, 41, 51 ), PoolIntArray( 51, 41, 52, 17 ), PoolIntArray( 14, 17, 52, 53, 15 ), PoolIntArray( 4, 13, 12, 0 ) ]
 outlines = [ PoolVector2Array( 74.3074, 102, 98.3074, 95, 158.307, 97, 158.307, 101, 161.307, 101, 173.307, 95, 236.307, 95, 230.307, 99, 264.307, 131, 265.307, 128, 301.307, 127, 302.307, 129, 307.307, 129, 308.307, 127, 318.307, 127, 324.307, 137, 331.307, 137, 331.307, 136, 382.307, 134, 406.307, 146, 332.307, 147, 332.307, 155, 339.307, 167, 300.307, 167, 299.307, 162, 244.307, 217, 243.307, 227, 196.307, 225, 201.307, 215, 201.307, 208, 187.307, 208, 187.307, 217, 130.307, 217, 155.307, 192, 202.307, 194, 202.307, 198, 209.307, 198, 214.307, 189, 251.307, 189, 246.307, 202, 246.307, 209, 298.307, 156, 297.307, 151, 305.307, 151, 303.307, 143, 261.307, 142, 263.307, 137, 226.307, 102, 223.307, 104, 205.307, 104, 191.307, 111, 147.307, 109, 152.307, 106, 152.307, 104 ) ]
 
-[sub_resource type="Gradient" id=23]
-offsets = PoolRealArray( 0, 0.940741, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.696296, 0.696296, 0.696296, 0.696296, 0, 0, 0, 0 )
-
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=23]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -332,7 +327,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=24]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -548,27 +543,7 @@ visible = false
 position = Vector2( -0.307358, 0 )
 navpoly = SubResource( 22 )
 
-[node name="Smoke" type="CPUParticles2D" parent="."]
-position = Vector2( 539, 85 )
-amount = 80
-texture = ExtResource( 17 )
-direction = Vector2( 0, 1 )
-spread = 30.0
-gravity = Vector2( 0, 10 )
-initial_velocity = 100.0
-linear_accel = -100.0
-tangential_accel_random = 0.03
-damping = 5.0
-color_ramp = SubResource( 23 )
-anim_speed_random = 1.0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Smoke"]
-stream = ExtResource( 18 )
-attenuation = 0.63728
-bus = "Fx"
+[node name="Smoke" parent="." instance=ExtResource( 17 )]
 
 [node name="Foreground" type="Sprite" parent="."]
 position = Vector2( 242, 131 )
@@ -579,8 +554,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Foreground"]
-anims/day = SubResource( 24 )
-anims/night = SubResource( 25 )
+anims/day = SubResource( 23 )
+anims/night = SubResource( 24 )
 
 [node name="Polygons" type="Area2D" parent="."]
 visible = false

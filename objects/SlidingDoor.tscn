@@ -32,5 +32,3 @@ bus = "Fx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 [connection signal="input_event" from="." to="." method="_on_Passage_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_SlidingDoor_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_SlidingDoor_mouse_exited"]

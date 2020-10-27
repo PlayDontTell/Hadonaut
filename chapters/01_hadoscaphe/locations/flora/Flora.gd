@@ -24,8 +24,7 @@ func initialize_light():
 	else:
 		$RightDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
 	# initialize the animated objects (animations).
-	$DoorRight/AnimationPlayer.play(current_chapter.ship_power)
-	$Background/AnimationPlayer.play(current_chapter.ship_power)
+	$AnimationPlayer.play(current_chapter.ship_power)
 	if not current_chapter.pad_taken:
 		$Pad/Animation.play(current_chapter.ship_power)
 

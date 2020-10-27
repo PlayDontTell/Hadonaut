@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cryoscreen_button_pressed.wav-3bafe6e0da96f2adf2d242f4d65a92e2.sample"
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_pressed.wav"
+dest_files=[ "res://.import/cryoscreen_button_pressed.wav-3bafe6e0da96f2adf2d242f4d65a92e2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

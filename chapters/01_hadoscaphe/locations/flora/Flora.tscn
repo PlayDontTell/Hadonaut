@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/char/Char.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_door.png" type="Texture" id=7]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_door_right.png" type="Texture" id=8]
 [ext_resource path="res://objects/InteractiveObject.tscn" type="PackedScene" id=9]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_pad_shadow.png" type="Texture" id=10]
 [ext_resource path="res://objects/SlidingDoor.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=1]
@@ -32,7 +33,7 @@ shader_param/u_amount = 0.01
 [sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,36 +48,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-
-[sub_resource type="Animation" id=5]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=6]
-loop = true
-tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -89,47 +60,106 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=7]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=8]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-
-[sub_resource type="CapsuleShape2D" id=9]
+[sub_resource type="CapsuleShape2D" id=5]
 radius = 6.0
 height = 8.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "day"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NoHighlight/Shadow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "night"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NoHighlight/Shadow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.668966 )
+colors = PoolColorArray( 0.776471, 0.635294, 0, 0, 1, 0.820313, 0, 1 )
+
+[sub_resource type="NavigationPolygon" id=9]
+vertices = PoolVector2Array( 331, 146, 372, 167, 273, 182, 327, 148, 156, 157, 98, 155, 111, 141, 157, 140, 188, 150, 207, 182, 216, 148, 257, 145, 257, 133, 294, 135, 316, 146, 216, 146, 250, 144, 251, 145, 329, 146, 324, 146 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8 ), PoolIntArray( 9, 4, 8, 10, 2 ), PoolIntArray( 2, 11, 12, 13, 14 ), PoolIntArray( 2, 10, 15, 16, 17 ), PoolIntArray( 2, 17, 11 ), PoolIntArray( 3, 18, 0 ), PoolIntArray( 3, 2, 14, 19 ) ]
+outlines = [ PoolVector2Array( 98, 155, 111, 141, 157, 140, 188, 150, 216, 148, 216, 146, 250, 144, 251, 145, 257, 145, 257, 133, 294, 135, 316, 146, 324, 146, 327, 148, 329, 146, 331, 146, 372, 167, 273, 182, 207, 182, 156, 157 ) ]
 
 [sub_resource type="Animation" id=10]
 resource_name = "day"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Background:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorRight/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Set:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -139,7 +169,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=11]
 resource_name = "night"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Background:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -150,15 +180,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 1 ]
 }
-
-[sub_resource type="Gradient" id=12]
-offsets = PoolRealArray( 0, 0.668966 )
-colors = PoolColorArray( 0.776471, 0.635294, 0, 0, 1, 0.820313, 0, 1 )
-
-[sub_resource type="NavigationPolygon" id=13]
-vertices = PoolVector2Array( 331, 146, 372, 167, 273, 182, 327, 148, 156, 157, 98, 155, 111, 141, 157, 140, 188, 150, 207, 182, 216, 148, 257, 145, 257, 133, 294, 135, 316, 146, 216, 146, 250, 144, 251, 145, 329, 146, 324, 146 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8 ), PoolIntArray( 9, 4, 8, 10, 2 ), PoolIntArray( 2, 11, 12, 13, 14 ), PoolIntArray( 2, 10, 15, 16, 17 ), PoolIntArray( 2, 17, 11 ), PoolIntArray( 3, 18, 0 ), PoolIntArray( 3, 2, 14, 19 ) ]
-outlines = [ PoolVector2Array( 98, 155, 111, 141, 157, 140, 188, 150, 216, 148, 216, 146, 250, 144, 251, 145, 257, 145, 257, 133, 294, 135, 316, 146, 324, 146, 327, 148, 329, 146, 331, 146, 372, 167, 273, 182, 207, 182, 156, 157 ) ]
+tracks/1/type = "value"
+tracks/1/path = NodePath("DoorRight/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Set:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
 
 [node name="Flora" type="Node2D"]
 material = SubResource( 2 )
@@ -166,16 +211,14 @@ position = Vector2( 1, 0 )
 script = ExtResource( 6 )
 
 [node name="AutoScrollingSprite" parent="." instance=ExtResource( 1 )]
+speed_x = -0.2
 
 [node name="Background" type="Sprite" parent="."]
 use_parent_material = true
 position = Vector2( 356, 131 )
 texture = ExtResource( 8 )
 hframes = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
-anims/day = SubResource( 3 )
-anims/night = SubResource( 4 )
+frame = 1
 
 [node name="DoorRight" parent="." instance=ExtResource( 12 )]
 position = Vector2( 356, 131 )
@@ -195,8 +238,8 @@ hframes = 2
 frame = 1
 
 [node name="AnimationPlayer" parent="DoorRight" index="6"]
-anims/day = SubResource( 5 )
-anims/night = SubResource( 6 )
+anims/day = SubResource( 3 )
+anims/night = SubResource( 4 )
 
 [node name="Set" type="Sprite" parent="."]
 use_parent_material = true
@@ -204,13 +247,10 @@ position = Vector2( -1, 0 )
 texture = ExtResource( 4 )
 centered = false
 hframes = 2
+frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Set"]
-anims/day = SubResource( 7 )
-anims/night = SubResource( 8 )
 
 [node name="RightDoorButton" parent="." instance=ExtResource( 3 )]
 position = Vector2( 340, 132 )
@@ -225,14 +265,19 @@ flip_h = true
 
 [node name="CollisionShape2D" parent="Pad" index="0"]
 rotation = 1.57079
-shape = SubResource( 9 )
+shape = SubResource( 5 )
 
 [node name="Animation" parent="Pad" index="2"]
-anims/day = SubResource( 10 )
-anims/night = SubResource( 11 )
+anims/day = SubResource( 12 )
+anims/night = SubResource( 13 )
 
 [node name="PointOfInteraction" parent="Pad" index="3"]
 position = Vector2( 1, 1 )
+
+[node name="Shadow" type="Sprite" parent="Pad/NoHighlight" index="0"]
+texture = ExtResource( 10 )
+hframes = 2
+frame = 1
 
 [node name="Sprite" type="Sprite" parent="Pad"]
 texture = ExtResource( 5 )
@@ -245,7 +290,7 @@ frame = 1
 visible = false
 points = PoolVector2Array( 319.547, 149.936 )
 default_color = Color( 1, 0.796078, 0, 1 )
-gradient = SubResource( 12 )
+gradient = SubResource( 8 )
 
 [node name="Sprite" parent="Char" index="1"]
 position = Vector2( 278, 155 )
@@ -261,9 +306,13 @@ position = Vector2( 1, -37 )
 [node name="NavigationPolygonInstance" parent="Char/Navigation2D" index="0"]
 visible = false
 position = Vector2( -1, 0 )
-navpoly = SubResource( 13 )
+navpoly = SubResource( 9 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/day = SubResource( 10 )
+anims/night = SubResource( 11 )
 [connection signal="order_interaction" from="RightDoorButton" to="." method="_on_RightDoorButton_order_interaction"]
 [connection signal="order_interaction" from="Pad" to="." method="_on_Pad_order_interaction"]
 

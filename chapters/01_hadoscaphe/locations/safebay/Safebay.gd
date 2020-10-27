@@ -87,6 +87,7 @@ func initialize_navmesh():
 
 
 func initialize_light():
+	$Set/AnimationPlayer.play(current_chapter.ship_power)
 	# Tint the objects which aren't the set.
 	if current_chapter.ship_power == "day":
 		# Buttons :

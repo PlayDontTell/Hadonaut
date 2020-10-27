@@ -6,6 +6,7 @@ signal order_interaction(action_name, position_ordered, flip_h, action_type)
 export var action_name: String
 export var action_type: String
 export var flip_h: bool = false
+export var animated: bool = true
 var default_modulate: Color
 
 # warning-ignore:unused_argument
@@ -32,10 +33,13 @@ func _input_event(viewport, event, shape_idx):
 
 func _on_InteractiveObject_area_entered(area):
 	if area.is_in_group("cursor"):
-		default_modulate = modulate
-		modulate = Global.COLOR_HIGHLIGHT
+		default_modulate = $Sprite.modulate
+		if animated:
+			$Sprite.modulate = Global.highlight_tint
+		else:
+			$Sprite.modulate = Global.modulated_highlight_tint
 
 
 func _on_InteractiveObject_area_exited(area):
 	if area.is_in_group("cursor"):
-		modulate = default_modulate
+		$Sprite.modulate = default_modulate

@@ -9,27 +9,17 @@ export var door_id: int
 var is_opened: bool = false
 var is_commanded: bool = false
 var is_active: bool = false
-var is_mouse_overlapping: bool = false
 
 onready var current_room = get_node("..")
 
 
-func _on_SlidingDoor_mouse_entered():
-	is_mouse_overlapping = true
-
-
-func _on_SlidingDoor_mouse_exited():
-	is_mouse_overlapping = false
-
-
 func _on_Passage_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		if is_mouse_overlapping:
-			var position_ordered = $PointToRoom.position + position
-			var action = get_node("../Char").execute_action(to_room, position_ordered, flip_h, "idle")
-			yield(action, "completed")
-			if get_node("../Char").action == to_room + "_completed":
-				get_node("../..").go_to_room(to_room, flip_h, to_x, to_y)
+		var position_ordered = $PointToRoom.position + position
+		var action = get_node("../Char").execute_action(to_room, position_ordered, flip_h, "idle")
+		yield(action, "completed")
+		if get_node("../Char").action == to_room + "_completed":
+			get_node("../..").go_to_room(to_room, flip_h, to_x, to_y)
 
 
 func command():

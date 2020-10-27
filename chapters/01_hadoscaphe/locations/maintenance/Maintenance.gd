@@ -16,8 +16,14 @@ func _ready():
 	
 	$Screwdriver.visible = not current_chapter.screwdriver_taken
 
-	$LeverBuffet_LeftDoor.visible = current_chapter.left_buffet_door
-	$LeverBuffet_RightDoor.visible = current_chapter.right_buffet_door
+	$ToLeverbuffet/LeverBuffetSprite/LeverBuffet_LeftDoor.visible = current_chapter.left_buffet_door
+	$ToLeverbuffet/LeverBuffetSprite/LeverBuffet_RightDoor.visible = current_chapter.right_buffet_door
+
+
+# warning-ignore:unused_argument
+func _process(delta):
+	var a = $DoorLeft/Sprite.offset.y
+	$RedLight.position = Vector2(9 - (a / 42) * 45, 78 - (a / 42) * 21)
 
 
 func initialize_light():

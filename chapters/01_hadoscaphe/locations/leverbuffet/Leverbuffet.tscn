@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_background.png" type="Texture" id=1]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright.png" type="Texture" id=2]
@@ -17,6 +17,11 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_lever_top.png" type="Texture" id=15]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_lever_back2.png" type="Texture" id=16]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_lever_back3.png" type="Texture" id=17]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/Screwdriver.gd" type="Script" id=18]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_screwdriver_shadow.png" type="Texture" id=19]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/DoorLeftDetached.gd" type="Script" id=20]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/DoorRightDetached.gd" type="Script" id=21]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright_detached_shadow.png" type="Texture" id=22]
 
 [sub_resource type="Animation" id=1]
 resource_name = "day"
@@ -249,6 +254,30 @@ tracks/9/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Screwdriver/Shadow:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("DoorRightDetached/Shadow:frame")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=23]
 tracks/0/type = "value"
@@ -371,6 +400,30 @@ tracks/9/keys = {
 "update": 1,
 "values": [ 1 ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Screwdriver/Shadow:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("DoorRightDetached/Shadow:frame")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
 
 [node name="Leverbuffet" type="Node2D"]
 position = Vector2( 0, 1 )
@@ -476,6 +529,7 @@ position = Vector2( 79, 222 )
 texture = ExtResource( 8 )
 hframes = 2
 frame = 1
+script = ExtResource( 20 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -532,6 +586,7 @@ position = Vector2( 450, 146 )
 texture = ExtResource( 9 )
 hframes = 2
 frame = 1
+script = ExtResource( 21 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -543,11 +598,18 @@ __meta__ = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorRightDetached/RightArea2D"]
 polygon = PoolVector2Array( 30, 67, -12, 75, -31, -63, 30, -76 )
 
+[node name="Shadow" type="Sprite" parent="DoorRightDetached"]
+position = Vector2( 0, 9 )
+texture = ExtResource( 22 )
+hframes = 2
+frame = 1
+
 [node name="Screwdriver" type="Area2D" parent="." groups=[
 "cursor_hand",
 "cursor_hover",
 ]]
 position = Vector2( 224, 190 )
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -558,6 +620,12 @@ polygon = PoolVector2Array( -14, -33, -9, -38, -1, -38, 2, -35, 9, -8, 9, -2, 5,
 
 [node name="Sprite" type="Sprite" parent="Screwdriver"]
 texture = ExtResource( 7 )
+hframes = 2
+frame = 1
+
+[node name="Shadow" type="Sprite" parent="Screwdriver"]
+position = Vector2( 0, 5 )
+texture = ExtResource( 19 )
 hframes = 2
 frame = 1
 
@@ -591,8 +659,14 @@ anims/day = SubResource( 22 )
 anims/night = SubResource( 23 )
 [connection signal="mouse_entered" from="BackZone" to="BackZone" method="_on_BackZone_mouse_entered"]
 [connection signal="mouse_exited" from="BackZone" to="BackZone" method="_on_BackZone_mouse_exited"]
+[connection signal="area_entered" from="DoorLeftDetached/LeftArea2D" to="DoorLeftDetached" method="_on_LeftArea2D_area_entered"]
+[connection signal="area_exited" from="DoorLeftDetached/LeftArea2D" to="DoorLeftDetached" method="_on_LeftArea2D_area_exited"]
 [connection signal="input_event" from="DoorLeftDetached/LeftArea2D" to="." method="_on_LeftArea2D_input_event"]
+[connection signal="area_entered" from="DoorRightDetached/RightArea2D" to="DoorRightDetached" method="_on_RightArea2D_area_entered"]
+[connection signal="area_exited" from="DoorRightDetached/RightArea2D" to="DoorRightDetached" method="_on_RightArea2D_area_exited"]
 [connection signal="input_event" from="DoorRightDetached/RightArea2D" to="." method="_on_RightArea2D_input_event"]
+[connection signal="area_entered" from="Screwdriver" to="Screwdriver" method="_on_Screwdriver_area_entered"]
+[connection signal="area_exited" from="Screwdriver" to="Screwdriver" method="_on_Screwdriver_area_exited"]
 [connection signal="input_event" from="Screwdriver" to="." method="_on_Screwdriver_input_event"]
 
 [editable path="BackZone"]

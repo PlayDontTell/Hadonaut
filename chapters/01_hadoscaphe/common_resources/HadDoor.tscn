@@ -17,47 +17,34 @@ export var door_id: int
 var is_opened: bool = false
 var is_commanded: bool = false
 var is_active: bool = false
-var is_mouse_overlapping: bool = false
 
 onready var current_room = get_node(\"..\")
 
 
-func _on_Passage_mouse_entered():
-	is_mouse_overlapping = true
-	UiGlobal.is_mouse_overlapping_interaction += 1
-
-
-func _on_Passage_mouse_exited():
-	is_mouse_overlapping = false
-	if UiGlobal.is_mouse_overlapping_interaction > 0:
-		UiGlobal.is_mouse_overlapping_interaction -= 1
-
-
-func _on_Passage_input_event(_viewport, event, _shape_idx):
+func _on_HadDoor_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		if is_mouse_overlapping:
-			var position_ordered = $PointToRoom.position + position
-			var action = get_node(\"../Char\").execute_action(to_room, position_ordered, flip_h, \"idle\")
-			yield(action, \"completed\")
-			if get_node(\"../Char\").action == to_room + \"_completed\":
-				get_node(\"../..\").go_to_room(to_room, flip_h, to_x, to_y)
-				
-				
+		var position_ordered = $PointToRoom.position + position
+		var action = get_node(\"../Char\").execute_action(to_room, position_ordered, flip_h, \"idle\")
+		yield(action, \"completed\")
+		if get_node(\"../Char\").action == to_room + \"_completed\":
+			get_node(\"../..\").go_to_room(to_room, flip_h, to_x, to_y)
+
+
 func command():
 	var state_command = is_commanded
 	if not state_command:
 		is_commanded = true
 		yield(get_tree().create_timer(0.2), \"timeout\")
 		if is_active:
-			$DoorOperatingSound.play()
 # warning-ignore:standalone_ternary
 			close() if is_opened else open()
 		else:
 			$DoorErrorSound.play()
 			is_commanded = false
-		
+
 
 func close():
+	$DoorOperatingSound.play()
 	$CollisionPolygon2D.disabled = true
 	$Tween.interpolate_property($Sprite, \"offset\", $Sprite.offset, Vector2(0, 0), 1,
 	Tween.TRANS_SINE, Tween.EASE_IN_OUT)
@@ -68,6 +55,7 @@ func close():
 	is_commanded = false
 
 func open():
+	$DoorOperatingSound.play()
 	$Tween.interpolate_property($Sprite, \"offset\", $Sprite.offset, 
 	Vector2(0, -1 * $Sprite.texture.get_size()[1]), 1,
 	Tween.TRANS_SINE, Tween.EASE_IN_OUT)
@@ -79,7 +67,8 @@ func open():
 	is_opened = not is_opened
 	is_commanded = false
 
-	func initialize():
+func initialize():
+	is_active = current_room.current_chapter.had_doors[door_id][0]
 	is_opened = current_room.current_chapter.had_doors[door_id][1]
 	$CollisionPolygon2D.disabled = not is_opened
 	$Sprite.offset = Vector2(0, -1 * $Sprite.texture.get_size()[1]) if is_opened else Vector2(0, 0)
@@ -90,11 +79,6 @@ script = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-to_room = null
-to_x = null
-to_y = null
-flip_h = null
-door_id = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
@@ -113,8 +97,6 @@ stream = ExtResource( 3 )
 bus = "Fx"
 
 [node name="HadDoorButton" parent="." instance=ExtResource( 4 )]
-[connection signal="input_event" from="." to="." method="_on_Passage_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_Passage_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_Passage_mouse_exited"]
+[connection signal="input_event" from="." to="." method="_on_HadDoor_input_event"]
 
 [editable path="HadDoorButton"]
