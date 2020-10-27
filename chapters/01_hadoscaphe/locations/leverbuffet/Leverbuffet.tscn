@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_background.png" type="Texture" id=1]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright.png" type="Texture" id=2]
@@ -24,7 +24,66 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright_detached_shadow.png" type="Texture" id=22]
 
 [sub_resource type="Animation" id=1]
-resource_name = "day"
+resource_name = "default_day"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "default_night"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "unscrewed_day"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "unscrewed_night"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -38,8 +97,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "night"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -53,87 +111,87 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 11 )
 region = Rect2( 72, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 11 )
 region = Rect2( 144, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 11 )
 region = Rect2( 216, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 11 )
 region = Rect2( 288, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 11 )
 region = Rect2( 360, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 11 )
 region = Rect2( 432, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 11 )
 region = Rect2( 504, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 11 )
 region = Rect2( 576, 0, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 11 )
 region = Rect2( 72, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 11 )
 region = Rect2( 144, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 11 )
 region = Rect2( 216, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 11 )
 region = Rect2( 288, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 11 )
 region = Rect2( 360, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 11 )
 region = Rect2( 432, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 11 )
 region = Rect2( 504, 35, 72, 35 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 11 )
 region = Rect2( 576, 35, 72, 35 )
 
-[sub_resource type="SpriteFrames" id=21]
+[sub_resource type="SpriteFrames" id=25]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=26]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Set:frame")
 tracks/0/interp = 1
@@ -189,10 +247,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 1,
-"values": [ 0 ]
+"values": [  ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("DoorRightDetached:frame")
@@ -279,7 +337,7 @@ tracks/11/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=27]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Set:frame")
 tracks/0/interp = 1
@@ -335,10 +393,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 1,
-"values": [ 1 ]
+"values": [  ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("DoorRightDetached:frame")
@@ -439,7 +497,6 @@ polygon = PoolVector2Array( 0, 238, 0, 53, 40, 53, 34, 118, 40, 210, 442, 211, 4
 texture = ExtResource( 1 )
 centered = false
 hframes = 2
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
@@ -454,25 +511,21 @@ __meta__ = {
 position = Vector2( 8, 68 )
 texture = ExtResource( 14 )
 hframes = 2
-frame = 1
 
 [node name="LeverBack2" type="Sprite" parent="LeverBack"]
 position = Vector2( 8, 40 )
 texture = ExtResource( 16 )
 hframes = 2
-frame = 1
 
 [node name="LeverBack3" type="Sprite" parent="LeverBack"]
 position = Vector2( 8, 66 )
 texture = ExtResource( 17 )
 hframes = 2
-frame = 1
 
 [node name="Foreground" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 centered = false
 hframes = 2
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
@@ -481,14 +534,12 @@ __meta__ = {
 position = Vector2( 141, 13 )
 texture = ExtResource( 15 )
 hframes = 2
-frame = 1
 
 [node name="DoorLeft" type="Sprite" parent="."]
 visible = false
 position = Vector2( 136, 135 )
 texture = ExtResource( 3 )
 hframes = 2
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
@@ -528,7 +579,6 @@ needed_item = "screwdriver"
 position = Vector2( 79, 222 )
 texture = ExtResource( 8 )
 hframes = 2
-frame = 1
 script = ExtResource( 20 )
 __meta__ = {
 "_edit_lock_": true
@@ -542,23 +592,25 @@ __meta__ = {
 polygon = PoolVector2Array( -79, 16, -79, -17, 70, -4, 80, 1, 71, 16 )
 
 [node name="DoorRight" type="Sprite" parent="."]
-position = Vector2( 329, 130 )
+position = Vector2( 326, 138 )
 texture = ExtResource( 2 )
+vframes = 2
 hframes = 2
 frame = 1
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="LeverBuffetScrew" parent="DoorRight" instance=ExtResource( 6 )]
-position = Vector2( 78, 54 )
+position = Vector2( 81, 46 )
 id = 4
 
 [node name="LongActionObject" parent="DoorRight/LeverBuffetScrew" index="0"]
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew2" parent="DoorRight" instance=ExtResource( 6 )]
-position = Vector2( 69, -56 )
+position = Vector2( 72, -64 )
 initial_frame = 3
 id = 5
 
@@ -566,7 +618,7 @@ id = 5
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew3" parent="DoorRight" instance=ExtResource( 6 )]
-position = Vector2( -70, 57 )
+position = Vector2( -67, 49 )
 initial_frame = 5
 id = 6
 
@@ -574,18 +626,23 @@ id = 6
 needed_item = "screwdriver"
 
 [node name="LeverBuffetScrew4" parent="DoorRight" instance=ExtResource( 6 )]
-position = Vector2( -78, -50 )
+position = Vector2( -75, -58 )
 initial_frame = 2
 id = 7
 
 [node name="LongActionObject" parent="DoorRight/LeverBuffetScrew4" index="0"]
 needed_item = "screwdriver"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DoorRight"]
+anims/default_day = SubResource( 1 )
+anims/default_night = SubResource( 2 )
+anims/unscrewed_day = SubResource( 3 )
+anims/unscrewed_night = SubResource( 4 )
+
 [node name="DoorRightDetached" type="Sprite" parent="."]
 position = Vector2( 450, 146 )
 texture = ExtResource( 9 )
 hframes = 2
-frame = 1
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_lock_": true
@@ -602,7 +659,6 @@ polygon = PoolVector2Array( 30, 67, -12, 75, -31, -63, 30, -76 )
 position = Vector2( 0, 9 )
 texture = ExtResource( 22 )
 hframes = 2
-frame = 1
 
 [node name="Screwdriver" type="Area2D" parent="." groups=[
 "cursor_hand",
@@ -627,15 +683,14 @@ frame = 1
 position = Vector2( 0, 5 )
 texture = ExtResource( 19 )
 hframes = 2
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screwdriver"]
-anims/day = SubResource( 1 )
-anims/night = SubResource( 2 )
+anims/day = SubResource( 5 )
+anims/night = SubResource( 6 )
 
 [node name="Screws" type="AnimatedSprite" parent="."]
 position = Vector2( 394, 214 )
-frames = SubResource( 21 )
+frames = SubResource( 25 )
 frame = 8
 __meta__ = {
 "_edit_lock_": true
@@ -655,8 +710,8 @@ volume_db = 6.0
 bus = "Fx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/day = SubResource( 22 )
-anims/night = SubResource( 23 )
+anims/day = SubResource( 26 )
+anims/night = SubResource( 27 )
 [connection signal="mouse_entered" from="BackZone" to="BackZone" method="_on_BackZone_mouse_entered"]
 [connection signal="mouse_exited" from="BackZone" to="BackZone" method="_on_BackZone_mouse_exited"]
 [connection signal="area_entered" from="DoorLeftDetached/LeftArea2D" to="DoorLeftDetached" method="_on_LeftArea2D_area_entered"]

@@ -18,6 +18,11 @@ var mouse_on_rightdoor: bool = false
 func _ready():
 	$DoorLeft.visible = true
 	$DoorRight.visible = true
+	if current_chapter.right_buffet_door_unscrewed:
+		$DoorRight/LeverBuffetScrew.set_hidden()
+		$DoorRight/LeverBuffetScrew2.set_hidden()
+		$DoorRight/LeverBuffetScrew3.set_hidden()
+		initialize_unscrewed_screws()
 	
 # warning-ignore:standalone_ternary
 	open_left_door(0) if current_chapter.left_buffet_door else close_left_door(0)
@@ -39,6 +44,11 @@ func _ready():
 
 
 func initialize_light():
+	if current_chapter.right_buffet_door_unscrewed:
+		$DoorRight/AnimationPlayer.play("unscrewed_" + current_chapter.ship_power)
+	else:
+		$DoorRight/AnimationPlayer.play("default_" + current_chapter.ship_power)
+	
 	$AnimationPlayer.play(current_chapter.ship_power)
 	$Screwdriver/AnimationPlayer.play(current_chapter.ship_power)
 	initialize_unscrewed_screws()
@@ -122,6 +132,8 @@ func close_left_door(trans_duration):
 
 
 func open_right_door(trans_duration):
+	current_chapter.right_buffet_door_unscrewed = false
+	
 	current_chapter.right_buffet_door = true
 	$Tween.interpolate_property($DoorRight, "modulate", Global.COLOR_DEFAULT
 	, Global.COLOR_TRANPARENT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -129,6 +141,9 @@ func open_right_door(trans_duration):
 	, Global.COLOR_DEFAULT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$DoorRightDetached/RightArea2D/CollisionPolygon2D.disabled = false
 	$Tween.start()
+	
+	yield(get_tree().create_timer(trans_duration), "timeout")
+	$DoorRight/AnimationPlayer.play("default_" + current_chapter.ship_power)
 
 
 func close_right_door(trans_duration):

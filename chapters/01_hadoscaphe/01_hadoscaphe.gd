@@ -3,7 +3,7 @@ extends WorldEnvironment
 
 # Game start conditions
 export var ship_power: String = "night"
-export var starting_room: String = "maintenance" if Global.DEV_MODE else "cryopod"
+export var starting_room: String = "leverbuffet" if Global.DEV_MODE else "cryopod"
 
 # The instanced room the player is playing in (node).
 var current_room = null
@@ -38,6 +38,7 @@ var maintenance_lever: bool = false
 var buffet_screws: Array = [true, true, true, true, true, true, true, true]
 var left_buffet_door: bool = false
 var right_buffet_door: bool = false
+var right_buffet_door_unscrewed: bool = true
 
 # Flora global variables :
 var pad_taken: bool = false

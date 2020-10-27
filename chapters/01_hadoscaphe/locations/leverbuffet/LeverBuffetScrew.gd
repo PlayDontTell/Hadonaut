@@ -7,7 +7,6 @@ onready var current_room = get_node("../..")
 export var initial_frame: int = 0
 export var id: int
 var started: bool
-var screwed: bool = true
 var default_modulate: Color
 
 
@@ -31,7 +30,6 @@ func initialize_light(time):
 
 
 func hide():
-	current_chapter.buffet_screws[id] = false
 	set_hidden()
 	current_room.refresh_door()
 
@@ -43,6 +41,7 @@ func draw():
 
 
 func set_hidden():
+	current_chapter.buffet_screws[id] = false
 	visible = false
 	$LongActionObject/CollisionShape2D.disabled = true
 
