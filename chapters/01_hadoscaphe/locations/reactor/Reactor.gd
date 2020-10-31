@@ -6,7 +6,6 @@ onready var inventory = get_node("../UI/Inventory")
 
 
 func _ready():
-	Global.room_name = "flora"
 	# Initialization
 	current_chapter.set_ship_power(current_chapter.ship_power)
 	# Left door initialization.

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/update_message_window.png-5afa13e47365c83d6abfe3def01a375e.stex"
+path="res://.import/leverbuffet_bluecable_tile.png-6a7e9f42563d1fb966e2140efbc2686b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/update_message_screen/update_message_window.png"
-dest_files=[ "res://.import/update_message_window.png-5afa13e47365c83d6abfe3def01a375e.stex" ]
+source_file="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_bluecable_tile.png"
+dest_files=[ "res://.import/leverbuffet_bluecable_tile.png-6a7e9f42563d1fb966e2140efbc2686b.stex" ]
 
 [params]
 

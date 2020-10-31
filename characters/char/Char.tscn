@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://characters/char/Char.gd" type="Script" id=1]
 [ext_resource path="res://characters/char/char.png" type="Texture" id=2]
@@ -375,6 +375,86 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=10]
+resource_name = "stand_fancypants"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 68, 67, 66, 65, 64, 63, 62 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Eyes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Head:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "stand_naked"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 27, 26, 25, 24, 23, 22 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Eyes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Head:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=12]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -438,7 +518,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -517,15 +597,17 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, -30 )
 vframes = 2
 hframes = 40
-frame = 40
+frame = 28
 script = ExtResource( 3 )
 
 [node name="Head" type="Sprite" parent="Sprite"]
+visible = false
 use_parent_material = true
 position = Vector2( 0, -36 )
 texture = ExtResource( 7 )
 
 [node name="Eyes" type="Sprite" parent="Sprite"]
+visible = false
 use_parent_material = true
 position = Vector2( 0, -36 )
 texture = ExtResource( 4 )
@@ -547,8 +629,10 @@ anims/push_fancypants = SubResource( 6 )
 anims/push_naked = SubResource( 7 )
 anims/run_fancypants = SubResource( 8 )
 anims/run_naked = SubResource( 9 )
-anims/walk_fancypants = SubResource( 10 )
-anims/walk_naked = SubResource( 11 )
+anims/stand_fancypants = SubResource( 10 )
+anims/stand_naked = SubResource( 11 )
+anims/walk_fancypants = SubResource( 12 )
+anims/walk_naked = SubResource( 13 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 

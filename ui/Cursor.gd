@@ -29,12 +29,12 @@ func _process(delta):
 	if Global.force_hand_cursor:
 		special_cursor = "_hand"
 		
-	if GlobalInventory.is_using_item and not (not Global.mouse_hovering_inventory
-		and GlobalInventory.item_used in ["screwdriver"]):
+	if (GlobalInventory.is_using_item and not (not Global.mouse_hovering_inventory
+		and GlobalInventory.item_used in ["screwdriver"])) or Global.force_point_cursor:
 		special_cursor = "_point"
 
 	if (Global.menu_visible or Global.update_message_visible
-		or Global.force_menu_cursor or Global.logo_visible):
+		or Global.force_menu_cursor or Global.logo_visible) and not Global.force_point_cursor:
 		change_cursor_animation("menu")
 	else:
 		if mouse_arrow and not mouse_on_ui and not Global.mouse_hovering_count > 0:

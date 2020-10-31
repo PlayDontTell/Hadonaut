@@ -39,6 +39,8 @@ var buffet_screws: Array = [true, true, true, true, true, true, true, true]
 var left_buffet_door: bool = false
 var right_buffet_door: bool = false
 var right_buffet_door_unscrewed: bool = true
+var red_cable_pin_position: Vector2 = Vector2(0, 0)
+var red_cable_stuck_to: String = ""
 
 # Flora global variables :
 var pad_taken: bool = false
@@ -80,7 +82,6 @@ func _ready():
 
 # Function to set the ship power ("day" or "night").
 func set_ship_power(setting):
-	
 	# Brightness saturation effect if the room is lit.
 	if setting == "day" and not setting == ship_power:
 		# interpolating the brightness of the viewport.
@@ -94,7 +95,6 @@ func set_ship_power(setting):
 	ship_power = setting
 	set_tints()
 	
-	
 	# Initializinf all the light effects specified in the current room script.
 	current_room.initialize_light()
 	
@@ -107,13 +107,11 @@ func set_ship_power(setting):
 
 
 # Function to order the change of the room.
-func go_to_room(name, flip_h = Global.last_flip_h, to_x = Global.last_x, to_y = Global.last_y):
+func go_to_room(name, flip_h = Global.last_flip_h, to_x = Global.last_x, to_y = Global.last_y, action_type = "idle"):
 	Global.last_flip_h = flip_h
 	Global.last_x = to_x
 	Global.last_y = to_y
-	
-	
-	
+		
 	# If an instance of the UI node is child of the chapter node,
 	# it plays a fade out effect (fade to black).
 	if has_node("UI/Fade/AnimationPlayer") and chapter_has_begun:
@@ -127,17 +125,17 @@ func go_to_room(name, flip_h = Global.last_flip_h, to_x = Global.last_x, to_y = 
 	else:
 		$UI/Fade/AnimationPlayer.play("long_fade_in")
 	
-	
 	# Getting the room's node path from the list of the rooms of this chapter.
 	var path = ("res://chapters/01_hadoscaphe/locations/" + name + "/" 
 		+ name.left(1).to_upper() + name.right(1) + ".tscn")
 	
 	# Order the deferred change of the room.
-	call_deferred("_deferred_go_to_room", path, flip_h, to_x, to_y)
-
+	call_deferred("_deferred_go_to_room", path, flip_h, to_x, to_y, action_type)
+	
+	Global.set_room_name(name)
 
 # Function to change the room.
-func _deferred_go_to_room(path, flip_h, to_x, to_y):
+func _deferred_go_to_room(path, flip_h, to_x, to_y, action_type):
 	# Unload the current room and the instance of the UI node (all the nodes,
 	# except for the ChapterRes node.
 	if get_child_count() > 0:
@@ -157,18 +155,16 @@ func _deferred_go_to_room(path, flip_h, to_x, to_y):
 	move_child(current_room, 0)
 	
 	# Reset cursor hovering count.
-	Global.mouse_hovering_count = 0
-	
-	
-	
+	Global.reset_ui()
 	
 	# If the room contains Char, positionning him and orienting him.
-	if current_room.has_node("Char/Sprite"):
+	if current_room.has_node("Char"):
+		current_room.get_node("Char/CharAnimation").play(action_type + "_" + CharState.dress_code)
 		current_room.get_node("Char/Sprite").position = Vector2(to_x, to_y)
 		current_room.get_node("Char/Sprite").set_flip_h(flip_h)
 	
 	# The room is loaded.
-	print("Going to " + current_room.name)
+	print("       [displaying the " + current_room.name + " room]")
 
 
 func set_tints():

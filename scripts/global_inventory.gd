@@ -28,11 +28,11 @@ func add(item):
 	if item in existing_items:
 		if not item in char_inventory:
 			char_inventory.append(item)
-			print(item + " added to the inventory (Char).")
+			print(item + " added to the inventory of Char.")
 		else:
-			print(item + " is already in the inventory. Cannot add it to the inventory (Char).")
+			print(item + " is already in the inventory.")
 	else:
-		print(item + " does'nt exist. Cannot add it to the inventory (Char).")
+		print(item + " does'nt exist.")
 
 
 # Second setter function of the inventory: remove an item by name.
@@ -40,11 +40,11 @@ func remove(item):
 	if item in existing_items:
 		if item in char_inventory:
 			char_inventory.remove(char_inventory.find(item))
-			print(item + " removed from the inventory (Char).")
+			print(item + " removed from the inventory of Char.")
 		else:
-			print(item + " isn't in the inventory. Cannot remove it from the inventory (Char).")
+			print(item + " isn't in the inventory, it cannot be removed it from the inventory of Char.")
 	else:
-		print(item + " does'nt exist. Cannot remove it from the inventory (Char).")
+		print(item + " does'nt exist.")
 
 
 func place(id, item):

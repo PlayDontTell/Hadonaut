@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 onready var game_manager = get_node("..")
@@ -16,7 +16,8 @@ func _ready():
 	yield(get_tree().create_timer(0.3),"timeout")
 	$Fade/AnimationPlayer.play("fade_in")
 
-	yield(get_node("UpdateMessageButton"), "pressed")
+	yield(get_node("NinePatchRect/UpdateMessageButton"), "pressed")
+	$AudioStreamPlayer2D.play()
 	
 	$Fade/AnimationPlayer.play("fade_out")
 	yield($Fade/AnimationPlayer, "animation_finished")
@@ -33,5 +34,23 @@ func _on_TextureButton_mouse_entered():
 
 
 func _on_TextureButton_mouse_exited():
+	if Global.mouse_hovering_count > 0:
+		Global.mouse_hovering_count -= 1
+
+
+func _on_UpdateMessage_meta_clicked(meta):
+# warning-ignore:return_value_discarded
+	OS.shell_open(meta)
+
+
+# warning-ignore:unused_argument
+func _on_UpdateMessage_meta_hover_started(meta):
+	Global.force_point_cursor = true
+	Global.mouse_hovering_count += 1
+
+
+# warning-ignore:unused_argument
+func _on_UpdateMessage_meta_hover_ended(meta):
+	Global.force_point_cursor = false
 	if Global.mouse_hovering_count > 0:
 		Global.mouse_hovering_count -= 1

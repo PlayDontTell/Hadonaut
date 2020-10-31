@@ -4,6 +4,12 @@ extends Node2D
 onready var current_chapter = get_node("..")
 
 
+# warning-ignore:unused_argument
+func _process(delta):
+	if Global.all_has_been_seen and not $EndOfContentScreen.has_been_displayed:
+		$EndOfContentScreen.draw()
+
+
 func _input(event):
 	if event is InputEventKey:
 		if Global.DEV_MODE:

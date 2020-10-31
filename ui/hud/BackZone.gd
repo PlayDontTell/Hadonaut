@@ -2,6 +2,7 @@ extends Area2D
 
 
 export var to_room: String
+export var action_type = "idle"
 
 var mouse_on_zone: bool
 
@@ -9,7 +10,7 @@ var mouse_on_zone: bool
 func _unhandled_input(event):
 	if (event is InputEventMouseButton and event.pressed 
 	and mouse_on_zone and Global.mouse_hovering_count == 0):
-		get_node("../..").go_to_room(to_room)
+		get_node("../..").go_to_room(to_room, Global.last_flip_h, Global.last_x, Global.last_y, action_type)
 
 
 func _on_BackZone_mouse_entered():

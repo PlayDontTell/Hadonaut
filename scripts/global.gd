@@ -2,11 +2,14 @@ extends Node
 
 
 # Meta variables
-const DEV_MODE: bool = true
+const DEV_MODE: bool = false
 
 # Story variables
 var chapter_name: String
 var room_name: String
+var playthrough_progress: PoolStringArray = []
+const AVAILABLE_EVENTS_QUANTITY: int = 16
+var all_has_been_seen: bool = false
 
 # Last position of Char
 var last_flip_h: bool
@@ -26,6 +29,7 @@ var mouse_hovering_inventory: bool = false
 var long_action_begun: bool = false
 var force_eye_cursor: bool = false
 var force_hand_cursor: bool = false
+var force_point_cursor: bool = false
 var force_menu_cursor: bool = false
 var force_arrow_direction: int = -1
 var cursor_animation: String
@@ -56,3 +60,33 @@ func toggle_pause_on():
 
 func toggle_pause_off():
 	get_tree().paused = false
+
+
+func reset_ui():
+	mouse_hovering_ground = false
+	mouse_hovering_count = 0
+	mouse_hovering_long_action = false
+	mouse_hovering_inventory = false
+	long_action_begun = false
+	force_eye_cursor = false
+	force_hand_cursor = false
+	force_point_cursor = false
+	force_menu_cursor = false
+
+
+func set_room_name(new_name):
+	room_name = new_name
+	add_to_playthrough_progress("You went to the " + new_name + " room.")
+
+
+func add_to_playthrough_progress(event):
+	if not event in playthrough_progress:
+		playthrough_progress.append(event)
+		print("* new event [" + str(playthrough_progress.size()) 
+			+ "/" + str(AVAILABLE_EVENTS_QUANTITY) + "]: " + event)
+		have_all_availbale_events_been_played()
+
+func have_all_availbale_events_been_played():
+	if playthrough_progress.size() == AVAILABLE_EVENTS_QUANTITY:
+		all_has_been_seen = true
+		print("You've seen all the actual content of the game.")

@@ -39,6 +39,8 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5 ), PoolIntArray( 
 outlines = [ PoolVector2Array( 213, 131, 211, 145, 268, 144, 268, 143, 273, 143, 269, 140, 396, 166, 377, 156, 259, 131 ) ]
 
 [sub_resource type="Animation" id=5]
+resource_name = "default"
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -54,6 +56,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=6]
+resource_name = "moving"
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -62,10 +66,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 0, 1, 2, 3 ]
 }
 
 [node name="Reactor" type="Node2D"]
@@ -140,7 +144,7 @@ position = Vector2( 242, 139 )
 texture = ExtResource( 7 )
 
 [node name="RedLight" type="Sprite" parent="."]
-position = Vector2( 325, 132 )
+position = Vector2( 325, 125 )
 texture = ExtResource( 9 )
 
 [node name="Engine" type="Sprite" parent="."]
@@ -150,8 +154,9 @@ texture = ExtResource( 8 )
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Engine"]
-anims/day = SubResource( 5 )
-anims/night = SubResource( 6 )
+autoplay = "default"
+anims/default = SubResource( 5 )
+anims/moving = SubResource( 6 )
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="order_interaction" from="RightDoorButton" to="." method="_on_RightDoorButton_order_interaction"]

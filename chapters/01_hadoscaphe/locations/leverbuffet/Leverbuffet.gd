@@ -4,11 +4,6 @@ extends Node2D
 onready var current_chapter = get_node("..")
 onready var inventory = get_node("../UI/Inventory")
 
-var cable_section = preload("res://chapters/01_hadoscaphe/locations/leverbuffet/Cable.tscn")
-var cable_joint = preload("res://chapters/01_hadoscaphe/locations/leverbuffet/CableJoint.tscn")
-var cable_pin = preload("res://chapters/01_hadoscaphe/locations/leverbuffet/CablePin.tscn")
-var on_red_cable: bool = false
-var cable_selected: String = ""
 var left_door_screws = []
 var right_door_screws = []
 var mouse_on_leftdoor: bool = false
@@ -33,14 +28,47 @@ func _ready():
 	$Screwdriver.visible = not current_chapter.screwdriver_taken
 	$Screwdriver/CollisionPolygon2D.disabled = current_chapter.screwdriver_taken
 	
+	if current_chapter.red_cable_pin_position != Vector2(0, 0):
+		$LeverBack/RedCable/RedPin.position = current_chapter.red_cable_pin_position
 	if current_chapter.maintenance_lever:
-		$LeverTop.position = Vector2(177, 12)
-		$LeverBack.position = Vector2(169, 71)
+		$LeverTop.position = Vector2(190, 12)
+		$LeverBack/LeverBack1.position = Vector2(62, 61)
+		$LeverBack/LeverBack2.position = Vector2(54, 39)
+		$LeverBack/LeverBack3.position = Vector2(58, 66)
+		$LeverBack/BlueCable.points[1] = Vector2(181, 136)
+		$LeverBack/BlueCable/BluePin.position = Vector2(181, 136)
 	else:
-		$LeverTop.position = Vector2(141, 13)
-		$LeverBack.position = Vector2(133, 72)
+		$LeverTop.position = Vector2(142, 13)
+		$LeverBack/LeverBack1.position = Vector2(16, 62)
+		$LeverBack/LeverBack2.position = Vector2(8, 40)
+		$LeverBack/LeverBack3.position = Vector2(12, 67)
+		$LeverBack/BlueCable.points[1] = Vector2(145, 137)
+		$LeverBack/BlueCable/BluePin.position = Vector2(145, 137)
+	
+	match current_chapter.red_cable_stuck_to:
+		"lever_pin":
+			$LeverBack/RedCable/RedPin.stick($LeverBack/LeverBack2/LeverPinHook.position
+				- $LeverBack/RedCable.position + $LeverBack/LeverBack2.position, "lever_pin")
+		"pin_connection":
+			if current_chapter.maintenance_lever:
+				$LeverBack/RedCable/RedPin.stick($LeverBack/RedCable/PinConnectionHook.position, 
+					"pin_connection")
+			else:
+				$LeverBack/RedCable/RedPin.stick($LeverBack/LeverBack2/LeverPinHook.position
+				- $LeverBack/RedCable.position + $LeverBack/LeverBack2.position, "lever_pin")
 	
 	initialize_light()
+
+
+# warning-ignore:unused_argument
+func _process(delta):
+	current_chapter.red_cable_pin_position = $LeverBack/RedCable/RedPin.position
+	$LeverBack/RedCable.points[1] = $LeverBack/RedCable/RedPin.position
+	if current_chapter.ship_power == "day":
+		$Needle.play()
+	else:
+		$Needle.stop()
+		$Needle.frame = 0
 
 
 func initialize_light():
@@ -49,6 +77,13 @@ func initialize_light():
 	else:
 		$DoorRight/AnimationPlayer.play("default_" + current_chapter.ship_power)
 	
+	
+	if current_chapter.ship_power == "day":
+		$LeverBack/RedCable.texture = load("res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_cable_tile.png")
+		$LeverBack/BlueCable.texture = load("res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_bluecable_tile.png")
+	else:
+		$LeverBack/RedCable.texture = load("res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_cable_tile_night.png")
+		$LeverBack/BlueCable.texture = load("res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_bluecable_tile_night.png")
 	$AnimationPlayer.play(current_chapter.ship_power)
 	$Screwdriver/AnimationPlayer.play(current_chapter.ship_power)
 	initialize_unscrewed_screws()
@@ -112,6 +147,7 @@ func initialize_unscrewed_screws():
 
 
 func open_left_door(trans_duration):
+	Global.add_to_playthrough_progress("You opened the left door of the lever buffet.")
 	current_chapter.left_buffet_door = true
 	$Tween.interpolate_property($DoorLeft, "modulate", Global.COLOR_DEFAULT
 	, Global.COLOR_TRANPARENT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -132,8 +168,8 @@ func close_left_door(trans_duration):
 
 
 func open_right_door(trans_duration):
+	Global.add_to_playthrough_progress("You opened the right door of the lever buffet.")
 	current_chapter.right_buffet_door_unscrewed = false
-	
 	current_chapter.right_buffet_door = true
 	$Tween.interpolate_property($DoorRight, "modulate", Global.COLOR_DEFAULT
 	, Global.COLOR_TRANPARENT, trans_duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -164,6 +200,7 @@ func _on_Screwdriver_input_event(viewport, event, shape_idx):
 		$Screwdriver.visible = false
 		$Screwdriver/CollisionPolygon2D.disabled = true
 		inventory.add("screwdriver", Vector2(222, 170))
+		Global.add_to_playthrough_progress("You took the screwdriver.")
 
 
 # warning-ignore:unused_argument

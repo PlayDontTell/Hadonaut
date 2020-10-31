@@ -6,6 +6,7 @@ export var room_without_char: bool
 export var to_x: int
 export var to_y: int
 export var flip_h: bool
+export var action_type = "idle"
 var is_mouse_overlapping: bool = false
 
 
@@ -21,7 +22,7 @@ func _on_Passage_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if is_mouse_overlapping:
 			var position_ordered = $PointToRoom.position + position
-			var action = get_node("../Char").execute_action(to_room, position_ordered, flip_h, "idle")
+			var action = get_node("../Char").execute_action(to_room, position_ordered, flip_h, action_type)
 			yield(action, "completed")
 			if get_node("../Char").action == to_room + "_completed":
 				if not room_without_char:

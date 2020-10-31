@@ -44,9 +44,8 @@ func push(pushable_name, position_ordered, flip_h):
 func execute_action(action_name, position_ordered, flip_h, action_type):
 		# Focus on the new action.
 		action = action_name
-		print("action : " + action_name)
 		# First go to the target's position.
-		reach(position_ordered)
+		reach(position_ordered, action_name)
 		yield($Sprite, "arrived_at_destination")
 		# When arrived at target, play the push animation.
 		if $Sprite.position == position_ordered:
@@ -57,16 +56,17 @@ func execute_action(action_name, position_ordered, flip_h, action_type):
 			if action_type == "push":
 				yield(get_tree().create_timer(0.3), "timeout")
 				action = action_name + "_completed"
-				print(action_name + " completed")
 			elif action_type == "pick":
 				yield(get_tree().create_timer(0.6), "timeout")
 				action = action_name + "_completed"
-				print(action_name + " completed")
 			elif action_type == "idle":
 				action = action_name + "_completed"
-				print(action_name + " completed")
+			elif action_type == "stand":
+				yield(get_tree().create_timer(0.7), "timeout")
+				action = action_name + "_completed"
+			print(" ... action completed: " + action_name)
 
-func reach(target_position):
+func reach(target_position, action_name = ""):
 	if visible:
 		# Def  of the current and target positions.
 		var current_position = $Sprite.position
@@ -79,7 +79,10 @@ func reach(target_position):
 			if path_to_target.size() > 0:
 				# If the target is reachable (not the closest point).
 				if target_position == path_to_target[-1]:
-					print("Char going to " + str(target_position))
+					if action_name == "":
+						print("Char going to " + str(target_position) + ".")
+					else:
+						print("Char going to " + str(target_position) + " to complete action : " + action_name + " ...")
 					# Draw the line.
 					$Line2D.points = path_to_target
 					# Calculation of the total length to go, to assign speed.

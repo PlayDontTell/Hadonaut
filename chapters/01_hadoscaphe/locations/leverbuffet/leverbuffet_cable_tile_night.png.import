@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/leverbuffet_cableblue_middle.png-183e3e56821d0c4632cccd64b01a8a60.stex"
+path="res://.import/leverbuffet_cable_tile_night.png-4899b1e5edd93d9ede4547dbade8cda8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_cableblue_middle.png"
-dest_files=[ "res://.import/leverbuffet_cableblue_middle.png-183e3e56821d0c4632cccd64b01a8a60.stex" ]
+source_file="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_cable_tile_night.png"
+dest_files=[ "res://.import/leverbuffet_cable_tile_night.png-4899b1e5edd93d9ede4547dbade8cda8.stex" ]
 
 [params]
 

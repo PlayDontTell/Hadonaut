@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/UpdateMessageScreen.gd" type="Script" id=1]
-[ext_resource path="res://ui/menu/window/yes_button_hover.png" type="Texture" id=2]
-[ext_resource path="res://ui/menu/window/yes_button_default.png" type="Texture" id=3]
-[ext_resource path="res://ui/update_message_screen/update_message_theme.tres" type="Theme" id=4]
+[ext_resource path="res://ui/TickButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/menu/menu_click2.wav" type="AudioStream" id=3]
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=4]
 [ext_resource path="res://ui/hud/black.png" type="Texture" id=5]
-[ext_resource path="res://ui/update_message_screen/update_message_window.png" type="Texture" id=6]
+[ext_resource path="res://ui/ui_window.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/Cursor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/Fade.tscn" type="PackedScene" id=8]
 [ext_resource path="res://intro/night_ambience.wav" type="AudioStream" id=9]
@@ -26,8 +26,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="UpdateMessageScreen" type="Node2D"]
+[node name="UpdateMessageScreen" type="Control"]
+margin_right = 480.0
+margin_bottom = 270.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 5 )
@@ -38,64 +43,58 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Window" type="Sprite" parent="."]
-position = Vector2( 90, 40 )
-texture = ExtResource( 6 )
-centered = false
+[node name="NinePatchRect" parent="." instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -101.5
+margin_right = 160.0
+margin_bottom = 101.5
+
+[node name="UpdateMessageButton" parent="NinePatchRect" instance=ExtResource( 2 )]
 
 [node name="UpdateMessage" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 108.0
-margin_top = 53.0
-margin_right = 395.0
-margin_bottom = 197.0
+margin_left = -143.5
+margin_top = -85.0
+margin_right = 143.5
+margin_bottom = 59.0
 theme = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Hadonaut (version a_0.04)[/center]
 
-[color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page.[/color]
+[color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the [color=yellow][url=https://ivanvoirol.itch.io/hadonaut]itch.io page of the game[/url][/color].[/color]
 
 version note :[color=#bbbbbb]
-+ Added this welcoming screen.
++ Added this welcoming screen,  and a screen indicating when all the content of the game has been played (as requested).
 + Added a highlighting system to indicate available actions.
 + Added two new rooms (Reactor and Cryoscreen)
-* Finished prototyping the Maintenance room (blue room).
+* Carried on prototyping the Maintenance room (blue room).
 * Modified the menu layout.
 * Minor visual changes.
 * Code improvement.
 [/color]
 [center][color=gray]Have fun![/color][/center]"
+meta_underlined = false
 text = "Hadonaut (version a_0.04)
 
-Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the Itch.io page.
+Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the itch.io page of the game.
 
 version note :
-+ Added this welcoming screen.
++ Added this welcoming screen,  and a screen indicating when all the content of the game has been played (as requested).
 + Added a highlighting system to indicate available actions.
 + Added two new rooms (Reactor and Cryoscreen)
-* Finished prototyping the Maintenance room (blue room).
+* Carried on prototyping the Maintenance room (blue room).
 * Modified the menu layout.
 * Minor visual changes.
 * Code improvement.
 
 Have fun!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UpdateMessageButton" type="TextureButton" parent="." groups=[
-"cursor_hover",
-]]
-margin_left = 234.0
-margin_top = 202.0
-margin_right = 260.0
-margin_bottom = 225.0
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -109,11 +108,17 @@ anims/black_screen = SubResource( 1 )
 [node name="Cursor" parent="." instance=ExtResource( 7 )]
 
 [node name="NightAmbience" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 240, 135 )
+position = Vector2( 229, 133 )
 stream = ExtResource( 9 )
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="mouse_entered" from="UpdateMessageButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="UpdateMessageButton" to="." method="_on_TextureButton_mouse_exited"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 240, 170 )
+stream = ExtResource( 3 )
+bus = "FxMeta"
+[connection signal="meta_clicked" from="UpdateMessage" to="." method="_on_UpdateMessage_meta_clicked"]
+[connection signal="meta_hover_ended" from="UpdateMessage" to="." method="_on_UpdateMessage_meta_hover_ended"]
+[connection signal="meta_hover_started" from="UpdateMessage" to="." method="_on_UpdateMessage_meta_hover_started"]
 
 [editable path="Fade"]

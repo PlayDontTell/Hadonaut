@@ -8,7 +8,6 @@ var char_is_risen: bool = false
 
 
 func _ready():
-	Global.room_name = "cryopod"
 	# Initialization
 	current_chapter.set_ship_power(current_chapter.ship_power)
 	# doors initialization.
@@ -96,6 +95,7 @@ func _on_Trap_order_interaction(action_name, position_ordered, flip_h, action_ty
 		if is_closed and current_anim == str("pick_" + CharState.dress_code):
 			if GlobalInventory.item_used == "cryopod_trap_key":
 				$Trap.unlock_trap()
+				Global.add_to_playthrough_progress("You unlocked the trap.")
 			else:
 				$Trap.is_locked()
 		elif not is_closed and current_anim == str("push_" + CharState.dress_code):
@@ -127,6 +127,7 @@ func empty_closet():
 	if not current_chapter.trap_keys_taken:
 		yield(get_tree().create_timer(1.4), "timeout")
 		inventory.add("cryopod_trap_key", Vector2(326, 122))
+		Global.add_to_playthrough_progress("You got the red key.")
 		current_chapter.trap_keys_taken = true
 
 
@@ -143,6 +144,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			var state = char_is_risen
 			if char_is_fallen and not state:
+				Global.add_to_playthrough_progress("You have woken up Char.")
 				char_is_risen = true
 				yield(get_tree().create_timer(0.2), "timeout")
 				$AwakeningAnimation/Area2D/CollisionShape2D.disabled = true

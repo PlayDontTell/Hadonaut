@@ -6,7 +6,6 @@ onready var inventory = get_node("../UI/Inventory")
 
 
 func _ready():
-	Global.room_name = "flora"
 	# Initialization
 	current_chapter.set_ship_power(current_chapter.ship_power)
 	# Left door initialization.
@@ -45,3 +44,4 @@ func _on_Pad_order_interaction(action_name, position_ordered, flip_h, action_typ
 		current_chapter.get_node("UI/HUD/PadButton").visible = true
 		current_chapter.pad_taken = true
 		inventory.add("map_module", Vector2(231, 129))
+		Global.add_to_playthrough_progress("You took the pad and the map module.")

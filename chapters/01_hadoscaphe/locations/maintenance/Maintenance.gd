@@ -6,7 +6,6 @@ onready var inventory = get_node("../UI/Inventory")
 
 
 func _ready():
-	Global.room_name = "maintenance"
 	# Initialization
 	current_chapter.set_ship_power(current_chapter.ship_power)
 	# Left door initialization.
@@ -34,6 +33,10 @@ func initialize_light():
 		$LeftDoorButton/Sprite.modulate = Global.COLOR_BLUE_TINTED
 	$AnimationPlayer.play(current_chapter.ship_power)
 	# initialize the animated objects (animations).
+	if current_chapter.right_buffet_door_unscrewed:
+		$ToLeverbuffet/LeverBuffetSprite/AnimationPlayer.play("unscrewed_" + current_chapter.ship_power)
+	else:
+		$ToLeverbuffet/LeverBuffetSprite/AnimationPlayer.play("default_" + current_chapter.ship_power)
 # warning-ignore:standalone_ternary
 	toggle_lever_on() if current_chapter.maintenance_lever else toggle_lever_off()
 
@@ -54,15 +57,16 @@ func _on_Lever_order_interaction(action_name, position_ordered, flip_h, action_t
 		var state = current_chapter.maintenance_lever
 		if not state:
 			toggle_lever_on()
-			current_chapter.set_ship_power("day")
-			yield(get_tree().create_timer(0.5), "timeout")
-			current_chapter.get_node("ChapterRes/Atmo/EngineStart").play()
-			
-			current_chapter.had_doors[0][0] = true
-			
-			$LeftDoorButton.set_state()
-			$DoorLeft.is_active = $LeftDoorButton.is_active
-			$DoorLeft.initialize()
+			if current_chapter.red_cable_stuck_to != "":
+				current_chapter.set_ship_power("day")
+				Global.add_to_playthrough_progress("You connected the ship to the reactor.")
+				current_chapter.had_doors[0][0] = true
+				yield(get_tree().create_timer(0.5), "timeout")
+				current_chapter.get_node("ChapterRes/Atmo/EngineStart").play()
+				
+				$LeftDoorButton.set_state()
+				$DoorLeft.is_active = $LeftDoorButton.is_active
+				$DoorLeft.initialize()
 		else:
 			toggle_lever_off()
 			current_chapter.set_ship_power("night")

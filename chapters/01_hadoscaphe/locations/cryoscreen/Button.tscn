@@ -94,4 +94,6 @@ bus = "Fx"
 [node name="ButtonReleased" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 bus = "Fx"
+[connection signal="area_entered" from="." to="." method="_on_Button_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Button_area_exited"]
 [connection signal="input_event" from="." to="." method="_on_Button_input_event"]

@@ -52,6 +52,7 @@ func _on_ModuleConnection_pressed():
 				insert_module(module)
 				yield(get_tree().create_timer(0.7), "timeout")
 				if module == "map_module":
+					Global.add_to_playthrough_progress("You inserted the map module in the pad.")
 					$PadSprite/MapModule.visible = true
 					$PadSprite/Module/Tween.interpolate_property(
 					$PadSprite/MapModule, "modulate"

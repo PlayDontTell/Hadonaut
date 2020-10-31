@@ -8,6 +8,8 @@ export var speed_y = 0
 # Function to set all the parameters of the sprite
 func _ready():
 	# SETTINGS
+	speed_x = -0.5
+	speed_y = 0
 	# region_enabled
 	region_enabled = true
 	# region_rect

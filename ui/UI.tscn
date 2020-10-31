@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://ui/hud/hud2.png" type="Texture" id=1]
 [ext_resource path="res://ui/inventory.gd" type="Script" id=2]
@@ -67,6 +67,7 @@
 [ext_resource path="res://ui/Items.gd" type="Script" id=65]
 [ext_resource path="res://ui/hud/button_mask.png" type="BitMap" id=66]
 [ext_resource path="res://ui/pad/pad_hum.wav" type="AudioStream" id=67]
+[ext_resource path="res://ui/end_of_content_screen/EndOfContentScreen.tscn" type="PackedScene" id=68]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -211,7 +212,7 @@ modulate = Color( 1, 1, 1, 0.333333 )
 position = Vector2( -240, -135 )
 texture = SubResource( 5 )
 script = SubResource( 6 )
-speed_x = -0.2
+speed_x = -0.5
 
 [node name="ShipIn" type="Sprite" parent="Pad/PadSprite/MapModule"]
 use_parent_material = true
@@ -681,6 +682,8 @@ texture_hover = ExtResource( 55 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="EndOfContentScreen" parent="." instance=ExtResource( 68 )]
 
 [node name="Cursor" parent="." instance=ExtResource( 3 )]
 
