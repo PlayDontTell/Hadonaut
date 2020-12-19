@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ui/hud/black.png" type="Texture" id=1]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "black_screen"
 length = 0.3
 tracks/0/type = "value"
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -48,8 +48,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "long_fade_in"
+[sub_resource type="Animation" id=4]
 length = 1.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -64,8 +63,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "medium_fade_in"
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -97,6 +95,7 @@ tracks/0/keys = {
 }
 
 [node name="Fade" type="Sprite"]
+modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
@@ -107,9 +106,9 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade_in"
-anims/black_screen = SubResource( 5 )
-anims/fade_in = SubResource( 1 )
-anims/fade_out = SubResource( 2 )
-anims/long_fade_in = SubResource( 3 )
-anims/medium_fade_in = SubResource( 4 )
+anims/black_screen = SubResource( 1 )
+anims/fade_in = SubResource( 2 )
+anims/fade_out = SubResource( 3 )
+anims/long_fade_in = SubResource( 4 )
+anims/medium_fade_in = SubResource( 5 )
 anims/medium_fade_out = SubResource( 6 )

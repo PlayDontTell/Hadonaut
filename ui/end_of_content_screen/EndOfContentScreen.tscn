@@ -37,9 +37,9 @@ margin_right = 90.0
 margin_bottom = 21.0
 theme = ExtResource( 2 )
 bbcode_enabled = true
-bbcode_text = "You have seen all the content of the game. If you have questions, pices of advice or ideas, consider posting a comment on the [color=yellow][url=https://ivanvoirol.itch.io/hadonaut]itch.io page of the game[/url][/color]!"
+bbcode_text = "You have seen all the content of the game. If you have questions, pieces of advice or ideas, consider posting a comment on the [color=yellow][url=https://ivanvoirol.itch.io/hadonaut]itch.io page of the game[/url][/color]!"
 meta_underlined = false
-text = "You have seen all the content of the game. If you have questions, pices of advice or ideas, consider posting a comment on the itch.io page of the game!"
+text = "You have seen all the content of the game. If you have questions, pieces of advice or ideas, consider posting a comment on the itch.io page of the game!"
 __meta__ = {
 "_edit_use_anchors_": false
 }

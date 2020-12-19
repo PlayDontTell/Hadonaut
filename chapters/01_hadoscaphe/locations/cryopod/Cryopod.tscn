@@ -1012,6 +1012,8 @@ tracks/4/keys = {
 
 [node name="Cryopod" type="Node2D"]
 material = SubResource( 2 )
+position = Vector2( -240, -100 )
+scale = Vector2( 2, 2 )
 script = ExtResource( 8 )
 
 [node name="AutoScrollingSprite" parent="." instance=ExtResource( 1 )]

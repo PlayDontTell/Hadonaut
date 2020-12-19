@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Hadonaut"
-run/main_scene="res://GameManager.tscn"
+run/main_scene="res://ui/hud/v2/HUD.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -24,14 +24,12 @@ config/icon="res://icon.png"
 CharState="*res://scripts/char_state.gd"
 GlobalInventory="*res://scripts/global_inventory.gd"
 Global="*res://scripts/global.gd"
+F="*res://addons/Functions.gd"
 
 [display]
 
 window/size/width=480
 window/size/height=270
-window/size/resizable=false
-window/size/test_width=1440
-window/size/test_height=810
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -87,6 +85,10 @@ ui_click={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+2d/time_before_sleep=0.2
 
 [rendering]
 

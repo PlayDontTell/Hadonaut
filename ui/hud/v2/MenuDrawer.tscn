@@ -1,0 +1,257 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://ui/hud/v2/MenuHandle.gd" type="Script" id=1]
+[ext_resource path="res://ui/hud/v2/MenuDrawer.gd" type="Script" id=2]
+[ext_resource path="res://ui/hud/v3/inventory_drawer_handle_hover.png" type="Texture" id=3]
+[ext_resource path="res://ui/hud/v3/drawer_light_middle_tile.png" type="Texture" id=4]
+[ext_resource path="res://ui/hud/v3/inventory_drawer_interior_tile_2.png" type="Texture" id=5]
+[ext_resource path="res://ui/hud/v3/DrawerCorner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/hud/v3/interior_shade.png" type="Texture" id=7]
+[ext_resource path="res://ui/hud/v3/inventory_drawer_handle.png" type="Texture" id=8]
+[ext_resource path="res://ui/hud/v3/StartShade.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ui/hud/v3/DrawerInsert.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ui/hud/v3/InsertTile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ui/hud/v3/DrawerSounds.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 117, 11 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 2, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 4, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 6, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 8, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 10, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 12, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 14, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 18, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 20, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 22, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 24, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 26, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 28, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 30, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 4 )
+region = Rect2( 34, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 4 )
+region = Rect2( 36, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 4 )
+region = Rect2( 38, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 4 )
+region = Rect2( 40, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 4 )
+region = Rect2( 42, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 4 )
+region = Rect2( 44, 0, 2, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 4 )
+region = Rect2( 46, 0, 2, 32 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="PhysicsMaterial" id=27]
+friction = 0.5
+bounce = 0.2
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 49, 5 )
+
+[node name="MenuDrawer" type="Node2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="DrawerLimit" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrawerLimit"]
+visible = false
+position = Vector2( 478.5, 135.5 )
+rotation = 4.71238
+shape = SubResource( 1 )
+
+[node name="InteriorTile" type="Sprite" parent="."]
+position = Vector2( 476, 236 )
+rotation = -1.57079
+scale = Vector2( 1, 520.933 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="InteriorShade" type="Sprite" parent="."]
+position = Vector2( 470, 135 )
+rotation = 4.71238
+scale = Vector2( 96.0005, 1 )
+texture = ExtResource( 7 )
+
+[node name="Insert1" parent="." instance=ExtResource( 10 )]
+visible = false
+position = Vector2( 597, 237 )
+scale = Vector2( -1, -1 )
+
+[node name="Insert2" parent="." instance=ExtResource( 10 )]
+visible = false
+position = Vector2( 597, 33 )
+scale = Vector2( 1, -1 )
+
+[node name="StartShade" parent="." instance=ExtResource( 9 )]
+position = Vector2( 478, 36 )
+rotation = 4.71238
+
+[node name="StartShade2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 478, 233 )
+rotation = 4.71238
+
+[node name="Corner1" parent="." instance=ExtResource( 6 )]
+position = Vector2( 461, 237 )
+rotation = 4.71238
+
+[node name="Corner2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 461, 33 )
+rotation = 4.71238
+scale = Vector2( -1, 1 )
+
+[node name="EndTile" type="AnimatedSprite" parent="."]
+position = Vector2( 461, 225 )
+rotation = 4.71238
+scale = Vector2( 90.2094, 1 )
+frames = SubResource( 26 )
+centered = false
+
+[node name="InsertTile" parent="." instance=ExtResource( 11 )]
+visible = false
+position = Vector2( 597, 44.5463 )
+scale = Vector2( 90.3337, -1 )
+
+[node name="MenuHandle" type="RigidBody2D" parent="."]
+position = Vector2( 469, -103 )
+rotation = 1.57079
+input_pickable = true
+collision_layer = 4
+collision_mask = 4
+mode = 2
+physics_material_override = SubResource( 27 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+sleeping = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HandleSprite" type="TextureButton" parent="MenuHandle"]
+margin_left = 190.0
+margin_top = 16.0
+margin_right = 291.0
+margin_bottom = 34.0
+rect_scale = Vector2( 1, -1 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuHandle"]
+visible = false
+position = Vector2( 240, 6 )
+shape = SubResource( 28 )
+
+[node name="DrawerSounds" parent="MenuHandle" instance=ExtResource( 12 )]
+
+[node name="Start" type="Position2D" parent="."]
+position = Vector2( 450, 0 )
+rotation = 3.14159
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="End" type="Position2D" parent="."]
+position = Vector2( 94, 0 )
+rotation = 4.71238
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="body_entered" from="MenuHandle" to="MenuHandle" method="_on_MenuHandle_body_entered"]
+[connection signal="button_down" from="MenuHandle/HandleSprite" to="MenuHandle" method="_on_HandleSprite_button_down"]
+[connection signal="button_up" from="MenuHandle/HandleSprite" to="MenuHandle" method="_on_HandleSprite_button_up"]
+[connection signal="mouse_entered" from="MenuHandle/HandleSprite" to="MenuHandle" method="_on_HandleSprite_mouse_entered"]
+[connection signal="mouse_exited" from="MenuHandle/HandleSprite" to="MenuHandle" method="_on_HandleSprite_mouse_exited"]

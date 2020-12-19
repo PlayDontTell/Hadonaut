@@ -688,6 +688,7 @@ hframes = 2
 frame = 1
 
 [node name="DoorLeft" type="Sprite" parent="."]
+visible = false
 position = Vector2( 136, 135 )
 texture = ExtResource( 3 )
 hframes = 2

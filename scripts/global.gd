@@ -2,7 +2,8 @@ extends Node
 
 
 # Meta variables
-const DEV_MODE: bool = false
+const DEV_MODE: bool = true
+var count_test: int = 0
 
 # Story variables
 var chapter_name: String
@@ -46,12 +47,20 @@ const COLOR_TRANPARENT = Color(0, 0, 0, 0)
 const COLOR_SHADED = Color(0.7, 0.7, 0.7, 1)
 const COLOR_BLACK = Color(0, 0, 0, 1)
 var lighting_tint: Color
-var highlight_tint: Color
+var highlight_tint: Color = COLOR_DAY_HIGHLIGHT
 var modulated_highlight_tint: Color
+
+# PHYSICS CONSTANTS AND VARIABLES
+const GRAVITY_FORCE = 98
 
 
 func _ready():
 	 OS.window_fullscreen = not DEV_MODE
+
+
+func print_test():
+	print(count_test)
+	count_test += 1
 
 
 func toggle_pause_on():
