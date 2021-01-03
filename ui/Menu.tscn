@@ -1,0 +1,431 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://ui/PIXELADE.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/menu/settings/settings_cross.png" type="Texture" id=2]
+[ext_resource path="res://ui/menu/menu_click2.wav" type="AudioStream" id=3]
+[ext_resource path="res://ui/menu/settings/settings_progress.png" type="Texture" id=4]
+[ext_resource path="res://ui/menu/menu_frame.png" type="Texture" id=6]
+[ext_resource path="res://ui/menu/menu_slide.wav" type="AudioStream" id=7]
+[ext_resource path="res://ui/menu/settings/SettingsSlider.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/menu/credits/credits_theme.tres" type="Theme" id=9]
+[ext_resource path="res://ui/menu/window/yes_button_hover.png" type="Texture" id=10]
+[ext_resource path="res://ui/menu/window/menu_window.png" type="Texture" id=11]
+[ext_resource path="res://ui/menu/menu_tabs/savesystem_hover.png" type="Texture" id=12]
+[ext_resource path="res://ui/menu/menu_tabs/savesystem_default.png" type="Texture" id=13]
+[ext_resource path="res://ui/menu/menu_tabs/credits_disabled.png" type="Texture" id=14]
+[ext_resource path="res://ui/menu/menu_tabs/settings_hover.png" type="Texture" id=15]
+[ext_resource path="res://ui/menu/menu_tabs/window_hover.png" type="Texture" id=16]
+[ext_resource path="res://ui/menu/window/no_button_default.png" type="Texture" id=17]
+[ext_resource path="res://ui/menu/menu_tabs/settings_disabled.png" type="Texture" id=19]
+[ext_resource path="res://ui/menu/settings/menu_settings.png" type="Texture" id=20]
+[ext_resource path="res://ui/menu/menu_tabs/window_default.png" type="Texture" id=21]
+[ext_resource path="res://ui/menu/menu_tabs/credits_hover.png" type="Texture" id=22]
+[ext_resource path="res://ui/menu/window/yes_button_default.png" type="Texture" id=23]
+[ext_resource path="res://ui/menu/window/no_button_hover.png" type="Texture" id=24]
+[ext_resource path="res://ui/menu/menu_tabs/credits_default.png" type="Texture" id=26]
+[ext_resource path="res://ui/menu/menu_tabs/window_disabled.png" type="Texture" id=27]
+[ext_resource path="res://ui/menu/menu_tabs/settings_default.png" type="Texture" id=28]
+[ext_resource path="res://ui/menu/menu_tabs/savesystem_disabled.png" type="Texture" id=29]
+[ext_resource path="res://ui/menu/settings/SettingsTab.gd" type="Script" id=30]
+[ext_resource path="res://ui/menu/window/WindowTab.gd" type="Script" id=31]
+[ext_resource path="res://ui/menu/MenuFrame.gd" type="Script" id=32]
+[ext_resource path="res://ui/menu/Menu.gd" type="Script" id=33]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 12
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 16, 8 )
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[node name="Menu" type="Node2D"]
+use_parent_material = true
+script = ExtResource( 33 )
+
+[node name="OutOfMenu" type="Button" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+use_parent_material = true
+margin_right = 480.0
+margin_bottom = 270.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InMenu" type="Button" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+use_parent_material = true
+margin_left = 128.0
+margin_top = 38.0
+margin_right = 352.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "FxMeta"
+
+[node name="MenuScroll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 6.0
+bus = "FxMeta"
+
+[node name="MenuScroll2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+pitch_scale = 0.8
+bus = "FxMeta"
+
+[node name="MenuFrame" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 6 )
+centered = false
+script = ExtResource( 32 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WindowTabButton" type="TextureButton" parent="MenuFrame"]
+margin_left = 360.0
+margin_top = 38.0
+margin_right = 389.0
+margin_bottom = 67.0
+toggle_mode = true
+texture_normal = ExtResource( 21 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 16 )
+texture_disabled = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveSystemTabButton" type="TextureButton" parent="MenuFrame"]
+visible = false
+margin_left = 358.0
+margin_top = 103.0
+margin_right = 393.0
+margin_bottom = 146.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+texture_disabled = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsTabButton" type="TextureButton" parent="MenuFrame"]
+margin_left = 358.0
+margin_top = 135.0
+margin_right = 392.0
+margin_bottom = 169.0
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 15 )
+texture_disabled = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsTabButton" type="TextureButton" parent="MenuFrame"]
+margin_left = 355.0
+margin_top = 167.0
+margin_right = 390.0
+margin_bottom = 201.0
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 22 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsTab" type="Sprite" parent="MenuFrame"]
+position = Vector2( -5, 4 )
+texture = ExtResource( 20 )
+offset = Vector2( 140, 115 )
+script = ExtResource( 30 )
+
+[node name="SoundSlider" parent="MenuFrame/SettingsTab" instance=ExtResource( 8 )]
+use_parent_material = true
+margin_left = 151.0
+margin_top = 61.0
+margin_right = 327.0
+margin_bottom = 77.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+default_value = 8
+
+[node name="MusicSlider" parent="MenuFrame/SettingsTab" instance=ExtResource( 8 )]
+use_parent_material = true
+margin_left = 151.0
+margin_top = 81.0
+margin_right = 327.0
+margin_bottom = 97.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+default_value = 8
+
+[node name="FxSlider" parent="MenuFrame/SettingsTab" instance=ExtResource( 8 )]
+use_parent_material = true
+margin_left = 151.0
+margin_top = 101.0
+margin_right = 327.0
+margin_bottom = 117.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+default_value = 8
+
+[node name="BrightnessSlider" parent="MenuFrame/SettingsTab" instance=ExtResource( 8 )]
+use_parent_material = true
+margin_left = 151.0
+margin_top = 140.0
+margin_right = 327.0
+margin_bottom = 156.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+value = 5.0
+default_value = 5
+
+[node name="ContrastSlider" parent="MenuFrame/SettingsTab" instance=ExtResource( 8 )]
+use_parent_material = true
+margin_left = 151.0
+margin_top = 160.0
+margin_right = 327.0
+margin_bottom = 176.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+value = 5.0
+default_value = 5
+
+[node name="SoundCross" type="Sprite" parent="MenuFrame/SettingsTab"]
+visible = false
+use_parent_material = true
+position = Vector2( 136, 72 )
+texture = ExtResource( 2 )
+
+[node name="MusicCross" type="Sprite" parent="MenuFrame/SettingsTab"]
+visible = false
+use_parent_material = true
+position = Vector2( 136, 92 )
+texture = ExtResource( 2 )
+
+[node name="FxCross" type="Sprite" parent="MenuFrame/SettingsTab"]
+visible = false
+use_parent_material = true
+position = Vector2( 136, 113 )
+texture = ExtResource( 2 )
+
+[node name="SoundSliderCheck" type="AudioStreamPlayer" parent="MenuFrame/SettingsTab"]
+stream = ExtResource( 7 )
+volume_db = 6.0
+
+[node name="MusicSliderCheck" type="AudioStreamPlayer" parent="MenuFrame/SettingsTab"]
+stream = ExtResource( 7 )
+volume_db = 6.0
+bus = "Music"
+
+[node name="FxSliderCheck" type="AudioStreamPlayer" parent="MenuFrame/SettingsTab"]
+stream = ExtResource( 7 )
+volume_db = 6.0
+bus = "Atmo"
+
+[node name="CreditsTab" type="Sprite" parent="MenuFrame"]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuFrame/CreditsTab"]
+margin_left = 120.0
+margin_top = 47.0
+margin_right = 350.0
+margin_bottom = 190.0
+theme = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "
+[center][u]STORY, GRAPHICS and PROGRAMMING[/u][/center]
+[color=#aaaaaa]Ivan Voirol[/color]
+
+
+[center][u]MUSIC[/u][/center]
+[color=#aaaaaa]Air Prelude[/color]
+by Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: 
+By Attribution 4.0
+
+
+[center][u]SHADERS[/u][/center]
+[color=#aaaaaa]CRT Shader[/color]
+by Perons
+
+
+[center][u]SOUND EFFECTS[/u][/center]
+Assests found on [color=#aaaaaa]freesound.org[/color]
+and [color=#aaaaaa]opengameart.org[/color]
+
+
+[center][u]FONTS[/u][/center]
+[color=#aaaaaa]Pixelade[/color]
+by Antaviana Typeface Division
+
+
+
+[center][color=#aaaaaa]made with the Godot engine[/color][/center]
+"
+text = "
+STORY, GRAPHICS and PROGRAMMING
+Ivan Voirol
+
+
+MUSIC
+Air Prelude
+by Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: 
+By Attribution 4.0
+
+
+SHADERS
+CRT Shader
+by Perons
+
+
+SOUND EFFECTS
+Assests found on freesound.org
+and opengameart.org
+
+
+FONTS
+Pixelade
+by Antaviana Typeface Division
+
+
+
+made with the Godot engine
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveSystemTab" type="Sprite" parent="MenuFrame"]
+visible = false
+
+[node name="Label" type="Label" parent="MenuFrame/SaveSystemTab"]
+margin_left = 148.0
+margin_top = 104.0
+margin_right = 324.0
+margin_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0.486275, 0.486275, 0.486275, 1 )
+custom_colors/font_color_shadow = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "Do you really feel like what you've accomplished is worth saving?"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WindowTab" type="Sprite" parent="MenuFrame"]
+visible = false
+position = Vector2( 240, 119 )
+texture = ExtResource( 11 )
+script = ExtResource( 31 )
+
+[node name="OutOfWindowTab" type="TextureButton" parent="MenuFrame/WindowTab"]
+margin_left = -127.0
+margin_top = -94.0
+margin_right = 127.0
+margin_bottom = 66.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InWindowTab" type="TextureButton" parent="MenuFrame/WindowTab"]
+margin_left = -42.0
+margin_top = -54.0
+margin_right = 42.0
+margin_bottom = 55.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoButton" type="TextureButton" parent="MenuFrame/WindowTab"]
+margin_left = -30.0
+margin_top = 23.0
+margin_right = -4.0
+margin_bottom = 46.0
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YesButton" type="TextureButton" parent="MenuFrame/WindowTab"]
+margin_left = 4.0
+margin_top = 23.0
+margin_right = 30.0
+margin_bottom = 46.0
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="OutOfMenu" to="." method="_on_OutOfSettings_pressed"]
+[connection signal="mouse_entered" from="InMenu" to="." method="_on_inMenu_mouse_entered"]
+[connection signal="mouse_exited" from="InMenu" to="." method="_on_inMenu_mouse_exited"]
+[connection signal="button_down" from="MenuFrame/WindowTabButton" to="MenuFrame" method="_on_WindowTabButton_button_down"]
+[connection signal="mouse_entered" from="MenuFrame/WindowTabButton" to="MenuFrame" method="_on_WindowTabButton_mouse_entered"]
+[connection signal="mouse_exited" from="MenuFrame/WindowTabButton" to="MenuFrame" method="_on_WindowTabButton_mouse_exited"]
+[connection signal="button_down" from="MenuFrame/SaveSystemTabButton" to="MenuFrame" method="_on_SaveSystemTabButton_button_down"]
+[connection signal="mouse_entered" from="MenuFrame/SaveSystemTabButton" to="MenuFrame" method="_on_SaveSystemTabButton_mouse_entered"]
+[connection signal="mouse_exited" from="MenuFrame/SaveSystemTabButton" to="MenuFrame" method="_on_SaveSystemTabButton_mouse_exited"]
+[connection signal="button_down" from="MenuFrame/SettingsTabButton" to="MenuFrame" method="_on_SettingsTabButton_button_down"]
+[connection signal="mouse_entered" from="MenuFrame/SettingsTabButton" to="MenuFrame" method="_on_SettingsTabButton_mouse_entered"]
+[connection signal="mouse_exited" from="MenuFrame/SettingsTabButton" to="MenuFrame" method="_on_SettingsTabButton_mouse_exited"]
+[connection signal="button_down" from="MenuFrame/CreditsTabButton" to="MenuFrame" method="_on_CreditsTabButton_button_down"]
+[connection signal="mouse_entered" from="MenuFrame/CreditsTabButton" to="MenuFrame" method="_on_CreditsTabButton_mouse_entered"]
+[connection signal="mouse_exited" from="MenuFrame/CreditsTabButton" to="MenuFrame" method="_on_CreditsTabButton_mouse_exited"]
+[connection signal="value_changed" from="MenuFrame/SettingsTab/SoundSlider" to="MenuFrame/SettingsTab" method="_on_SoundSlider_value_changed"]
+[connection signal="value_changed" from="MenuFrame/SettingsTab/MusicSlider" to="MenuFrame/SettingsTab" method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="MenuFrame/SettingsTab/FxSlider" to="MenuFrame/SettingsTab" method="_on_FxSlider_value_changed"]
+[connection signal="value_changed" from="MenuFrame/SettingsTab/BrightnessSlider" to="MenuFrame/SettingsTab" method="_on_BrightnessSlider_value_changed"]
+[connection signal="value_changed" from="MenuFrame/SettingsTab/ContrastSlider" to="MenuFrame/SettingsTab" method="_on_ContrastSlider_value_changed"]
+[connection signal="pressed" from="MenuFrame/WindowTab/OutOfWindowTab" to="MenuFrame" method="_on_OutOfWindowTab_pressed"]
+[connection signal="mouse_entered" from="MenuFrame/WindowTab/InWindowTab" to="MenuFrame/WindowTab" method="_on_InWindowTab_mouse_entered"]
+[connection signal="mouse_exited" from="MenuFrame/WindowTab/InWindowTab" to="MenuFrame/WindowTab" method="_on_InWindowTab_mouse_exited"]
+[connection signal="mouse_entered" from="MenuFrame/WindowTab/NoButton" to="MenuFrame/WindowTab" method="_on_NoButton_mouse_entered"]
+[connection signal="pressed" from="MenuFrame/WindowTab/NoButton" to="MenuFrame/WindowTab" method="_on_NoButton_pressed"]
+[connection signal="pressed" from="MenuFrame/WindowTab/NoButton" to="MenuFrame" method="_on_NoButton_pressed"]
+[connection signal="mouse_entered" from="MenuFrame/WindowTab/YesButton" to="MenuFrame/WindowTab" method="_on_YesButton_mouse_entered"]
+[connection signal="pressed" from="MenuFrame/WindowTab/YesButton" to="MenuFrame/WindowTab" method="_on_YesButton_pressed"]

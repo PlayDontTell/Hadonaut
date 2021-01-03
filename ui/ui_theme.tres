@@ -26,6 +26,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [resource]
+Label/fonts/ = SubResource( 1 )
 RichTextLabel/colors/default_color = Color( 1, 1, 1, 1 )
 RichTextLabel/colors/font_color_selected = Color( 1, 1, 1, 1 )
 RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )

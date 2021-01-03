@@ -1,0 +1,385 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/pad/pad_off_button_pressed.png" type="Texture" id=2]
+[ext_resource path="res://ui/pad/modules/map/map_module_background.png" type="Texture" id=3]
+[ext_resource path="res://ui/pad/modules/map/pad_ship_schematic.png" type="Texture" id=4]
+[ext_resource path="res://ui/pad/pad_off_button_disabled.png" type="Texture" id=5]
+[ext_resource path="res://ui/pad/pad_hum.wav" type="AudioStream" id=6]
+[ext_resource path="res://ui/pad/pad_background.png" type="Texture" id=7]
+[ext_resource path="res://ui/pad/pad_h_slider.png" type="Texture" id=8]
+[ext_resource path="res://ui/pad/pad_opening.wav" type="AudioStream" id=9]
+[ext_resource path="res://ui/pad/modules/map/pad_ship_out.png" type="Texture" id=10]
+[ext_resource path="res://ui/pad/pad_foreground.png" type="Texture" id=11]
+[ext_resource path="res://ui/pad/modules/module_insert.wav" type="AudioStream" id=12]
+[ext_resource path="res://ui/pad/pad.png" type="Texture" id=13]
+[ext_resource path="res://ui/pad/modules/map/pad_ship_schematic_hidden.png" type="Texture" id=14]
+[ext_resource path="res://ui/pad/pad_slider.wav" type="AudioStream" id=15]
+[ext_resource path="res://ui/pad/modules/module_eject.wav" type="AudioStream" id=16]
+[ext_resource path="res://ui/pad/pad_off_button.png" type="Texture" id=17]
+[ext_resource path="res://ui/pad/modules/map/pad_modules.png" type="Texture" id=18]
+[ext_resource path="res://ui/pad/pad_v_slider.png" type="Texture" id=19]
+[ext_resource path="res://ui/pad/pad_closing.wav" type="AudioStream" id=20]
+[ext_resource path="res://ui/pad/pad_radar.wav" type="AudioStream" id=21]
+[ext_resource path="res://ui/pad/PadSprite.gd" type="Script" id=22]
+[ext_resource path="res://ui/pad/modules/map/MapModule.gd" type="Script" id=23]
+[ext_resource path="res://ui/pad/Pad.gd" type="Script" id=24]
+[ext_resource path="res://ui/pad/pad_background_mask.png" type="Texture" id=25]
+[ext_resource path="res://ui/effects/CRTshader.tscn" type="PackedScene" id=26]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float u_amount = 0.04;
+
+float get_noise(vec2 uv) {
+    return fract(sin(dot(uv ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void fragment() {
+    float n = 2.0 * get_noise(UV + vec2(TIME, 0.0)) - 1.0;
+    COLOR = texture(TEXTURE, UV) + n * u_amount;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/u_amount = 0.04
+
+[sub_resource type="StreamTexture" id=3]
+flags = 2
+load_path = "res://.import/space.png-87a212a2522168a6687dcd23813c9859.stex"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Sprite
+
+
+export var speed_x = -0.1
+export var speed_y = 0
+
+
+# Function to set all the parameters of the sprite
+func _ready():
+	# SETTINGS
+	# region_enabled
+	region_enabled = true
+	# region_rect
+	var screen_size = get_viewport().get_visible_rect().size
+	region_rect = Rect2(
+		0,
+		0,
+		ceil(screen_size.x) + texture.get_width() * 2,
+		ceil(screen_size.y) + texture.get_height() * 2
+	)
+	# centered
+	centered = false
+	# position
+	position -= texture.get_size()
+	
+
+# Function to move the sprite each frame according to the speed parameters.
+func _physics_process(_delta):
+	
+	var current_position = position
+	
+	current_position.x = current_position.x + speed_x
+	current_position.y = current_position.y + speed_y
+	
+	if current_position.x < 0 - texture.get_width() * 2 or current_position.x > 0:
+		current_position.x = 0 - texture.get_width()
+	
+	if current_position.y < 0 - texture.get_height() * 2 or current_position.y > 0:
+		current_position.y = 0 - texture.get_height()
+	
+	position = current_position
+"
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform float screen_width = 1024;
+uniform float screen_height = 600;
+
+// Curvature
+uniform float BarrelPower =1.1;
+// Color bleeding
+uniform float color_bleeding = 1.2;
+uniform float bleeding_range_x = 3;
+uniform float bleeding_range_y = 3;
+// Scanline
+uniform float lines_distance = 4.0;
+uniform float scan_size = 2.0;
+uniform float scanline_alpha = 0.9;
+uniform float lines_velocity = 30.0;
+
+vec2 distort(vec2 p) 
+{
+	float angle = p.y / p.x;
+	float theta = atan(p.y,p.x);
+	float radius = pow(length(p), BarrelPower);
+	
+	p.x = radius * cos(theta);
+	p.y = radius * sin(theta);
+	
+	return 0.5 * (p + vec2(1.0,1.0));
+}
+
+void get_color_bleeding(inout vec4 current_color,inout vec4 color_left){
+	current_color = current_color*vec4(color_bleeding,0.5,1.0-color_bleeding,1);
+	color_left = color_left*vec4(1.0-color_bleeding,0.5,color_bleeding,1);
+}
+
+void get_color_scanline(vec2 uv,inout vec4 c,float time){
+	float line_row = floor((uv.y * screen_height/scan_size) + mod(time*lines_velocity, lines_distance));
+	float n = 1.0 - ceil((mod(line_row,lines_distance)/lines_distance));
+	c = c - n*c*(1.0 - scanline_alpha);
+	c.a = 1.0;
+}
+
+void fragment()
+{
+	vec2 xy = SCREEN_UV * 2.0;
+	xy.x -= 1.0;
+	xy.y -= 1.0;
+	
+	float d = length(xy);
+	if(d < 1.5){
+		xy = distort(xy);
+	}
+	else{
+		xy = SCREEN_UV;
+	}
+	
+	float pixel_size_x = 1.0/screen_width*bleeding_range_x;
+	float pixel_size_y = 1.0/screen_height*bleeding_range_y;
+	vec4 color_left = texture(SCREEN_TEXTURE,xy - vec2(pixel_size_x, pixel_size_y));
+	vec4 current_color = texture(SCREEN_TEXTURE,xy);
+	get_color_bleeding(current_color,color_left);
+	vec4 c = current_color+color_left;
+	get_color_scanline(xy,c,TIME);
+	COLOR = c;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/screen_width = 480.0
+shader_param/screen_height = 270.0
+shader_param/BarrelPower = 1.0
+shader_param/color_bleeding = 1.0
+shader_param/bleeding_range_x = 0.5
+shader_param/bleeding_range_y = 0.5
+shader_param/lines_distance = 2.0
+shader_param/scan_size = 2.0
+shader_param/scanline_alpha = 0.95
+shader_param/lines_velocity = 10.0
+
+[sub_resource type="StreamTexture" id=7]
+load_path = "res://.import/white.png-5d8122725806119540c856caad4f6b8e.stex"
+
+[sub_resource type="Animation" id=8]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="Pad" type="Node2D"]
+use_parent_material = true
+position = Vector2( 240, 130 )
+script = ExtResource( 24 )
+
+[node name="PadSprite" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, 5 )
+script = ExtResource( 22 )
+
+[node name="Background" type="Sprite" parent="PadSprite"]
+material = SubResource( 2 )
+use_parent_material = true
+position = Vector2( -11, 6 )
+texture = ExtResource( 7 )
+
+[node name="Modules" type="Control" parent="PadSprite"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapModule" type="Control" parent="PadSprite/Modules"]
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mask" type="Light2D" parent="PadSprite/Modules/MapModule"]
+position = Vector2( 28, -6 )
+texture = ExtResource( 25 )
+texture_scale = 3.0
+mode = 3
+range_layer_max = 1
+range_item_cull_mask = 2
+
+[node name="AutoScrollingSprite" parent="PadSprite/Modules/MapModule" instance=ExtResource( 1 )]
+light_mask = 2
+position = Vector2( -240, -135 )
+texture = SubResource( 3 )
+script = SubResource( 4 )
+speed_x = -0.5
+
+[node name="Background" type="Sprite" parent="PadSprite/Modules/MapModule"]
+modulate = Color( 1, 1, 1, 0.501961 )
+position = Vector2( -11, 6 )
+texture = ExtResource( 3 )
+
+[node name="ShipIn" type="Sprite" parent="PadSprite/Modules/MapModule"]
+use_parent_material = true
+position = Vector2( -8, 8 )
+texture = ExtResource( 4 )
+
+[node name="ShipInHidden" type="Sprite" parent="PadSprite/Modules/MapModule"]
+use_parent_material = true
+position = Vector2( -8, 8 )
+texture = ExtResource( 14 )
+
+[node name="ShipOut" type="Sprite" parent="PadSprite/Modules/MapModule"]
+use_parent_material = true
+position = Vector2( -8, 8 )
+texture = ExtResource( 10 )
+
+[node name="CRTshader" parent="PadSprite/Modules" instance=ExtResource( 26 )]
+anchor_right = 0.0
+margin_left = -151.0
+margin_top = -82.0
+margin_right = 134.0
+margin_bottom = 56.0
+
+[node name="CRT" parent="PadSprite/Modules/CRTshader" index="0"]
+material = SubResource( 6 )
+texture = SubResource( 7 )
+
+[node name="PadFrame" type="Sprite" parent="PadSprite"]
+use_parent_material = true
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HSlider" type="Sprite" parent="PadSprite"]
+use_parent_material = true
+position = Vector2( -183, -89 )
+texture = ExtResource( 8 )
+
+[node name="HLine" type="Line2D" parent="PadSprite"]
+visible = false
+points = PoolVector2Array( -133, 98, -118, 99, -77, 102, -10, 104, 70, 103, 115, 101, 115, 99 )
+width = 2.0
+
+[node name="VSlider" type="Sprite" parent="PadSprite"]
+use_parent_material = true
+position = Vector2( -208, -88 )
+texture = ExtResource( 19 )
+
+[node name="VLine" type="Line2D" parent="PadSprite"]
+visible = false
+points = PoolVector2Array( -155, -66, -157, -50, -159, -27, -160, -7, -157, 47, -153, 79, -194, 99 )
+width = 2.0
+
+[node name="PadOffButton" type="TextureButton" parent="PadSprite" groups=[
+"cursor_hover",
+]]
+use_parent_material = true
+margin_left = 142.0
+margin_top = -52.0
+margin_right = 163.0
+margin_bottom = -31.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PadForeground" type="Sprite" parent="PadSprite"]
+use_parent_material = true
+position = Vector2( 152, -40 )
+texture = ExtResource( 11 )
+
+[node name="HSliderSound" type="AudioStreamPlayer" parent="PadSprite"]
+stream = ExtResource( 15 )
+volume_db = 8.0
+bus = "Atmo"
+
+[node name="VSliderSound" type="AudioStreamPlayer" parent="PadSprite"]
+stream = ExtResource( 15 )
+volume_db = 8.0
+pitch_scale = 0.8
+bus = "Atmo"
+
+[node name="PadOpen" type="AudioStreamPlayer" parent="PadSprite"]
+stream = ExtResource( 9 )
+bus = "Atmo"
+
+[node name="PadClose" type="AudioStreamPlayer" parent="PadSprite"]
+stream = ExtResource( 20 )
+bus = "Atmo"
+
+[node name="RadarBoop" type="AudioStreamPlayer" parent="PadSprite"]
+stream = ExtResource( 21 )
+bus = "Atmo"
+
+[node name="Module" type="Sprite" parent="PadSprite"]
+use_parent_material = true
+position = Vector2( 154, 30 )
+texture = ExtResource( 18 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PadSprite/Module"]
+anims/map_module = SubResource( 8 )
+
+[node name="Tween" type="Tween" parent="PadSprite/Module"]
+
+[node name="ModuleEject" type="AudioStreamPlayer2D" parent="PadSprite/Module"]
+position = Vector2( -204, -6 )
+stream = ExtResource( 16 )
+bus = "Atmo"
+
+[node name="ModuleInsert" type="AudioStreamPlayer2D" parent="PadSprite/Module"]
+position = Vector2( -204, -6 )
+stream = ExtResource( 12 )
+bus = "Atmo"
+
+[node name="ModuleConnection" type="TextureButton" parent="PadSprite"]
+use_parent_material = true
+margin_left = 141.0
+margin_top = -18.0
+margin_right = 166.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PadSprite"]
+stream = ExtResource( 6 )
+bus = "Atmo"
+[connection signal="hslider_moved" from="PadSprite" to="PadSprite/Modules/MapModule" method="_on_PadSprite_hslider_moved"]
+[connection signal="vslider_moved" from="PadSprite" to="PadSprite/Modules/MapModule" method="_on_PadSprite_vslider_moved"]
+[connection signal="hide" from="PadSprite/PadOffButton" to="PadSprite" method="_on_PadOffButton_hide"]
+[connection signal="mouse_entered" from="PadSprite/PadOffButton" to="PadSprite" method="_on_PadOffButton_mouse_entered"]
+[connection signal="mouse_exited" from="PadSprite/PadOffButton" to="PadSprite" method="_on_PadOffButton_mouse_exited"]
+[connection signal="pressed" from="PadSprite/PadOffButton" to="PadSprite" method="_on_PadOffButton_pressed"]
+[connection signal="hide" from="PadSprite/ModuleConnection" to="." method="_on_ModuleConnection_hide"]
+[connection signal="mouse_entered" from="PadSprite/ModuleConnection" to="." method="_on_ModuleConnection_mouse_entered"]
+[connection signal="mouse_exited" from="PadSprite/ModuleConnection" to="." method="_on_ModuleConnection_mouse_exited"]
+[connection signal="pressed" from="PadSprite/ModuleConnection" to="." method="_on_ModuleConnection_pressed"]
+
+[editable path="PadSprite/Modules/CRTshader"]

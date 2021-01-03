@@ -1,17 +1,18 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://ui/hud/v2/PadHandle.gd" type="Script" id=1]
 [ext_resource path="res://ui/hud/v2/PadDrawer.gd" type="Script" id=2]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_handle.png" type="Texture" id=3]
-[ext_resource path="res://ui/hud/v3/interior_shade.png" type="Texture" id=4]
+[ext_resource path="res://ui/hud/v3/drawer_handle_default.png" type="Texture" id=3]
+[ext_resource path="res://ui/hud/v3/drawer_interior_shade.png" type="Texture" id=4]
 [ext_resource path="res://ui/hud/v3/DrawerCorner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_interior_tile.png" type="Texture" id=6]
-[ext_resource path="res://ui/hud/v3/drawer_light_middle_tile.png" type="Texture" id=7]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_handle_hover.png" type="Texture" id=8]
+[ext_resource path="res://ui/hud/v3/drawer_background_wide_thick.png" type="Texture" id=6]
+[ext_resource path="res://ui/hud/v3/drawer_front_tile_thick.png" type="Texture" id=7]
+[ext_resource path="res://ui/hud/v3/drawer_handle_hover.png" type="Texture" id=8]
 [ext_resource path="res://ui/hud/v3/StartShade.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/hud/v3/DrawerInsert.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ui/hud/v3/InsertTile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ui/hud/v3/DrawerSounds.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/Pad.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 240, 9 )
@@ -161,10 +162,12 @@ texture = ExtResource( 4 )
 position = Vector2( 424, 298 )
 rotation = 0.0
 scale = Vector2( -1, 1 )
+animation = "thick"
 
 [node name="Insert2" parent="." instance=ExtResource( 10 )]
 position = Vector2( 56, 298 )
 rotation = 0.0
+animation = "thick"
 
 [node name="StartShade" parent="." instance=ExtResource( 9 )]
 position = Vector2( 423, 264 )
@@ -178,10 +181,12 @@ offset = Vector2( -363, 0 )
 position = Vector2( 424, 247 )
 rotation = 0.0
 scale = Vector2( -1, 1 )
+animation = "thick"
 
 [node name="Corner2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 56, 247 )
 rotation = 0.0
+animation = "thick"
 
 [node name="EndTile" type="AnimatedSprite" parent="."]
 position = Vector2( 68, 247 )
@@ -193,6 +198,9 @@ centered = false
 position = Vector2( 68, 298 )
 rotation = 0.0
 scale = Vector2( 172, 1 )
+
+[node name="Pad" parent="." instance=ExtResource( 13 )]
+position = Vector2( 240, 371 )
 
 [node name="PadHandle" type="RigidBody2D" parent="."]
 position = Vector2( 0, 241 )
@@ -231,13 +239,13 @@ shape = SubResource( 28 )
 position = Vector2( 240, 0 )
 
 [node name="Start" type="Position2D" parent="."]
-position = Vector2( 0, 231 )
+position = Vector2( 0, 241 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="End" type="Position2D" parent="."]
-position = Vector2( 0, 25 )
+position = Vector2( 0, 8 )
 __meta__ = {
 "_edit_lock_": true
 }

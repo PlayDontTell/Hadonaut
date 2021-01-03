@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ui/hud/v2/PadDrawer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/hud/v2/hud_v2_foreground.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://ui/hud/v2/InventoryDrawer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/hud/v2/MenuDrawer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ui/hud/v2/Drawers.gd" type="Script" id=9]
+[ext_resource path="res://ui/PIXELADE.TTF" type="DynamicFontData" id=10]
+[ext_resource path="res://ui/hud/v2/FPSrate.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "blackscreen"
@@ -104,8 +106,17 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=7]
+size = 12
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 10 )
+
 [node name="HUD" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Fade" type="ColorRect" parent="."]
 modulate = Color( 0, 0, 0, 1 )
@@ -130,6 +141,9 @@ anims/medium_fade_out = SubResource( 6 )
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Drawers" type="Node2D" parent="."]
 script = ExtResource( 9 )
@@ -144,6 +158,25 @@ rotation = -5.07036e-06
 [node name="Foreground" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 centered = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="FPSrate" type="Label" parent="."]
+margin_left = 3.89032
+margin_top = 253.837
+margin_right = 35.8903
+margin_bottom = 266.837
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "100"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Cursor" parent="." instance=ExtResource( 4 )]
 
@@ -152,7 +185,11 @@ centered = false
 [connection signal="opened" from="Drawers/PadDrawer/PadHandle" to="Drawers" method="_on_PadHandle_opened"]
 [connection signal="closed" from="Drawers/InventoryDrawer/InventoryHandle" to="Drawers" method="_on_InventoryHandle_closed"]
 [connection signal="opened" from="Drawers/InventoryDrawer/InventoryHandle" to="Drawers" method="_on_InventoryHandle_opened"]
+[connection signal="closed" from="Drawers/MenuDrawer/MenuHandle" to="Drawers" method="_on_MenuHandle_closed"]
+[connection signal="opened" from="Drawers/MenuDrawer/MenuHandle" to="Drawers" method="_on_MenuHandle_opened"]
 
 [editable path="Drawers/PadDrawer"]
 
 [editable path="Drawers/InventoryDrawer"]
+
+[editable path="Drawers/MenuDrawer"]

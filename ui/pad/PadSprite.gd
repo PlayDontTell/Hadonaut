@@ -10,64 +10,71 @@ onready var ui = pad.get_node("..")
 
 # warning-ignore:unused_argument
 func _process(delta):
-	var cursor_relative = get_viewport().get_mouse_position() - Vector2(240, 130)
-
 	if visible and not Global.menu_visible:
 		
-		var hslider = $HSlider
-		# Horizontal position of the HSlider.
-		if cursor_relative.x <= 50 and cursor_relative.x >= -50 and hslider.position.x != cursor_relative.x:
-			hslider.position.x = cursor_relative.x
-			$HSliderSound.play()
-		elif cursor_relative.x > 50:
-			hslider.position.x = 50
-		elif cursor_relative.x < -50:
-			hslider.position.x = -50
-		# Vertical position of the HSlider.
-		if cursor_relative.x < -35 or cursor_relative.x > 32:
-			hslider.position.y = 79
-		elif cursor_relative.x > -35 and cursor_relative.x < 32:
-			hslider.position.y = 80
-			
-		var vslider = $VSlider
-		# Horizontal position of the VSlider.
-		if cursor_relative.y <= 23 and cursor_relative.y >= -55 and vslider.position.y != cursor_relative.y:
-			vslider.position.y = cursor_relative.y
-			$VSliderSound.play()
-		elif cursor_relative.y > 23:
-			vslider.position.y = 23
-		elif cursor_relative.y < -55:
-			vslider.position.y = -55
-		# Vertical position of the VSlider.
-		if cursor_relative.y < -55:
-			vslider.position.x = -163
-		elif cursor_relative.y < -16 and cursor_relative.y > -42:
-			vslider.position.x = -164
-		elif cursor_relative.y > -16 and cursor_relative.y < 4:
-			vslider.position.x = -163	
-		elif cursor_relative.y > 4 and cursor_relative.y < 16:
-			vslider.position.x = -162
-		elif cursor_relative.y > 16:
-			vslider.position.x = -161
+		$HSlider.position = find_pos("h") - pad.get_node("..").position
+		$VSlider.position = find_pos("v") - pad.get_node("..").position
 		
-		var new_v_slider_value = (vslider.position.y - 23) / -78
+		
+		var new_v_slider_value = ($VSlider.position.y - 81) / -149
 		if pad.v_slider_value != new_v_slider_value:
 			pad.v_slider_value = new_v_slider_value
 			emit_signal("vslider_moved", pad.v_slider_value)
 		
-		var new_h_slider_value = (50 + hslider.position.x) / 100
+		var new_h_slider_value = (138 + $HSlider.position.x) / 253
 		if pad.h_slider_value != new_h_slider_value:
 			pad.h_slider_value = new_h_slider_value
 			emit_signal("hslider_moved", pad.h_slider_value)
 
 
+func find_pos(h_or_v):
+	var mouse_position = Vector2(int(get_global_mouse_position().x), 
+									int(get_global_mouse_position().y)) - Vector2(240, 130)
+	var point_list = []
+	var n = 0
+	
+	if h_or_v == "h":
+		point_list = $HLine.points
+		
+		while mouse_position.x > point_list[n].x and n < point_list.size() - 1:
+			n += 1
+		
+		if n == 0:
+			return point_list[0]
+		elif n < point_list.size() - 1:
+			return Vector2(mouse_position.x, thales(mouse_position, point_list[n-1], point_list[n], h_or_v))
+		else:
+			return point_list[-1]
+		
+	elif h_or_v == "v":
+		point_list = $VLine.points
+		
+		while mouse_position.y > point_list[n].y and n < point_list.size() - 1:
+			n += 1
+		
+		if n == 0:
+			return point_list[0] - Vector2(1, 0)
+		elif n < point_list.size() - 1:
+			return Vector2(thales(mouse_position, point_list[n-1], point_list[n], h_or_v), mouse_position.y)
+		else:
+			return point_list[-2]
+
+
+func thales(mouse_position, point_A, point_B, h_or_v):
+	if h_or_v == "h":
+		return - abs((mouse_position.x - point_A.x) / (point_B.x 
+			- point_A.x)) * (point_A.y - point_B.y) + min(point_A.y, point_B.y)
+	elif h_or_v == "v":
+		return - abs((mouse_position.y - point_A.y) / (point_B.y 
+			- point_A.y)) * (point_A.x - point_B.x) + min(point_A.x, point_B.x)
+
+
 func _on_PadButton_pressed():
-	toggle_pad()
+	pass
 
 
 func _on_PadOffButton_pressed():
-	if visible and get_tree().paused:
-		toggle_pad()
+	pass
 
 
 func toggle_pad():

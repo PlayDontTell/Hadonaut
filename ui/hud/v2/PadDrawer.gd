@@ -29,6 +29,7 @@ func set_elements():
 	$EndTile.position.y = drawer_pos
 	$InsertTile.position.y = drawer_pos - insert_pos_1
 	$InteriorTile.position.y = drawer_pos + 18
+	$Pad.position.y = drawer_pos + 128
 	
 	# When the drawer passes the middle of the screen,
 	#	the handle gets behind or in front of the other drawer pieces.

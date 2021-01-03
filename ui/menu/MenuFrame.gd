@@ -64,19 +64,40 @@ func go_to_tab(button_name):
 
 
 func _on_WindowTabButton_mouse_entered():
-	menu.get_node("MenuScroll").play()
+	if not $WindowTabButton.disabled:
+		menu.get_node("MenuScroll").play()
 
 
 func _on_SaveSystemTabButton_mouse_entered():
-	menu.get_node("MenuScroll").play()
+	if not $SaveSystemTabButton.disabled:
+		menu.get_node("MenuScroll").play()
 
 
 func _on_SettingsTabButton_mouse_entered():
-	menu.get_node("MenuScroll").play()
+	if not $SettingsTabButton.disabled:
+		menu.get_node("MenuScroll").play()
 
 
 func _on_CreditsTabButton_mouse_entered():
-	menu.get_node("MenuScroll").play()
+	if not $CreditsTabButton.disabled:
+		menu.get_node("MenuScroll").play()
 
 
+func _on_WindowTabButton_mouse_exited():
+	if not $WindowTabButton.disabled:
+		menu.get_node("MenuScroll2").play()
 
+
+func _on_SaveSystemTabButton_mouse_exited():
+	if not $SaveSystemTabButton.disabled:
+		menu.get_node("MenuScroll2").play()
+
+
+func _on_SettingsTabButton_mouse_exited():
+	if not $SettingsTabButton.disabled:
+		menu.get_node("MenuScroll2").play()
+
+
+func _on_CreditsTabButton_mouse_exited():
+	if not $CreditsTabButton.disabled:
+		menu.get_node("MenuScroll2").play()

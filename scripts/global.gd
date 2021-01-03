@@ -55,7 +55,7 @@ const GRAVITY_FORCE = 98
 
 
 func _ready():
-	 OS.window_fullscreen = not DEV_MODE
+	 OS.window_fullscreen =  not DEV_MODE
 
 
 func print_test():
@@ -64,11 +64,16 @@ func print_test():
 
 
 func toggle_pause_on():
-	get_tree().paused = true
+	if not get_tree().paused:
+		get_tree().paused = true
+		Physics2DServer.set_active(true)
+		print("__GAME_PAUSED__")
 
 
 func toggle_pause_off():
-	get_tree().paused = false
+	if get_tree().paused:
+		get_tree().paused = false
+		print("__GAME_RESUMED__")
 
 
 func reset_ui():
@@ -93,9 +98,9 @@ func add_to_playthrough_progress(event):
 		playthrough_progress.append(event)
 		print("* new event [" + str(playthrough_progress.size()) 
 			+ "/" + str(AVAILABLE_EVENTS_QUANTITY) + "]: " + event)
-		have_all_availbale_events_been_played()
+		have_all_availale_events_been_played()
 
-func have_all_availbale_events_been_played():
+func have_all_availale_events_been_played():
 	if playthrough_progress.size() == AVAILABLE_EVENTS_QUANTITY:
 		all_has_been_seen = true
 		print("You've seen all the actual content of the game.")

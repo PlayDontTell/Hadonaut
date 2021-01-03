@@ -1,17 +1,18 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/hud/v2/InventoryHandle.gd" type="Script" id=1]
 [ext_resource path="res://ui/hud/v2/InventoryDrawer.gd" type="Script" id=2]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_handle_hover.png" type="Texture" id=3]
+[ext_resource path="res://ui/hud/v3/drawer_handle_hover.png" type="Texture" id=3]
 [ext_resource path="res://ui/hud/v3/EndTile.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_interior_tile_2.png" type="Texture" id=5]
+[ext_resource path="res://ui/hud/v3/drawer_background_narrow_thick.png" type="Texture" id=5]
 [ext_resource path="res://ui/hud/v3/DrawerCorner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/hud/v3/interior_shade.png" type="Texture" id=7]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_handle.png" type="Texture" id=8]
+[ext_resource path="res://ui/hud/v3/drawer_interior_shade.png" type="Texture" id=7]
+[ext_resource path="res://ui/hud/v3/drawer_handle_default.png" type="Texture" id=8]
 [ext_resource path="res://ui/hud/v3/StartShade.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/hud/v3/DrawerInsert.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ui/hud/v3/InsertTile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ui/hud/v3/DrawerSounds.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/hud/v3/drawer_background_narrow_thin.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 117, 11 )
@@ -38,7 +39,6 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrawerLimit"]
-visible = false
 position = Vector2( 4, 145 )
 rotation = 1.57079
 shape = SubResource( 1 )
@@ -48,6 +48,13 @@ position = Vector2( 0, 34 )
 rotation = 1.57079
 scale = Vector2( 1, 606.077 )
 texture = ExtResource( 5 )
+centered = false
+
+[node name="InteriorTile2" type="Sprite" parent="."]
+position = Vector2( 0, 34 )
+rotation = 1.57079
+scale = Vector2( 1, 34.6127 )
+texture = ExtResource( 13 )
 centered = false
 
 [node name="InteriorShade" type="Sprite" parent="."]
@@ -66,9 +73,11 @@ scale = Vector2( -1, 1 )
 [node name="Insert3" parent="." instance=ExtResource( 10 )]
 position = Vector2( -230, 237 )
 scale = Vector2( -1, 1 )
+animation = "thick"
 
 [node name="Insert4" parent="." instance=ExtResource( 10 )]
-position = Vector2( -228, 33 )
+position = Vector2( -230, 33 )
+animation = "thick"
 
 [node name="StartShade" parent="." instance=ExtResource( 9 )]
 position = Vector2( 2, 37 )
@@ -86,13 +95,16 @@ position = Vector2( 19, 237 )
 scale = Vector2( -1, 1 )
 
 [node name="EndTile" parent="." instance=ExtResource( 4 )]
+position = Vector2( 19, 40.7593 )
+scale = Vector2( 94.1508, 1 )
 
 [node name="InsertTile" parent="." instance=ExtResource( 11 )]
 position = Vector2( -18, 45 )
 scale = Vector2( 90.0474, 1 )
+animation = "thin"
 
 [node name="InsertTile2" parent="." instance=ExtResource( 11 )]
-position = Vector2( -18, 45 )
+position = Vector2( -230, 45 )
 scale = Vector2( 90.0474, 1 )
 
 [node name="InventoryHandle" type="RigidBody2D" parent="."]
@@ -132,7 +144,7 @@ shape = SubResource( 3 )
 [node name="DrawerSounds" parent="InventoryHandle" instance=ExtResource( 12 )]
 
 [node name="Start" type="Position2D" parent="."]
-position = Vector2( 26, 270 )
+position = Vector2( 25, 270 )
 __meta__ = {
 "_edit_lock_": true
 }

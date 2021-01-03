@@ -66,31 +66,25 @@ margin_right = 143.5
 margin_bottom = 59.0
 theme = ExtResource( 4 )
 bbcode_enabled = true
-bbcode_text = "[center]Hadonaut (version a_0.04)[/center]
+bbcode_text = "[center]Hadonaut (version a_0.05)[/center]
 
-[color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the [color=yellow][url=https://ivanvoirol.itch.io/hadonaut]itch.io page of the game[/url][/color].[/color]
+[fill][color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the [color=yellow][url=https://ivanvoirol.itch.io/hadonaut]itch.io page of the game[/url][/color].[/color][/fill]
 
-version note :[color=#bbbbbb]
-+ Added this welcoming screen,  and a screen indicating when all the content of the game has been played (as requested).
-+ Added a highlighting system to indicate available actions.
-+ Added two new rooms (Reactor and Cryoscreen)
-* Carried on prototyping the Maintenance room (blue room).
-* Modified the menu layout.
+version note (alpha 0.05) :[color=#bbbbbb]
++ Added 
+* Completely remade the HUD (Head Up Display), with a drawer-based system.
 * Minor visual changes.
 * Code improvement.
 [/color]
 [center][color=gray]Have fun![/color][/center]"
 meta_underlined = false
-text = "Hadonaut (version a_0.04)
+text = "Hadonaut (version a_0.05)
 
 Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the itch.io page of the game.
 
-version note :
-+ Added this welcoming screen,  and a screen indicating when all the content of the game has been played (as requested).
-+ Added a highlighting system to indicate available actions.
-+ Added two new rooms (Reactor and Cryoscreen)
-* Carried on prototyping the Maintenance room (blue room).
-* Modified the menu layout.
+version note (alpha 0.05) :
++ Added 
+* Completely remade the HUD (Head Up Display), with a drawer-based system.
 * Minor visual changes.
 * Code improvement.
 

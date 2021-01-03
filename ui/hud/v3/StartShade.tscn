@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ui/hud/v3/start_shade.png" type="Texture" id=1]
+[ext_resource path="res://ui/hud/v3/drawer_side_shade.png" type="Texture" id=1]
+
 
 [node name="StartShade" type="Sprite"]
 texture = ExtResource( 1 )

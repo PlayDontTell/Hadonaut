@@ -18,8 +18,8 @@ var existing_items: Array = [
 		]
 # Inventory of Char.
 var char_inventory: Array = []
-var is_using_item: bool
-var item_used: String = ""
+var is_using_item: bool = true
+var item_used: String = "map_module"
 var item_hovered: String = ""
 
 

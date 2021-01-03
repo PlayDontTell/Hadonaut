@@ -1,130 +1,28 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://ui/hud/v2/MenuHandle.gd" type="Script" id=1]
 [ext_resource path="res://ui/hud/v2/MenuDrawer.gd" type="Script" id=2]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_handle_hover.png" type="Texture" id=3]
-[ext_resource path="res://ui/hud/v3/drawer_light_middle_tile.png" type="Texture" id=4]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_interior_tile_2.png" type="Texture" id=5]
+[ext_resource path="res://ui/hud/v3/drawer_handle_hover.png" type="Texture" id=3]
+[ext_resource path="res://ui/hud/v3/EndTile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/hud/v3/drawer_background_narrow_thin.png" type="Texture" id=5]
 [ext_resource path="res://ui/hud/v3/DrawerCorner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/hud/v3/interior_shade.png" type="Texture" id=7]
-[ext_resource path="res://ui/hud/v3/inventory_drawer_handle.png" type="Texture" id=8]
+[ext_resource path="res://ui/hud/v3/drawer_interior_shade.png" type="Texture" id=7]
+[ext_resource path="res://ui/hud/v3/drawer_handle_default.png" type="Texture" id=8]
 [ext_resource path="res://ui/hud/v3/StartShade.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/hud/v3/DrawerInsert.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ui/hud/v3/InsertTile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ui/hud/v3/DrawerSounds.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/hud/black.png" type="Texture" id=13]
+[ext_resource path="res://ui/Menu.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 117, 11 )
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 4 )
-region = Rect2( 2, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 4 )
-region = Rect2( 4, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 4 )
-region = Rect2( 6, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 4 )
-region = Rect2( 8, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 4 )
-region = Rect2( 10, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 4 )
-region = Rect2( 12, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 4 )
-region = Rect2( 14, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 4 )
-region = Rect2( 16, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 4 )
-region = Rect2( 18, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 4 )
-region = Rect2( 20, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 4 )
-region = Rect2( 22, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 4 )
-region = Rect2( 24, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 4 )
-region = Rect2( 26, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 4 )
-region = Rect2( 28, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 4 )
-region = Rect2( 30, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 4 )
-region = Rect2( 34, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 4 )
-region = Rect2( 36, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 4 )
-region = Rect2( 38, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 4 )
-region = Rect2( 40, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 4 )
-region = Rect2( 42, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 4 )
-region = Rect2( 44, 0, 2, 32 )
-
-[sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 4 )
-region = Rect2( 46, 0, 2, 32 )
-
-[sub_resource type="SpriteFrames" id=26]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="PhysicsMaterial" id=27]
+[sub_resource type="PhysicsMaterial" id=2]
 friction = 0.5
 bounce = 0.2
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 49, 5 )
 
 [node name="MenuDrawer" type="Node2D"]
@@ -133,6 +31,12 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
+
+[node name="Shade" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 15, 9 )
+texture = ExtResource( 13 )
+centered = false
 
 [node name="DrawerLimit" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -161,12 +65,10 @@ scale = Vector2( 96.0005, 1 )
 texture = ExtResource( 7 )
 
 [node name="Insert1" parent="." instance=ExtResource( 10 )]
-visible = false
 position = Vector2( 597, 237 )
 scale = Vector2( -1, -1 )
 
 [node name="Insert2" parent="." instance=ExtResource( 10 )]
-visible = false
 position = Vector2( 597, 33 )
 scale = Vector2( 1, -1 )
 
@@ -187,17 +89,17 @@ position = Vector2( 461, 33 )
 rotation = 4.71238
 scale = Vector2( -1, 1 )
 
-[node name="EndTile" type="AnimatedSprite" parent="."]
-position = Vector2( 461, 225 )
-rotation = 4.71238
-scale = Vector2( 90.2094, 1 )
-frames = SubResource( 26 )
-centered = false
+[node name="EndTile" parent="." instance=ExtResource( 4 )]
+position = Vector2( 461, 40.9721 )
+scale = Vector2( 93.9843, -1 )
 
 [node name="InsertTile" parent="." instance=ExtResource( 11 )]
-visible = false
 position = Vector2( 597, 44.5463 )
 scale = Vector2( 90.3337, -1 )
+animation = "thin"
+
+[node name="Menu" parent="." instance=ExtResource( 14 )]
+position = Vector2( 480, 16 )
 
 [node name="MenuHandle" type="RigidBody2D" parent="."]
 position = Vector2( 469, -103 )
@@ -206,7 +108,7 @@ input_pickable = true
 collision_layer = 4
 collision_mask = 4
 mode = 2
-physics_material_override = SubResource( 27 )
+physics_material_override = SubResource( 2 )
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
@@ -233,19 +135,19 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MenuHandle"]
 visible = false
 position = Vector2( 240, 6 )
-shape = SubResource( 28 )
+shape = SubResource( 3 )
 
 [node name="DrawerSounds" parent="MenuHandle" instance=ExtResource( 12 )]
 
 [node name="Start" type="Position2D" parent="."]
-position = Vector2( 450, 0 )
+position = Vector2( 468, 0 )
 rotation = 3.14159
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="End" type="Position2D" parent="."]
-position = Vector2( 94, 0 )
+position = Vector2( 96, 0 )
 rotation = 4.71238
 __meta__ = {
 "_edit_lock_": true

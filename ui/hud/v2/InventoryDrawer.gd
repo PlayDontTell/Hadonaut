@@ -1,8 +1,18 @@
 extends Node2D
 
 
+onready var fade = get_node("../../Fade")
 var insert_pos_1: int = 37
 var insert_pos_2: int = 413
+var last_ratio: float
+var ratio_margin : float = 0.05
+var ratio: float = 0.0
+var shade_intensity: float = 0.2
+
+
+
+func _ready():
+	pass
 
 
 # warning-ignore:unused_argument
@@ -38,12 +48,13 @@ func set_elements():
 	$InsertTile.position.x = drawer_pos - insert_pos_1
 	$InsertTile2.position.x = drawer_pos - insert_pos_2
 	$InteriorTile.position.x = drawer_pos - 18
+	$InteriorTile2.position.x = drawer_pos - 18
 	
 	# When the drawer passes the middle of the screen,
 	#	the handle gets behind or in front of the other drawer pieces.
 	if handle_pos.x <= ($Start.position.x - $End.position.x) / 2 + $End.position.x:
-		if $InventoryHandle.get_index() != 12:
-			move_child($InventoryHandle, 12)
+		if $InventoryHandle.get_index() != 13:
+			move_child($InventoryHandle, 13)
 	else:
 		if $InventoryHandle.get_index() != 0:
 			move_child($InventoryHandle, 0)
