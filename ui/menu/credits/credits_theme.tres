@@ -1,9 +1,10 @@
 [gd_resource type="Theme" load_steps=10 format=2]
 
-[ext_resource path="res://ui/PIXELADE.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/ui_style/PIXELADE.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menu/credits/credits_grabber.png" type="Texture" id=2]
 [ext_resource path="res://ui/menu/credits/credits_scroll.png" type="Texture" id=3]
 [ext_resource path="res://ui/menu/credits/credits_grabber_highlight.png" type="Texture" id=5]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 12

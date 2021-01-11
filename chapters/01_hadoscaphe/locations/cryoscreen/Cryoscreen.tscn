@@ -4,7 +4,7 @@
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.tscn" type="PackedScene" id=2]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_screenshield.png" type="Texture" id=3]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_down.png" type="Texture" id=4]
-[ext_resource path="res://ui/hud/BackZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/BackZone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_pressed.wav" type="AudioStream" id=7]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_released.wav" type="AudioStream" id=8]
@@ -12,6 +12,7 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/Cryoscreen.gd" type="Script" id=10]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_power.png" type="Texture" id=11]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_up.png" type="Texture" id=12]
+
 
 [sub_resource type="Animation" id=1]
 tracks/0/type = "value"

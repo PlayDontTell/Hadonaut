@@ -1,6 +1,10 @@
 extends Node2D
 
 
+onready var current_chapter = get_node("..")
+onready var hud = current_chapter.hud
+onready var inventory = hud.inventory
+
 var zone_0: bool = true
 var is_sas_1_off: bool = true
 var is_sas_2_off: bool = true
@@ -8,9 +12,6 @@ var is_sas_3_off: bool = true
 var sas_duration: int = 2
 var tween_curv = Tween.TRANS_SINE
 var tween_ease = Tween.EASE_IN_OUT
-
-onready var current_chapter = get_node("..")
-onready var inventory = get_node("../UI/Inventory")
 
 
 func _ready():

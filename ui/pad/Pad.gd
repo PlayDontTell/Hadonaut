@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var hud = get_node("../..")
+onready var hud = get_node("../../..")
 onready var current_chapter = hud.get_node("..")
 var h_slider_value: float
 var v_slider_value: float
@@ -12,16 +12,6 @@ func _ready():
 	$PadSprite/Module.visible = false
 	$PadSprite/Modules.modulate = Global.COLOR_TRANPARENT
 	$PadSprite/Modules/MapModule.visible = false
-
-
-# warning-ignore:unused_argument
-func _process(delta):
-	if Global.pad_visible:
-		if require_hand_cursor:
-			if $PadSprite/MapModule.visible:
-				Global.force_hand_cursor = true
-		else:
-			Global.force_hand_cursor = false
 
 
 func _on_ModuleConnection_mouse_entered():
@@ -49,7 +39,7 @@ func _on_ModuleConnection_pressed():
 				$PadSprite/Module/Tween.interpolate_property($PadSprite/Modules, "modulate", Global.COLOR_TRANPARENT, Global.COLOR_DEFAULT, 1.0)
 				$PadSprite/Module/Tween.interpolate_property($PadSprite/Background, "modulate", Global.COLOR_DEFAULT, Global.COLOR_BLACK, 1.0)
 				$PadSprite/Module/Tween.start()
-				#ui.get_node("Inventory").remove(module)
+				hud.inventory.remove(module)
 				current_module = module
 				insert_module(module)
 				yield(get_tree().create_timer(0.7), "timeout")
@@ -80,26 +70,26 @@ func insert_module(module_name):
 	$PadSprite/Module.visible = true
 	$PadSprite/Module/AnimationPlayer.play(module_name)
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "position",
-	 Vector2(190, 30), Vector2(155, 30), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
+	 Vector2(190, 3), Vector2(160, 3), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "modulate"
 		, Global.COLOR_TRANPARENT, Global.COLOR_DEFAULT, 
 		0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$PadSprite/Module/Tween.start()
 	yield(get_tree().create_timer(0.6), "timeout")
 	$PadSprite/Module/ModuleInsert.play()
-	$PadSprite/Module.position = Vector2(154, 30)
+	$PadSprite/Module.position = Vector2(159, 3)
 	yield(get_tree().create_timer(0.1), "timeout")
-	$PadSprite/AudioStreamPlayer2D.play()
+	$PadSprite/PadBuzzingSound.play()
 
 
 func eject_module():
-	$PadSprite/AudioStreamPlayer2D.stop()
+	$PadSprite/PadBuzzingSound.stop()
 	require_hand_cursor = false
 	$PadSprite/Module/ModuleEject.play()
-	$PadSprite/Module.position = Vector2(155, 30)
+	$PadSprite/Module.position = Vector2(160, 3)
 	yield(get_tree().create_timer(0.1), "timeout")
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "position",
-	Vector2(155, 30), Vector2(190, 30), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
+	Vector2(160, 3), Vector2(190, 3), 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	$PadSprite/Module/Tween.interpolate_property($PadSprite/Module, "modulate"
 		, Global.COLOR_DEFAULT, Global.COLOR_TRANPARENT, 
 		0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)

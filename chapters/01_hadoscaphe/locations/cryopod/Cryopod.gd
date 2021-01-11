@@ -2,7 +2,9 @@ extends Node2D
 
 
 onready var current_chapter = get_node("..")
-onready var inventory = get_node("../UI/Inventory")
+onready var hud = current_chapter.hud
+onready var inventory = hud.inventory
+
 var char_is_fallen: bool = false
 var char_is_risen: bool = false
 
@@ -18,6 +20,7 @@ func _ready():
 	# Animation of Char falling out of the pod if the chapter just begun.
 	var state = current_chapter.chapter_has_begun
 	if not state:
+		yield(get_tree(), "idle_frame")
 		awakening_animation()
 	else:
 		$AwakeningAnimation.visible = false
@@ -26,7 +29,7 @@ func _ready():
 func _process(_delta):
 	if $Trap/Animation.assigned_animation == "opened_" + current_chapter.ship_power:
 		var pos = $Char/Sprite.position
-		if pos.x > 135 and pos.x < 208 and pos.y <= 151:
+		if pos.x > 135 and pos.x < 208 and pos.y <= 167:
 			$Trap/Sprite.z_index = 1
 		else:
 			$Trap/Sprite.z_index = 0
@@ -129,6 +132,7 @@ func empty_closet():
 		inventory.add("cryopod_trap_key", Vector2(326, 122))
 		Global.add_to_playthrough_progress("You got the red key.")
 		current_chapter.trap_keys_taken = true
+		hud.drawers.setup_inventory()
 
 
 func fill_closet():
@@ -152,5 +156,5 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 				$AwakeningAnimation/RiseSound.play()
 				yield($AwakeningAnimation, "animation_finished")
 				$AwakeningAnimation.visible = false
-				$Char/Sprite.position = Vector2(255, 153)
+				$Char/Sprite.position = Vector2(255, 169)
 				$Char.visible = true

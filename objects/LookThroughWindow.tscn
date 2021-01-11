@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://objects/LookThroughWindow.gd" type="Script" id=1]
+
+[node name="LookThroughWindow" type="Area2D" groups=[
+"cursor_arrow",
+"cursor_eye",
+]]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="PointToWindow" type="Position2D" parent="."]
+[connection signal="input_event" from="." to="." method="_on_LookThroughWindow_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_LookThroughWindow_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_LookThroughWindow_mouse_exited"]

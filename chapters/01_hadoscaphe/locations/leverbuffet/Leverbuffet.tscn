@@ -4,7 +4,7 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorright.png" type="Texture" id=2]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorleft.png" type="Texture" id=3]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_foreground.png" type="Texture" id=4]
-[ext_resource path="res://ui/hud/BackZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/BackZone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/LeverBuffetScrew.tscn" type="PackedScene" id=6]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_screwdriver.png" type="Texture" id=7]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/leverbuffet/leverbuffet_doorleft_detached.png" type="Texture" id=8]
@@ -550,7 +550,6 @@ tracks/12/keys = {
 }
 
 [node name="Leverbuffet" type="Node2D"]
-position = Vector2( 0, 1 )
 script = ExtResource( 10 )
 
 [node name="BackZone" parent="." instance=ExtResource( 5 )]
@@ -558,7 +557,8 @@ to_room = "maintenance"
 action_type = "stand"
 
 [node name="CollisionPolygon2D" parent="BackZone" index="0"]
-polygon = PoolVector2Array( 0, 238, 0, 53, 40, 53, 34, 118, 40, 210, 442, 211, 433, 57, 480, 57, 480, 238 )
+visible = false
+polygon = PoolVector2Array( 0, 270, 0, 53, 40, 53, 34, 118, 40, 210, 442, 211, 433, 57, 480, 57, 480, 270 )
 
 [node name="Set" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -658,7 +658,8 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeverBack/RedCable/StaticBody2D"]
-polygon = PoolVector2Array( 119, 149, 131, 173, 189, 173, 199, 134, 118, 134, 119, 149, 0, -1, 480, -1, 480, 269, 0, 269, 0, -1, 118, 134 )
+visible = false
+polygon = PoolVector2Array( 119, 149, 131, 173, 189, 173, 199, 134, 118, 134, 119, 149, 0, 0, 480, 0, 480, 270, 0, 270, 0, 0, 118, 134 )
 
 [node name="PinConnectionHook" type="Position2D" parent="LeverBack/RedCable"]
 position = Vector2( 191, 142 )
@@ -729,8 +730,9 @@ id = 3
 needed_item = "screwdriver"
 
 [node name="DoorLeftDetached" type="Sprite" parent="."]
-position = Vector2( 79, 222 )
+position = Vector2( 0, 205 )
 texture = ExtResource( 8 )
+centered = false
 hframes = 2
 frame = 1
 script = ExtResource( 20 )
@@ -744,7 +746,8 @@ __meta__ = {
 ]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorLeftDetached/LeftArea2D"]
-polygon = PoolVector2Array( -79, 16, -79, -17, 70, -4, 80, 1, 71, 16 )
+visible = false
+polygon = PoolVector2Array( 0, 65, 0, 0, 145, 12, 159, 17, 135, 65 )
 
 [node name="DoorRight" type="Sprite" parent="."]
 visible = false
@@ -811,6 +814,7 @@ __meta__ = {
 ]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DoorRightDetached/RightArea2D"]
+visible = false
 polygon = PoolVector2Array( 30, 67, -12, 75, -31, -63, 30, -76 )
 
 [node name="Shadow" type="Sprite" parent="DoorRightDetached"]

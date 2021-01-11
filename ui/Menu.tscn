@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://ui/PIXELADE.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/ui_style/PIXELADE.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menu/settings/settings_cross.png" type="Texture" id=2]
 [ext_resource path="res://ui/menu/menu_click2.wav" type="AudioStream" id=3]
 [ext_resource path="res://ui/menu/settings/settings_progress.png" type="Texture" id=4]
+[ext_resource path="res://ui/effects/black.png" type="Texture" id=5]
 [ext_resource path="res://ui/menu/menu_frame.png" type="Texture" id=6]
 [ext_resource path="res://ui/menu/menu_slide.wav" type="AudioStream" id=7]
 [ext_resource path="res://ui/menu/settings/SettingsSlider.tscn" type="PackedScene" id=8]
@@ -16,12 +17,14 @@
 [ext_resource path="res://ui/menu/menu_tabs/settings_hover.png" type="Texture" id=15]
 [ext_resource path="res://ui/menu/menu_tabs/window_hover.png" type="Texture" id=16]
 [ext_resource path="res://ui/menu/window/no_button_default.png" type="Texture" id=17]
+[ext_resource path="res://ui/ui_style/ui_window.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ui/menu/menu_tabs/settings_disabled.png" type="Texture" id=19]
 [ext_resource path="res://ui/menu/settings/menu_settings.png" type="Texture" id=20]
 [ext_resource path="res://ui/menu/menu_tabs/window_default.png" type="Texture" id=21]
 [ext_resource path="res://ui/menu/menu_tabs/credits_hover.png" type="Texture" id=22]
 [ext_resource path="res://ui/menu/window/yes_button_default.png" type="Texture" id=23]
 [ext_resource path="res://ui/menu/window/no_button_hover.png" type="Texture" id=24]
+[ext_resource path="res://ui/menu/menu_tabs/resume_disabled.png" type="Texture" id=25]
 [ext_resource path="res://ui/menu/menu_tabs/credits_default.png" type="Texture" id=26]
 [ext_resource path="res://ui/menu/menu_tabs/window_disabled.png" type="Texture" id=27]
 [ext_resource path="res://ui/menu/menu_tabs/settings_default.png" type="Texture" id=28]
@@ -30,6 +33,10 @@
 [ext_resource path="res://ui/menu/window/WindowTab.gd" type="Script" id=31]
 [ext_resource path="res://ui/menu/MenuFrame.gd" type="Script" id=32]
 [ext_resource path="res://ui/menu/Menu.gd" type="Script" id=33]
+[ext_resource path="res://ui/menu/menu_tabs/resume_hover.png" type="Texture" id=34]
+[ext_resource path="res://ui/menu/menu_tabs/resume_default.png" type="Texture" id=35]
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
@@ -68,6 +75,22 @@ default_font = SubResource( 3 )
 [node name="Menu" type="Node2D"]
 use_parent_material = true
 script = ExtResource( 33 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 480.0
+margin_bottom = 270.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" parent="." instance=ExtResource( 18 )]
+margin_left = 89.0
+margin_top = 43.0
+margin_right = 391.0
+margin_bottom = 227.0
 
 [node name="OutOfMenu" type="Button" parent="."]
 visible = false
@@ -115,10 +138,10 @@ __meta__ = {
 }
 
 [node name="WindowTabButton" type="TextureButton" parent="MenuFrame"]
-margin_left = 360.0
-margin_top = 38.0
-margin_right = 389.0
-margin_bottom = 67.0
+margin_left = 349.0
+margin_top = 55.0
+margin_right = 378.0
+margin_bottom = 84.0
 toggle_mode = true
 texture_normal = ExtResource( 21 )
 texture_pressed = ExtResource( 27 )
@@ -128,12 +151,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ResumeButton" type="TextureButton" parent="MenuFrame"]
+margin_left = 349.0
+margin_top = 87.0
+margin_right = 378.0
+margin_bottom = 116.0
+texture_normal = ExtResource( 35 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 34 )
+texture_disabled = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SaveSystemTabButton" type="TextureButton" parent="MenuFrame"]
 visible = false
-margin_left = 358.0
-margin_top = 103.0
-margin_right = 393.0
-margin_bottom = 146.0
+margin_left = 348.0
+margin_top = 119.0
+margin_right = 382.0
+margin_bottom = 153.0
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 12 )
@@ -143,10 +179,10 @@ __meta__ = {
 }
 
 [node name="SettingsTabButton" type="TextureButton" parent="MenuFrame"]
-margin_left = 358.0
-margin_top = 135.0
-margin_right = 392.0
-margin_bottom = 169.0
+margin_left = 348.0
+margin_top = 151.0
+margin_right = 382.0
+margin_bottom = 185.0
 texture_normal = ExtResource( 28 )
 texture_pressed = ExtResource( 15 )
 texture_hover = ExtResource( 15 )
@@ -156,10 +192,10 @@ __meta__ = {
 }
 
 [node name="CreditsTabButton" type="TextureButton" parent="MenuFrame"]
-margin_left = 355.0
-margin_top = 167.0
-margin_right = 390.0
-margin_bottom = 201.0
+margin_left = 345.0
+margin_top = 183.0
+margin_right = 380.0
+margin_bottom = 217.0
 texture_normal = ExtResource( 26 )
 texture_pressed = ExtResource( 22 )
 texture_hover = ExtResource( 22 )
@@ -169,7 +205,8 @@ __meta__ = {
 }
 
 [node name="SettingsTab" type="Sprite" parent="MenuFrame"]
-position = Vector2( -5, 4 )
+visible = false
+position = Vector2( -10, 18 )
 texture = ExtResource( 20 )
 offset = Vector2( 140, 115 )
 script = ExtResource( 30 )
@@ -262,11 +299,12 @@ bus = "Atmo"
 visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MenuFrame/CreditsTab"]
-margin_left = 120.0
-margin_top = 47.0
-margin_right = 350.0
-margin_bottom = 190.0
+margin_left = 118.0
+margin_top = 63.0
+margin_right = 339.0
+margin_bottom = 206.0
 theme = ExtResource( 9 )
+custom_constants/line_separation = 0
 bbcode_enabled = true
 bbcode_text = "
 [center][u]STORY, GRAPHICS and PROGRAMMING[/u][/center]
@@ -336,10 +374,10 @@ __meta__ = {
 visible = false
 
 [node name="Label" type="Label" parent="MenuFrame/SaveSystemTab"]
-margin_left = 148.0
-margin_top = 104.0
-margin_right = 324.0
-margin_bottom = 135.0
+margin_left = 139.0
+margin_top = 120.0
+margin_right = 315.0
+margin_bottom = 151.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource( 4 )
@@ -356,15 +394,15 @@ __meta__ = {
 
 [node name="WindowTab" type="Sprite" parent="MenuFrame"]
 visible = false
-position = Vector2( 240, 119 )
+position = Vector2( 240, 133 )
 texture = ExtResource( 11 )
 script = ExtResource( 31 )
 
 [node name="OutOfWindowTab" type="TextureButton" parent="MenuFrame/WindowTab"]
 margin_left = -127.0
-margin_top = -94.0
+margin_top = -78.0
 margin_right = 127.0
-margin_bottom = 66.0
+margin_bottom = 82.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -407,6 +445,10 @@ __meta__ = {
 [connection signal="button_down" from="MenuFrame/WindowTabButton" to="MenuFrame" method="_on_WindowTabButton_button_down"]
 [connection signal="mouse_entered" from="MenuFrame/WindowTabButton" to="MenuFrame" method="_on_WindowTabButton_mouse_entered"]
 [connection signal="mouse_exited" from="MenuFrame/WindowTabButton" to="MenuFrame" method="_on_WindowTabButton_mouse_exited"]
+[connection signal="button_down" from="MenuFrame/ResumeButton" to="MenuFrame" method="_on_ResumeButton_button_down"]
+[connection signal="button_up" from="MenuFrame/ResumeButton" to="MenuFrame" method="_on_ResumeButton_button_up"]
+[connection signal="mouse_entered" from="MenuFrame/ResumeButton" to="MenuFrame" method="_on_ResumeButton_mouse_entered"]
+[connection signal="mouse_exited" from="MenuFrame/ResumeButton" to="MenuFrame" method="_on_ResumeButton_mouse_exited"]
 [connection signal="button_down" from="MenuFrame/SaveSystemTabButton" to="MenuFrame" method="_on_SaveSystemTabButton_button_down"]
 [connection signal="mouse_entered" from="MenuFrame/SaveSystemTabButton" to="MenuFrame" method="_on_SaveSystemTabButton_mouse_entered"]
 [connection signal="mouse_exited" from="MenuFrame/SaveSystemTabButton" to="MenuFrame" method="_on_SaveSystemTabButton_mouse_exited"]
@@ -425,7 +467,7 @@ __meta__ = {
 [connection signal="mouse_entered" from="MenuFrame/WindowTab/InWindowTab" to="MenuFrame/WindowTab" method="_on_InWindowTab_mouse_entered"]
 [connection signal="mouse_exited" from="MenuFrame/WindowTab/InWindowTab" to="MenuFrame/WindowTab" method="_on_InWindowTab_mouse_exited"]
 [connection signal="mouse_entered" from="MenuFrame/WindowTab/NoButton" to="MenuFrame/WindowTab" method="_on_NoButton_mouse_entered"]
-[connection signal="pressed" from="MenuFrame/WindowTab/NoButton" to="MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="pressed" from="MenuFrame/WindowTab/NoButton" to="MenuFrame" method="_on_NoButton_pressed"]
+[connection signal="pressed" from="MenuFrame/WindowTab/NoButton" to="MenuFrame/WindowTab" method="_on_NoButton_pressed"]
 [connection signal="mouse_entered" from="MenuFrame/WindowTab/YesButton" to="MenuFrame/WindowTab" method="_on_YesButton_mouse_entered"]
 [connection signal="pressed" from="MenuFrame/WindowTab/YesButton" to="MenuFrame/WindowTab" method="_on_YesButton_pressed"]

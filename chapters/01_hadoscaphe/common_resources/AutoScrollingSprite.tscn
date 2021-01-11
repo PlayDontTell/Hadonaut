@@ -12,3 +12,4 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
+speed_x = -0.2

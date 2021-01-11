@@ -14,6 +14,7 @@ func _unhandled_input(event):
 	# Ordering Char to go to a target on the ground.
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed and event.position:
+			
 			reach(event.position)
 			yield($Sprite, "arrived_at_destination")
 			initialize()

@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://ui/hud/black.png" type="Texture" id=1]
+[ext_resource path="res://ui/effects/black.png" type="Texture" id=1]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "black_screen"
@@ -95,7 +96,6 @@ tracks/0/keys = {
 }
 
 [node name="Fade" type="Sprite"]
-modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true

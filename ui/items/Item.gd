@@ -6,7 +6,7 @@ var distance_from_spawn
 
 onready var item_name: String
 onready var item_id: int = GlobalInventory.char_inventory.find(item_name)
-onready var item_default_position: Vector2 = Vector2(112 + 32 * item_id,236)
+onready var item_default_position: Vector2
 onready var item_spawn_position: Vector2
 onready var inventory_node = get_node("../..")
 onready var items = get_node("..")
@@ -43,14 +43,16 @@ func _ready():
 		$ItemTexture.z_index = 0
 		
 		$Tween.interpolate_property($ItemTexture, "modulate"
-		, $ItemTexture.modulate, Global.COLOR_SHADED, 
+		, $ItemTexture.modulate, Global.COLOR_DEFAULT, 
 		0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
 
 
 func _on_Item_mouse_entered():
 	$ItemHover.visible = true
-	$ItemTexture.modulate = Global.COLOR_DEFAULT
+	$ItemTexture.modulate = Global.COLOR_DAY_HIGHLIGHT
+	if GlobalInventory.item_used == "":
+		$ItemShade.modulate = Global.COLOR_DEFAULT
 	Global.mouse_hovering_count += 1
 	Global.force_hand_cursor = true
 	Global.mouse_hovering_inventory = true
@@ -58,9 +60,10 @@ func _on_Item_mouse_entered():
 
 
 func _on_Item_mouse_exited():
+	$ItemShade.modulate = Global.COLOR_BLACK
 	$ItemHover.visible = false
 	if not GlobalInventory.item_used == item_name:
-		$ItemTexture.modulate = Global.COLOR_SHADED
+		$ItemTexture.modulate = Global.COLOR_DEFAULT
 	if Global.mouse_hovering_count > 0:
 		Global.mouse_hovering_count -= 1
 		Global.force_hand_cursor = false
@@ -70,15 +73,18 @@ func _on_Item_mouse_exited():
 
 func draw_item():
 	$Tween.stop($ItemTexture, "modulate")
-	$ItemTexture.modulate = Global.COLOR_SHADED
 	$Tween.stop($ItemTexture, "position")
-	$ItemTexture.position = Vector2(0, 0)
 	$Tween.stop($ItemShade, "modulate")
-	$ItemTexture.modulate = Color(0,0,0,1)
+	
+	$ItemTexture.modulate = Global.COLOR_DEFAULT
+	$ItemTexture.position = Vector2(0, 0)
+	$ItemShade.modulate = Global.COLOR_BLACK
+	
 	GlobalInventory.is_using_item = true
 	GlobalInventory.item_used = item_name
+	
 	$ItemTexture.z_index = +32
-	$ItemTexture.modulate = Global.COLOR_DEFAULT
+	$ItemTexture.modulate = Global.COLOR_DAY_HIGHLIGHT
 	if item_name in ["cryopod_trap_key"]:
 		$Sounds/Keys.play()
 	if item_name in ["screwdriver"]:
@@ -95,7 +101,11 @@ func holster_item():
 	yield(get_tree(), "idle_frame")
 	$ItemTexture.position = Vector2(0,0)
 	$ItemTexture.z_index = 0
-	$ItemTexture.modulate = Color(0.7,0.7,0.7)
+	
+	$ItemHover.visible = true
+	$ItemTexture.modulate = Global.COLOR_DAY_HIGHLIGHT
+	$ItemShade.modulate = Global.COLOR_DEFAULT
+	
 	print("Char not using " + item_name)
 	inventory_node.get_node("BagSound").play()
 
@@ -107,4 +117,4 @@ func _input(event):
 		
 	if event is InputEventMouseMotion:
 		if GlobalInventory.item_used == item_name:
-			$ItemTexture.position = event.position - item_default_position + specific_offset
+			$ItemTexture.position = event.position - item_default_position + specific_offset - get_node("../..").position

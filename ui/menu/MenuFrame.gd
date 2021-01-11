@@ -101,3 +101,22 @@ func _on_SettingsTabButton_mouse_exited():
 func _on_CreditsTabButton_mouse_exited():
 	if not $CreditsTabButton.disabled:
 		menu.get_node("MenuScroll2").play()
+
+
+func _on_ResumeButton_button_down():
+	menu.get_node("MenuClick").play()
+
+
+func _on_ResumeButton_button_up():
+	menu.visible = false
+	Global.menu_visible = false
+	if not Global.inventory_drawer_opened and not Global.pad_drawer_opened:
+		Global.toggle_pause_off()
+
+
+func _on_ResumeButton_mouse_entered():
+	menu.get_node("MenuScroll").play()
+
+
+func _on_ResumeButton_mouse_exited():
+	menu.get_node("MenuScroll2").play()

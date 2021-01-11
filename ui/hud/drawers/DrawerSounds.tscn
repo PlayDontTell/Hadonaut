@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/hud/drawers/drawer_sticked.wav" type="AudioStream" id=1]
+[ext_resource path="res://ui/hud/drawers/drawer_hit.wav" type="AudioStream" id=2]
+[ext_resource path="res://ui/hud/drawers/DrawerSounds.gd" type="Script" id=3]
+
+
+
+[node name="DrawerSounds" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "FxMeta"
+
+[node name="Sticked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+pitch_scale = 0.6
+bus = "FxMeta"

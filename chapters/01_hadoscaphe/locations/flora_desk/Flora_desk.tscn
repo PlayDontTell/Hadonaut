@@ -1,0 +1,140 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora_desk/flora_desk_set.png" type="Texture" id=1]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora_desk/flora_desk_pad.png" type="Texture" id=2]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora_desk/PadInstance.gd" type="Script" id=3]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora_desk/flora_desk_map_module.png" type="Texture" id=4]
+[ext_resource path="res://objects/BackZone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora_desk/MapModuleInstance.gd" type="Script" id=6]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora_desk/Flora_desk.gd" type="Script" id=10]
+
+
+[sub_resource type="Animation" id=1]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Set:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foreground:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Set:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foreground:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[node name="Flora_desk" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="BackZone" parent="." instance=ExtResource( 5 )]
+to_room = "flora"
+
+[node name="CollisionPolygon2D" parent="BackZone" index="0"]
+polygon = PoolVector2Array( 0, 270, 0, 53, 0, 0, 480, 0, 480, 57, 433, 57, 262, 37, 56, 53, 39, 159, 95, 254, 406, 217, 433, 57, 480, 57, 480, 270 )
+
+[node name="Set" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Foreground" type="Sprite" parent="."]
+centered = false
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/day = SubResource( 1 )
+anims/night = SubResource( 2 )
+
+[node name="PadInstance" type="Area2D" parent="." groups=[
+"cursor_hand",
+"cursor_hover",
+]]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="PadInstance"]
+position = Vector2( 185, 147 )
+texture = ExtResource( 2 )
+hframes = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PadInstance"]
+visible = false
+polygon = PoolVector2Array( 45, 131, 54, 149, 126, 226, 198, 199, 212, 201, 322, 144, 326, 137, 324, 126, 313, 117, 312, 100, 267, 73, 239, 73, 224, 64, 47, 112 )
+
+[node name="MapModuleInstance" type="Area2D" parent="." groups=[
+"cursor_hand",
+"cursor_hover",
+]]
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="MapModuleInstance"]
+position = Vector2( 371, 144 )
+texture = ExtResource( 4 )
+hframes = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapModuleInstance"]
+visible = false
+polygon = PoolVector2Array( 343, 161, 381, 106, 389, 106, 398, 115, 398, 126, 393, 147, 364, 175, 343, 175 )
+[connection signal="mouse_entered" from="BackZone" to="BackZone" method="_on_BackZone_mouse_entered"]
+[connection signal="mouse_exited" from="BackZone" to="BackZone" method="_on_BackZone_mouse_exited"]
+[connection signal="area_entered" from="PadInstance" to="PadInstance" method="_on_PadInstance_area_entered"]
+[connection signal="area_exited" from="PadInstance" to="PadInstance" method="_on_PadInstance_area_exited"]
+[connection signal="input_event" from="PadInstance" to="PadInstance" method="_on_PadInstance_input_event"]
+[connection signal="area_entered" from="MapModuleInstance" to="MapModuleInstance" method="_on_MapModuleInstance_area_entered"]
+[connection signal="area_exited" from="MapModuleInstance" to="MapModuleInstance" method="_on_MapModuleInstance_area_exited"]
+[connection signal="input_event" from="MapModuleInstance" to="MapModuleInstance" method="_on_MapModuleInstance_input_event"]
+
+[editable path="BackZone"]

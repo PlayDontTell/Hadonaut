@@ -33,8 +33,8 @@ func _process(delta):
 		and GlobalInventory.item_used in ["screwdriver"])) or Global.force_point_cursor:
 		special_cursor = "_point"
 
-	if (Global.menu_visible or Global.update_message_visible
-		or Global.force_menu_cursor or Global.logo_visible) and not (
+	if (Global.update_message_visible
+		or Global.force_menu_cursor or Global.logo_visible or Global.menu_visible) and not (
 			Global.force_point_cursor or Global.force_hand_cursor):
 		change_cursor_animation("menu")
 		
@@ -73,7 +73,10 @@ func _process(delta):
 					change_cursor_animation("pressed" + special_cursor)
 	if Global.force_eye_cursor:
 		change_cursor_animation("eye")
-		
+	
+	if Global.force_hidden_cursor:
+		change_cursor_animation("hidden")
+	
 	Global.cursor_animation_frame = $CursorAnimation.get_current_animation_position()
 
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://ui/UpdateMessageScreen.gd" type="Script" id=1]
-[ext_resource path="res://ui/TickButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/update_message_screen/UpdateMessageScreen.gd" type="Script" id=1]
+[ext_resource path="res://ui/update_message_screen/TickButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/menu/menu_click2.wav" type="AudioStream" id=3]
-[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=4]
-[ext_resource path="res://ui/hud/black.png" type="Texture" id=5]
-[ext_resource path="res://ui/ui_window.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/ui_style/ui_theme.tres" type="Theme" id=4]
+[ext_resource path="res://ui/effects/black.png" type="Texture" id=5]
+[ext_resource path="res://ui/ui_style/ui_window.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/Cursor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/Fade.tscn" type="PackedScene" id=8]
 [ext_resource path="res://intro/night_ambience.wav" type="AudioStream" id=9]
@@ -54,6 +54,8 @@ margin_right = 160.0
 margin_bottom = 101.5
 
 [node name="UpdateMessageButton" parent="NinePatchRect" instance=ExtResource( 2 )]
+margin_top = 166.0
+margin_bottom = 189.0
 
 [node name="UpdateMessage" type="RichTextLabel" parent="."]
 anchor_left = 0.5
@@ -66,27 +68,33 @@ margin_right = 143.5
 margin_bottom = 59.0
 theme = ExtResource( 4 )
 bbcode_enabled = true
-bbcode_text = "[center]Hadonaut (version a_0.05)[/center]
+bbcode_text = "[center]Hadonaut[/center]
 
-[fill][color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the [color=yellow][url=https://ivanvoirol.itch.io/hadonaut]itch.io page of the game[/url][/color].[/color][/fill]
+[fill][color=#bbbbbb]Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the [color=yellow][url=https://ivanvoirol.itch.io/hadonaut]itch.io page of the game[/url][/color] and find the source code on its [color=yellow][url=https://github.com/IvanVoirol/Hadonaut]GitHub page[/url][/color]. [/color][/fill]
 
 version note (alpha 0.05) :[color=#bbbbbb]
-+ Added 
-* Completely remade the HUD (Head Up Display), with a drawer-based system.
+* Redesigned the HUD, with a drawer-based system.
++ Added a new room (desk in the purple room).
+* Redesigned the pad from scratch.
++ Player can now look through the windows.
 * Minor visual changes.
 * Code improvement.
+* Corrected flashing screen when loading the first room.
 [/color]
 [center][color=gray]Have fun![/color][/center]"
 meta_underlined = false
-text = "Hadonaut (version a_0.05)
+text = "Hadonaut
 
-Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the itch.io page of the game.
+Welcome to Hadonaut! This game is still in early development, don't expect a finished product. Any feedback can help the progress of this project! You can comment on the itch.io page of the game and find the source code on its GitHub page. 
 
 version note (alpha 0.05) :
-+ Added 
-* Completely remade the HUD (Head Up Display), with a drawer-based system.
+* Redesigned the HUD, with a drawer-based system.
++ Added a new room (desk in the purple room).
+* Redesigned the pad from scratch.
++ Player can now look through the windows.
 * Minor visual changes.
 * Code improvement.
+* Corrected flashing screen when loading the first room.
 
 Have fun!"
 __meta__ = {

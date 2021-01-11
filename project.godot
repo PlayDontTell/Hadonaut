@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Hadonaut"
-run/main_scene="res://ui/hud/v2/HUD.tscn"
+run/main_scene="res://GameManager.tscn"
 config/icon="res://icon.png"
 
 [autoload]

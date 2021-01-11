@@ -2,7 +2,8 @@ extends Node2D
 
 
 onready var current_chapter = get_node("..")
-onready var inventory = get_node("../UI/Inventory")
+onready var hud = current_chapter.hud
+onready var inventory = hud.inventory
 
 var left_door_screws = []
 var right_door_screws = []

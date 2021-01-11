@@ -9,19 +9,21 @@ var count_test: int = 0
 var chapter_name: String
 var room_name: String
 var playthrough_progress: PoolStringArray = []
-const AVAILABLE_EVENTS_QUANTITY: int = 16
+const AVAILABLE_EVENTS_QUANTITY: int = 18
 var all_has_been_seen: bool = false
 
 # Last position of Char
 var last_flip_h: bool
 var last_x: int
 var last_y: int
+var last_room_name: String = ""
 
 # UI states
-var pad_visible: bool = false
-var menu_visible: bool = false
 var update_message_visible: bool = false
 var logo_visible: bool = false
+var pad_drawer_opened: bool = false
+var inventory_drawer_opened: bool = false
+var menu_visible: bool = false
 # Cursor states.
 var mouse_hovering_ground: bool = false
 var mouse_hovering_count: int = 0
@@ -33,6 +35,7 @@ var force_hand_cursor: bool = false
 var force_point_cursor: bool = false
 var force_menu_cursor: bool = false
 var force_arrow_direction: int = -1
+var force_hidden_cursor: bool = false
 var cursor_animation: String
 var cursor_animation_frame: float
 
@@ -46,6 +49,7 @@ const COLOR_RED_TINTED = Color(0.7, 0.5, 0.5, 1)
 const COLOR_TRANPARENT = Color(0, 0, 0, 0)
 const COLOR_SHADED = Color(0.7, 0.7, 0.7, 1)
 const COLOR_BLACK = Color(0, 0, 0, 1)
+const COLOR_WHITE = Color(4, 4, 4, 1)
 var lighting_tint: Color
 var highlight_tint: Color = COLOR_DAY_HIGHLIGHT
 var modulated_highlight_tint: Color
@@ -86,9 +90,16 @@ func reset_ui():
 	force_hand_cursor = false
 	force_point_cursor = false
 	force_menu_cursor = false
+	force_hidden_cursor = false
 
 
 func set_room_name(new_name):
+	# Saving the name of the last room Char was in.
+	if last_room_name == "":
+		last_room_name = new_name
+	else:
+		last_room_name = room_name
+		
 	room_name = new_name
 	add_to_playthrough_progress("You went to the " + new_name + " room.")
 
@@ -101,6 +112,16 @@ func add_to_playthrough_progress(event):
 		have_all_availale_events_been_played()
 
 func have_all_availale_events_been_played():
+	# Tests if all the events in the game have been seen.
 	if playthrough_progress.size() == AVAILABLE_EVENTS_QUANTITY:
 		all_has_been_seen = true
 		print("You've seen all the actual content of the game.")
+
+
+func disable_input(duration):
+	# Disable all input and hide the cursor for <duration> seconds.
+	get_tree().get_root().set_disable_input(true)
+	force_hidden_cursor = true
+	yield(get_tree().create_timer(duration), "timeout")
+	get_tree().get_root().set_disable_input(false)
+	force_hidden_cursor = false

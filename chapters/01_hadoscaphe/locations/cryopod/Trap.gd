@@ -2,7 +2,8 @@ extends "res://objects/InteractiveObject.gd"
 
 
 onready var current_chapter = get_node("../..")
-onready var inventory = get_node("../../UI/Inventory")
+onready var hud = current_chapter.hud
+onready var inventory = hud.inventory
 onready var cryopod = get_node("..")
 
 

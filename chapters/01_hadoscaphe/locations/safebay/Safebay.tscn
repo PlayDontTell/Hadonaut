@@ -361,7 +361,7 @@ anims/night = SubResource( 4 )
 position = Vector2( 97, 79 )
 to_room = "cryopod"
 to_x = 386
-to_y = 144
+to_y = 160
 flip_h = true
 door_id = 1
 

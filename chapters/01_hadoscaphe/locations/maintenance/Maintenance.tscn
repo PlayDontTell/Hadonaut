@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/char/Char.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/maintenance/LadderSprite.gd" type="Script" id=20]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/maintenance/maintenance_leftbuffetdoor_shadow.png" type="Texture" id=21]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/maintenance/maintenance_redlight.png" type="Texture" id=22]
+[ext_resource path="res://objects/LookThroughWindow.tscn" type="PackedScene" id=23]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -444,15 +445,12 @@ tracks/7/keys = {
 
 [node name="Maintenance" type="Node2D"]
 material = SubResource( 2 )
-position = Vector2( 1, 0 )
 script = ExtResource( 6 )
 
 [node name="AutoScrollingSprite" parent="." instance=ExtResource( 1 )]
-speed_x = -0.2
 
 [node name="Set" type="Sprite" parent="."]
 use_parent_material = true
-position = Vector2( -1, 0 )
 texture = ExtResource( 4 )
 centered = false
 hframes = 2
@@ -462,14 +460,14 @@ __meta__ = {
 }
 
 [node name="LeftDoorButton" parent="." instance=ExtResource( 3 )]
-position = Vector2( 53, 90 )
+position = Vector2( 54, 90 )
 action_name = "LeftDoorButton"
 action_type = "push"
 flip_h = true
 door_id = 7
 
 [node name="Lever" parent="." instance=ExtResource( 8 )]
-position = Vector2( 210, 109 )
+position = Vector2( 211, 109 )
 action_name = "Lever"
 action_type = "push"
 
@@ -501,10 +499,10 @@ bus = "Fx"
 "arrow_N",
 ] instance=ExtResource( 9 )]
 use_parent_material = true
-position = Vector2( 425, 72 )
+position = Vector2( 426, 72 )
 to_room = "cryopod"
 to_x = 190
-to_y = 158
+to_y = 174
 
 [node name="CollisionPolygon2D" parent="GoToCryopod" index="0"]
 polygon = PoolVector2Array( -19, -15, -14, -7, -11, -7, -11, 78, 1, 78, 1, -7, 5, -7, 10, -16 )
@@ -522,7 +520,7 @@ script = ExtResource( 20 )
 [node name="ToLeverbuffet" parent="." groups=[
 "cursor_eye",
 ] instance=ExtResource( 9 )]
-position = Vector2( 211, 131 )
+position = Vector2( 212, 131 )
 to_room = "leverbuffet"
 room_without_char = true
 action_type = "pick"
@@ -563,7 +561,7 @@ anims/unscrewed_day = SubResource( 10 )
 anims/unscrewed_night = SubResource( 11 )
 
 [node name="Screwdriver" type="Sprite" parent="."]
-position = Vector2( 217, 126 )
+position = Vector2( 218, 126 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screwdriver"]
@@ -576,13 +574,13 @@ frame = 1
 
 [node name="Background" type="Sprite" parent="."]
 use_parent_material = true
-position = Vector2( 38, 88 )
+position = Vector2( 39, 88 )
 texture = ExtResource( 14 )
 hframes = 2
 frame = 1
 
 [node name="DoorLeft" parent="." instance=ExtResource( 12 )]
-position = Vector2( 38, 88 )
+position = Vector2( 39, 88 )
 to_room = "reactor"
 to_x = 382
 to_y = 160
@@ -629,11 +627,45 @@ navpoly = SubResource( 14 )
 
 [node name="Foreground" type="Sprite" parent="."]
 use_parent_material = true
-position = Vector2( 54, 74 )
+position = Vector2( 55, 74 )
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="LookThroughWindow" parent="." instance=ExtResource( 23 )]
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow" index="0"]
+polygon = PoolVector2Array( 297, 115, 300, 115, 302, 113, 302, 110, 300, 108, 297, 108, 295, 110, 295, 113 )
+
+[node name="PointToWindow" parent="LookThroughWindow" index="1"]
+position = Vector2( 294, 145 )
+
+[node name="LookThroughWindow2" parent="." instance=ExtResource( 23 )]
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow2" index="0"]
+polygon = PoolVector2Array( 326, 105, 322, 109, 322, 117, 326, 121, 334, 121, 338, 117, 338, 109, 334, 105 )
+
+[node name="PointToWindow" parent="LookThroughWindow2" index="1"]
+position = Vector2( 325, 145 )
+
+[node name="LookThroughWindow3" parent="." instance=ExtResource( 23 )]
+flip_h = true
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow3" index="0"]
+polygon = PoolVector2Array( 363, 118, 359, 122, 359, 130, 363, 134, 371, 134, 375, 130, 375, 122, 371, 118 )
+
+[node name="PointToWindow" parent="LookThroughWindow3" index="1"]
+position = Vector2( 371, 157 )
+
+[node name="LookThroughWindow4" parent="." instance=ExtResource( 23 )]
+flip_h = true
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow4" index="0"]
+polygon = PoolVector2Array( 395, 123, 397, 120, 400, 120, 402, 122, 402, 125, 400, 127, 397, 127, 395, 125 )
+
+[node name="PointToWindow" parent="LookThroughWindow4" index="1"]
+position = Vector2( 403, 156 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -658,3 +690,11 @@ anims/night = SubResource( 16 )
 [editable path="DoorLeft"]
 
 [editable path="Char"]
+
+[editable path="LookThroughWindow"]
+
+[editable path="LookThroughWindow2"]
+
+[editable path="LookThroughWindow3"]
+
+[editable path="LookThroughWindow4"]

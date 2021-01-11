@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/flora_map_module_shadow.png-5a4828212ea01fa0d5d5db48c89d5b1f.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://chapters/01_hadoscaphe/locations/flora/flora_map_module_shadow.png"
+dest_files=[ "res://.import/flora_map_module_shadow.png-5a4828212ea01fa0d5d5db48c89d5b1f.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=false
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

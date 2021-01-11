@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/menu_button_up.wav-60e29c9e2b1c26138696469cb727eb4e.sample"
+
+[deps]
+
+source_file="res://ui/hud/menu_button/menu_button_up.wav"
+dest_files=[ "res://.import/menu_button_up.wav-60e29c9e2b1c26138696469cb727eb4e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

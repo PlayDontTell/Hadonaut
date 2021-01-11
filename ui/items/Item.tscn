@@ -1,12 +1,56 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ui/items/ItemsTextureMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/items/Item.gd" type="Script" id=2]
 [ext_resource path="res://ui/items/items_sounds/keys.wav" type="AudioStream" id=3]
-[ext_resource path="res://ui/hud/hud_item_hover.png" type="Texture" id=4]
-[ext_resource path="res://ui/hud/hud_item_background.png" type="Texture" id=5]
+[ext_resource path="res://ui/items/hud_item_hover.png" type="Texture" id=4]
+[ext_resource path="res://ui/items/hud_item_background.png" type="Texture" id=5]
 [ext_resource path="res://ui/items/items_sounds/tool.wav" type="AudioStream" id=6]
 [ext_resource path="res://ui/items/items_sounds/pad_module.wav" type="AudioStream" id=7]
+
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform bool Smooth = true;
+uniform float width : hint_range(0.0, 16) = 1.0;
+uniform vec4 outline_color : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform int pixel_size : hint_range(1, 10) = 4;
+ 
+void fragment()
+{
+	vec2 unit = (1.0/float(pixel_size) ) / vec2(textureSize(TEXTURE, 0));
+	vec4 pixel_color = texture(TEXTURE, UV);
+	if (pixel_color.a == 0.0) {
+		pixel_color = outline_color;
+		pixel_color.a = 0.0;
+		for (float x = -ceil(width); x <= ceil(width); x++) {
+			for (float y = -ceil(width); y <= ceil(width); y++) {
+				if (texture(TEXTURE, UV + vec2(x*unit.x, y*unit.y)).a == 0.0 || (x==0.0 && y==0.0)) {
+					continue;
+				}
+				if (Smooth) {
+					pixel_color.a += outline_color.a / (pow(x,2)+pow(y,2)) * (1.0-pow(2.0, -width));
+					if (pixel_color.a > 1.0) {
+						pixel_color.a = 1.0;
+					}
+				} else {
+					pixel_color.a = outline_color.a;
+					return
+				}
+			}
+		}
+	}
+	COLOR = pixel_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/Smooth = false
+shader_param/width = 1.0
+shader_param/outline_color = Color( 1, 1, 1, 1 )
+shader_param/pixel_size = 1
 
 [node name="Item" type="TextureButton"]
 pause_mode = 2
@@ -18,11 +62,13 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 5 )
 centered = false
 
 [node name="ItemShade" parent="." instance=ExtResource( 1 )]
-modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 1, 1, 1, 0.501961 )
+material = SubResource( 2 )
 
 [node name="ItemHover" type="Sprite" parent="."]
 visible = false

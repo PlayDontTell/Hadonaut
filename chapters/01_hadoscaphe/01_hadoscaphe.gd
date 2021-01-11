@@ -1,14 +1,16 @@
 extends WorldEnvironment
 
 
+# The instanced room the player is playing in (node).
+onready var current_room = null
+# The instanced UI node.
+onready var hud = $HUD
+onready var fade_player = $HUD/Fade/FadePlayer
+
+
 # Game start conditions
 export var ship_power: String = "night"
-export var starting_room: String = "leverbuffet" if Global.DEV_MODE else "cryopod"
-
-# The instanced room the player is playing in (node).
-var current_room = null
-# The instanced UI node.
-var ui = null
+export var starting_room: String = "flora_desk" if Global.DEV_MODE else "cryopod"
 
 # CHAPTER GLOBAL VARIABLES
 var chapter_has_begun: bool = Global.DEV_MODE
@@ -31,6 +33,7 @@ var cloths_taken: bool = false
 var trap_keys_taken: bool = false
 var trap_is_closed: bool = true
 var cryopod_door_closed: bool = false
+var inventory_taken: bool = false
 
 # Maintenance global variables :
 var screwdriver_taken: bool = false
@@ -44,6 +47,7 @@ var red_cable_stuck_to: String = ""
 
 # Flora global variables :
 var pad_taken: bool = false
+var map_module_taken: bool = false
 
 
 func _init():
@@ -53,20 +57,20 @@ func _init():
 
 func _ready():
 	if not chapter_has_begun:
-		$UI.modulate = Global.COLOR_BLACK
-		$UI/Tween.interpolate_property($UI, "modulate", Global.COLOR_BLACK,
+		$HUD.modulate = Global.COLOR_BLACK
+		$HUD/Tween.interpolate_property($HUD, "modulate", Global.COLOR_BLACK,
 			Global.COLOR_DEFAULT, 2, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 	
 	$ChapterRes/Atmo/SpaceHum.volume_db = -60
-	$UI/Tween.interpolate_property($ChapterRes/Atmo/SpaceHum, "volume_db",
+	$HUD/Tween.interpolate_property($ChapterRes/Atmo/SpaceHum, "volume_db",
 	-60, -6, 2, Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
-	$UI/Tween.start()
+	$HUD/Tween.start()
 	
 	$ChapterRes/Atmo/SpaceHum.play()
 	if not Global.DEV_MODE:
 		$ChapterRes/Music/AirPrelude.play()
 	
-	go_to_room(starting_room, false, 253, 131)
+	go_to_room(starting_room, false, 253, 147)
 	
 #	else:
 #		for item in GlobalInventory.existing_items:
@@ -76,8 +80,6 @@ func _ready():
 		for i in range(had_doors.size()):
 			had_doors[i][0] = true
 			had_doors[i][1] = true
-	
-	$UI/HUD/PadButton.visible = pad_taken or Global.DEV_MODE
 
 
 # Function to set the ship power ("day" or "night").
@@ -114,16 +116,13 @@ func go_to_room(name, flip_h = Global.last_flip_h, to_x = Global.last_x, to_y = 
 		
 	# If an instance of the UI node is child of the chapter node,
 	# it plays a fade out effect (fade to black).
-	if has_node("UI/Fade/AnimationPlayer") and chapter_has_begun:
-		var fade_node = get_node("UI/Fade/AnimationPlayer")
-		fade_node.play("fade_out")
-		# Waiting for the fade out to finish, before changing the current room.
-		yield(fade_node, "animation_finished")
-	
 	if chapter_has_begun:
-		$UI/Fade/AnimationPlayer.play("fade_in")
+		fade_player.play("fade_out")
+		# Waiting for the fade out to finish, before changing the current room.
+		yield(fade_player, "animation_finished")
+		fade_player.play("fade_in")
 	else:
-		$UI/Fade/AnimationPlayer.play("long_fade_in")
+		fade_player.play("long_fade_in")
 	
 	# Getting the room's node path from the list of the rooms of this chapter.
 	var path = ("res://chapters/01_hadoscaphe/locations/" + name + "/" 
@@ -140,7 +139,7 @@ func _deferred_go_to_room(path, flip_h, to_x, to_y, action_type):
 	# except for the ChapterRes node.
 	if get_child_count() > 0:
 		for i in get_children():
-			if not i.get_name() == "ChapterRes" and not i.get_name() == "UI":
+			if not i.get_name() == "ChapterRes" and not i.get_name() == "HUD":
 				remove_child(i)
 				i.queue_free()
 

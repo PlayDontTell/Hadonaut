@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ui/hud/drawers/pad_drawer/PadHandle.gd" type="Script" id=1]
+[ext_resource path="res://ui/hud/drawers/pad_drawer/PadDrawer.gd" type="Script" id=2]
+[ext_resource path="res://ui/hud/drawers/pad_drawer/pad_handle_hover.png" type="Texture" id=3]
+[ext_resource path="res://ui/hud/drawers/drawer_interior_shade.png" type="Texture" id=4]
+[ext_resource path="res://ui/hud/drawers/pad_drawer/pad_handle_default.png" type="Texture" id=5]
+[ext_resource path="res://ui/hud/drawers/DrawerSounds.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/Pad.tscn" type="PackedScene" id=13]
+
+
+
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 240, 9 )
+
+[sub_resource type="PhysicsMaterial" id=2]
+friction = 0.5
+bounce = 0.3
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 49, 5 )
+
+[node name="PadDrawer" type="Node2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="DrawerLimit" type="StaticBody2D" parent="."]
+position = Vector2( -3, -263 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrawerLimit"]
+visible = false
+position = Vector2( 243, 261 )
+shape = SubResource( 1 )
+
+[node name="InteriorShade" type="Sprite" parent="."]
+position = Vector2( 239.5, 256 )
+scale = Vector2( 178.5, 1 )
+texture = ExtResource( 4 )
+
+[node name="Pad" parent="." instance=ExtResource( 13 )]
+position = Vector2( 240, -88 )
+
+[node name="PadHandle" type="RigidBody2D" parent="."]
+position = Vector2( 480, 24 )
+rotation = -3.14159
+input_pickable = true
+collision_layer = 2
+collision_mask = 2
+mode = 2
+physics_material_override = SubResource( 2 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+sleeping = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HandleSprite" type="TextureButton" parent="PadHandle"]
+margin_left = 190.0
+margin_right = 291.0
+margin_bottom = 18.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PadHandle"]
+visible = false
+position = Vector2( 240, 10 )
+shape = SubResource( 3 )
+
+[node name="DrawerSounds" parent="PadHandle" instance=ExtResource( 12 )]
+position = Vector2( 240, 0 )
+
+[node name="Start" type="Position2D" parent="."]
+position = Vector2( 0, 22 )
+
+[node name="End" type="Position2D" parent="."]
+position = Vector2( 0, 212 )
+[connection signal="body_entered" from="PadHandle" to="PadHandle" method="_on_PadHandle_body_entered"]
+[connection signal="button_down" from="PadHandle/HandleSprite" to="PadHandle" method="_on_HandleSprite_button_down"]
+[connection signal="button_up" from="PadHandle/HandleSprite" to="PadHandle" method="_on_HandleSprite_button_up"]
+[connection signal="mouse_entered" from="PadHandle/HandleSprite" to="PadHandle" method="_on_HandleSprite_mouse_entered"]
+[connection signal="mouse_exited" from="PadHandle/HandleSprite" to="PadHandle" method="_on_HandleSprite_mouse_exited"]

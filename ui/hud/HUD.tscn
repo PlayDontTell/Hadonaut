@@ -1,0 +1,242 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://ui/hud/FPSrate.gd" type="Script" id=1]
+[ext_resource path="res://ui/hud/HUD.gd" type="Script" id=2]
+[ext_resource path="res://ui/hud/drawers/Drawers.gd" type="Script" id=3]
+[ext_resource path="res://ui/effects/black.png" type="Texture" id=4]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_pressed.wav" type="AudioStream" id=5]
+[ext_resource path="res://ui/hud/menu_button/menu_button_pressed.png" type="Texture" id=6]
+[ext_resource path="res://ui/hud/menu_button/menu_button_hover.png" type="Texture" id=7]
+[ext_resource path="res://ui/hud/menu_button/menu_button_default.png" type="Texture" id=8]
+[ext_resource path="res://ui/hud/hud_foreground.png" type="Texture" id=9]
+[ext_resource path="res://ui/hud/hud_background.png" type="Texture" id=10]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/cryoscreen/cryoscreen_button_released.wav" type="AudioStream" id=11]
+[ext_resource path="res://ui/hud/sliding_drawer.wav" type="AudioStream" id=12]
+[ext_resource path="res://ui/hud/drawers/inventory_drawer/InventoryDrawer.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ui/Menu.tscn" type="PackedScene" id=14]
+[ext_resource path="res://ui/hud/drawers/pad_drawer/PadDrawer.tscn" type="PackedScene" id=15]
+[ext_resource path="res://ui/end_of_content_screen/EndOfContentScreen.tscn" type="PackedScene" id=16]
+[ext_resource path="res://ui/Cursor.tscn" type="PackedScene" id=17]
+[ext_resource path="res://ui/ui_style/PIXELADE.TTF" type="DynamicFontData" id=18]
+
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "blackscreen"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "long_fade_in"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "medium_fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "medium_fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=7]
+size = 12
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
+
+[node name="HUD" type="Node2D"]
+pause_mode = 2
+z_index = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fade" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 270 )
+
+[node name="FadePlayer" type="AnimationPlayer" parent="Fade"]
+autoplay = "blackscreen"
+anims/blackscreen = SubResource( 1 )
+anims/fade_in = SubResource( 2 )
+anims/fade_out = SubResource( 3 )
+anims/long_fade_in = SubResource( 4 )
+anims/medium_fade_in = SubResource( 5 )
+anims/medium_fade_out = SubResource( 6 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 10 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Drawers" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="PadDrawer" parent="Drawers" instance=ExtResource( 15 )]
+
+[node name="InventoryDrawer" parent="Drawers" instance=ExtResource( 13 )]
+
+[node name="Tween" type="Tween" parent="Drawers"]
+
+[node name="SlidingSound" type="AudioStreamPlayer" parent="Drawers"]
+stream = ExtResource( 12 )
+bus = "FxMeta"
+
+[node name="MenuButton" type="TextureButton" parent="."]
+margin_left = 455.0
+margin_right = 480.0
+margin_bottom = 25.0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonDown" type="AudioStreamPlayer" parent="MenuButton"]
+stream = ExtResource( 5 )
+pitch_scale = 0.72
+bus = "FxMeta"
+
+[node name="ButtonUp" type="AudioStreamPlayer" parent="MenuButton"]
+stream = ExtResource( 11 )
+bus = "FxMeta"
+
+[node name="Menu" parent="." instance=ExtResource( 14 )]
+visible = false
+
+[node name="Foreground" type="Sprite" parent="."]
+texture = ExtResource( 9 )
+centered = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="FPSrate" type="Label" parent="."]
+margin_left = 3.89032
+margin_top = 253.837
+margin_right = 35.8903
+margin_bottom = 266.837
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "100"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndOfContentScreen" parent="." instance=ExtResource( 16 )]
+visible = false
+
+[node name="Cursor" parent="." instance=ExtResource( 17 )]
+
+[node name="HUDArea" type="Area2D" parent="." groups=[
+"ui",
+]]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HUDArea"]
+polygon = PoolVector2Array( 37, 36, 50, 23, 50, 19, 64, 5, 435, 5, 458, 28, 461, 28, 464, 31, 464, 38, 463, 39, 463, 91, 459, 95, 459, 180, 463, 184, 463, 231, 464, 232, 464, 240, 447, 240, 427, 250, 419, 250, 418, 249, 284, 249, 282, 247, 199, 247, 197, 249, 62, 249, 61, 250, 51, 250, 51, 248, 38, 235, 16, 235, 16, 232, 17, 231, 17, 183, 20, 180, 20, 95, 17, 92, 17, 39, 16, 38, 16, 36, 0, 36, 0, 270, 480, 270, 480, 0, 0, 0, 0, 36 )
+disabled = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="closed" from="Drawers/PadDrawer/PadHandle" to="Drawers" method="_on_PadHandle_closed"]
+[connection signal="opened" from="Drawers/PadDrawer/PadHandle" to="Drawers" method="_on_PadHandle_opened"]
+[connection signal="closed" from="Drawers/InventoryDrawer/InventoryHandle" to="Drawers" method="_on_InventoryHandle_closed"]
+[connection signal="opened" from="Drawers/InventoryDrawer/InventoryHandle" to="Drawers" method="_on_InventoryHandle_opened"]
+[connection signal="button_down" from="MenuButton" to="." method="_on_MenuButton_button_down"]
+[connection signal="button_up" from="MenuButton" to="." method="_on_MenuButton_button_up"]
+[connection signal="mouse_entered" from="MenuButton" to="." method="_on_MenuButton_mouse_entered"]
+[connection signal="mouse_exited" from="MenuButton" to="." method="_on_MenuButton_mouse_exited"]
+
+[editable path="Drawers/PadDrawer"]
+
+[editable path="Drawers/InventoryDrawer"]

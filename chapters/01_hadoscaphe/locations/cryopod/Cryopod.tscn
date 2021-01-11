@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/char/Char.tscn" type="PackedScene" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/Smoke.tscn" type="PackedScene" id=31]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryopod/cryopod_cryoscreen.png" type="Texture" id=32]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/cryopod/CryoscreenSprite.gd" type="Script" id=33]
+[ext_resource path="res://objects/LookThroughWindow.tscn" type="PackedScene" id=34]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -563,152 +564,152 @@ offsets = PoolRealArray( 0, 0.668966 )
 colors = PoolColorArray( 0.776471, 0.635294, 0, 0, 1, 0.820313, 0, 1 )
 
 [sub_resource type="NavigationPolygon" id=15]
-vertices = PoolVector2Array( 192.307, 150, 267.77, 142.326, 371.307, 139, 380.307, 139, 401.307, 150, 401.307, 159, 385.63, 185.917, 214.125, 188.376, 184.307, 161, 415.137, 173.623, 66.2856, 176.696, 68.7445, 161.021, 109.316, 140.735, 153.307, 160, 167.714, 126.29, 200.294, 126.29, 199.679, 134.588, 164.307, 149, 286.661, 134.896, 288.505, 129.363, 306.947, 129.978, 314.016, 133.666, 239.328, 142.272, 246.504, 129.122, 260.635, 129.245, 116.307, 141, 226.419, 135.51, 338.605, 134.588 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8 ), PoolIntArray( 5, 9, 6 ), PoolIntArray( 7, 10, 11, 12, 13 ), PoolIntArray( 14, 15, 16, 0, 17 ), PoolIntArray( 18, 19, 20, 21 ), PoolIntArray( 22, 23, 24, 1 ), PoolIntArray( 13, 8, 7 ), PoolIntArray( 13, 12, 25 ), PoolIntArray( 13, 25, 14, 17 ), PoolIntArray( 0, 16, 26, 22 ), PoolIntArray( 1, 18, 21, 27, 2 ), PoolIntArray( 0, 22, 1 ) ]
-outlines = [ PoolVector2Array( 66.2856, 176.696, 68.7445, 161.021, 109.316, 140.735, 116.307, 141, 167.714, 126.29, 200.294, 126.29, 199.679, 134.588, 226.419, 135.51, 239.328, 142.272, 246.504, 129.122, 260.635, 129.245, 267.77, 142.326, 286.661, 134.896, 288.505, 129.363, 306.947, 129.978, 314.016, 133.666, 338.605, 134.588, 371.307, 139, 380.307, 139, 401.307, 150, 401.307, 159, 415.137, 173.623, 385.63, 185.917, 214.125, 188.376 ), PoolVector2Array( 153.307, 160, 164.307, 149, 192.307, 150, 184.307, 161 ) ]
+vertices = PoolVector2Array( 192, 166, 374, 155, 380, 155, 401, 167, 401, 175, 385, 203, 213, 205, 185, 177, 287, 152, 311, 150, 341, 150, 266, 155, 415, 191, 64, 194, 68, 178, 109, 157, 154, 176, 169, 143, 202, 143, 202, 151, 164, 165, 289, 147, 309, 148, 240, 155, 245, 146, 261, 146, 116, 157, 226, 151, 278, 151 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 1, 0, 11 ), PoolIntArray( 4, 12, 5 ), PoolIntArray( 6, 13, 14, 15, 16 ), PoolIntArray( 17, 18, 19, 0, 20 ), PoolIntArray( 8, 21, 22, 9 ), PoolIntArray( 23, 24, 25, 11 ), PoolIntArray( 16, 7, 6 ), PoolIntArray( 16, 15, 26 ), PoolIntArray( 16, 26, 17, 20 ), PoolIntArray( 0, 19, 27, 23 ), PoolIntArray( 11, 28, 8 ), PoolIntArray( 0, 23, 11 ) ]
+outlines = [ PoolVector2Array( 64, 194, 68, 178, 109, 157, 116, 157, 169, 143, 202, 143, 202, 151, 226, 151, 240, 155, 245, 146, 261, 146, 266, 155, 278, 151, 287, 152, 289, 147, 309, 148, 311, 150, 341, 150, 374, 155, 380, 155, 401, 167, 401, 175, 415, 191, 385, 203, 213, 205 ), PoolVector2Array( 154, 176, 164, 165, 192, 166, 185, 177 ) ]
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 26 )
-region = Rect2( 0, 0, 32, 80 )
+region = Rect2( 416, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 26 )
-region = Rect2( 32, 0, 32, 80 )
+region = Rect2( 448, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 26 )
-region = Rect2( 64, 0, 32, 80 )
+region = Rect2( 480, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 26 )
-region = Rect2( 96, 0, 32, 80 )
+region = Rect2( 512, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 26 )
-region = Rect2( 128, 0, 32, 80 )
+region = Rect2( 544, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 26 )
-region = Rect2( 160, 0, 32, 80 )
+region = Rect2( 576, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 26 )
-region = Rect2( 192, 0, 32, 80 )
+region = Rect2( 608, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 26 )
-region = Rect2( 224, 0, 32, 80 )
+region = Rect2( 640, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 26 )
-region = Rect2( 256, 0, 32, 80 )
+region = Rect2( 672, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 26 )
-region = Rect2( 288, 0, 32, 80 )
+region = Rect2( 704, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 26 )
-region = Rect2( 320, 0, 32, 80 )
+region = Rect2( 736, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 26 )
-region = Rect2( 352, 0, 32, 80 )
+region = Rect2( 768, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 26 )
-region = Rect2( 384, 0, 32, 80 )
+region = Rect2( 800, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 26 )
-region = Rect2( 416, 0, 32, 80 )
+region = Rect2( 832, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 26 )
-region = Rect2( 416, 0, 32, 80 )
+region = Rect2( 864, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 26 )
-region = Rect2( 448, 0, 32, 80 )
+region = Rect2( 896, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 26 )
-region = Rect2( 480, 0, 32, 80 )
+region = Rect2( 928, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 26 )
-region = Rect2( 512, 0, 32, 80 )
+region = Rect2( 960, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 26 )
-region = Rect2( 544, 0, 32, 80 )
+region = Rect2( 992, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 26 )
-region = Rect2( 576, 0, 32, 80 )
+region = Rect2( 0, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=36]
 atlas = ExtResource( 26 )
-region = Rect2( 608, 0, 32, 80 )
+region = Rect2( 32, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 26 )
-region = Rect2( 640, 0, 32, 80 )
+region = Rect2( 64, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 26 )
-region = Rect2( 672, 0, 32, 80 )
+region = Rect2( 96, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 26 )
-region = Rect2( 704, 0, 32, 80 )
+region = Rect2( 128, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 26 )
-region = Rect2( 736, 0, 32, 80 )
+region = Rect2( 160, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=41]
 atlas = ExtResource( 26 )
-region = Rect2( 768, 0, 32, 80 )
+region = Rect2( 192, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 26 )
-region = Rect2( 800, 0, 32, 80 )
+region = Rect2( 224, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=43]
 atlas = ExtResource( 26 )
-region = Rect2( 832, 0, 32, 80 )
+region = Rect2( 256, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 26 )
-region = Rect2( 864, 0, 32, 80 )
+region = Rect2( 288, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 26 )
-region = Rect2( 896, 0, 32, 80 )
+region = Rect2( 320, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 26 )
-region = Rect2( 928, 0, 32, 80 )
+region = Rect2( 352, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 26 )
-region = Rect2( 960, 0, 32, 80 )
+region = Rect2( 384, 0, 32, 80 )
 
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 26 )
-region = Rect2( 992, 0, 32, 80 )
+region = Rect2( 416, 0, 32, 80 )
 
 [sub_resource type="SpriteFrames" id=49]
 animations = [ {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
-"loop": false,
-"name": "fall",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ) ],
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
 "loop": false,
 "name": "rise",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ) ],
+"loop": false,
+"name": "fall",
 "speed": 10.0
 } ]
 
@@ -1015,11 +1016,10 @@ material = SubResource( 2 )
 script = ExtResource( 8 )
 
 [node name="AutoScrollingSprite" parent="." instance=ExtResource( 1 )]
-speed_x = -0.2
 
 [node name="Background" type="Sprite" parent="."]
 use_parent_material = true
-position = Vector2( 233, 123 )
+position = Vector2( 233, 139 )
 texture = ExtResource( 22 )
 hframes = 2
 frame = 1
@@ -1028,7 +1028,7 @@ __meta__ = {
 }
 
 [node name="DoorLeft" parent="." instance=ExtResource( 19 )]
-position = Vector2( 86, 125 )
+position = Vector2( 86, 142 )
 to_room = "flora"
 to_x = 349
 to_y = 157
@@ -1046,7 +1046,7 @@ hframes = 2
 frame = 1
 
 [node name="DoorRight" parent="." instance=ExtResource( 19 )]
-position = Vector2( 391, 117 )
+position = Vector2( 391, 133 )
 to_room = "safebay"
 to_x = 90
 to_y = 98
@@ -1075,7 +1075,7 @@ __meta__ = {
 }
 
 [node name="LeftDoorButton" parent="." instance=ExtResource( 7 )]
-position = Vector2( 115, 119 )
+position = Vector2( 115, 135 )
 action_name = "LeftDoorButton"
 action_type = "push"
 flip_h = true
@@ -1083,7 +1083,7 @@ flip_h = true
 [node name="Cloths" parent="." groups=[
 "cursor_hand",
 ] instance=ExtResource( 6 )]
-position = Vector2( 326, 122 )
+position = Vector2( 326, 138 )
 action_name = "Cloths"
 action_type = "push"
 animated = false
@@ -1104,7 +1104,7 @@ stream = ExtResource( 18 )
 bus = "Fx"
 
 [node name="ClosetDoor" parent="." instance=ExtResource( 6 )]
-position = Vector2( 334, 120 )
+position = Vector2( 334, 136 )
 script = ExtResource( 5 )
 action_name = "closet_door"
 action_type = "push"
@@ -1131,6 +1131,7 @@ position = Vector2( -10, 0 )
 [node name="Sprite" type="Sprite" parent="ClosetDoor"]
 texture = ExtResource( 9 )
 hframes = 4
+frame = 2
 
 [node name="LockerOpening" type="AudioStreamPlayer2D" parent="ClosetDoor"]
 stream = ExtResource( 17 )
@@ -1145,7 +1146,7 @@ bus = "Fx"
 ] instance=ExtResource( 11 )]
 visible = false
 use_parent_material = true
-position = Vector2( 185, 136 )
+position = Vector2( 185, 152 )
 to_room = "maintenance"
 to_x = 421
 to_y = 155
@@ -1158,7 +1159,7 @@ polygon = PoolVector2Array( 4, 14, -18, 13, -28, 23, -3, 25 )
 position = Vector2( 2, 24 )
 
 [node name="Trap" parent="." instance=ExtResource( 6 )]
-position = Vector2( 175, 149 )
+position = Vector2( 175, 165 )
 script = ExtResource( 30 )
 action_name = "trap"
 action_type = "push"
@@ -1185,7 +1186,7 @@ position = Vector2( 15, -11 )
 [node name="Sprite" type="Sprite" parent="Trap"]
 texture = ExtResource( 4 )
 hframes = 4
-frame = 1
+frame = 2
 
 [node name="TrapClosed" type="AudioStreamPlayer2D" parent="Trap"]
 stream = ExtResource( 12 )
@@ -1206,7 +1207,7 @@ bus = "Fx"
 [node name="Cryoscreen" parent="." groups=[
 "cursor_eye",
 ] instance=ExtResource( 11 )]
-position = Vector2( 214, 121 )
+position = Vector2( 214, 137 )
 to_room = "cryoscreen"
 room_without_char = true
 
@@ -1231,19 +1232,22 @@ default_color = Color( 1, 0.796078, 0, 1 )
 gradient = SubResource( 14 )
 
 [node name="Sprite" parent="Char" index="1"]
-position = Vector2( 213, 154 )
+position = Vector2( 213, 170 )
+frame = 40
+
+[node name="Head" parent="Char/Sprite" index="0"]
+visible = true
 
 [node name="Eyes" parent="Char/Sprite" index="1"]
+visible = true
 position = Vector2( 1, -37 )
 
 [node name="NavigationPolygonInstance" parent="Char/Navigation2D" index="0"]
-visible = false
-position = Vector2( -0.307358, 0 )
 navpoly = SubResource( 15 )
 
 [node name="AwakeningAnimation" type="AnimatedSprite" parent="."]
 use_parent_material = true
-position = Vector2( 254, 123 )
+position = Vector2( 254, 139 )
 frames = SubResource( 49 )
 animation = "fall"
 frame = 1
@@ -1271,16 +1275,16 @@ stream = ExtResource( 28 )
 bus = "Fx"
 
 [node name="Smoke" parent="." instance=ExtResource( 31 )]
-position = Vector2( 252, 91 )
+position = Vector2( 252, 107 )
 emitting = false
 
 [node name="CryopodDoor" type="Sprite" parent="."]
 use_parent_material = true
-position = Vector2( 252, 94 )
+position = Vector2( 252, 110 )
 texture = ExtResource( 23 )
 vframes = 2
 hframes = 9
-frame = 8
+frame = 9
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1301,6 +1305,31 @@ stream = ExtResource( 24 )
 [node name="Closing" type="AudioStreamPlayer2D" parent="CryopodDoor"]
 stream = ExtResource( 25 )
 bus = "Fx"
+
+[node name="LookThroughWindow" parent="." instance=ExtResource( 34 )]
+flip_h = true
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow" index="0"]
+polygon = PoolVector2Array( 268, 93, 273, 100, 276, 129, 309, 129, 311, 89 )
+
+[node name="PointToWindow" parent="LookThroughWindow" index="1"]
+position = Vector2( 295, 149 )
+
+[node name="LookThroughWindow2" parent="." instance=ExtResource( 34 )]
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow2" index="0"]
+polygon = PoolVector2Array( 178, 103, 186, 126, 206, 126, 209, 120, 226, 120, 233, 97 )
+
+[node name="PointToWindow" parent="LookThroughWindow2" index="1"]
+position = Vector2( 185, 145 )
+
+[node name="LookThroughWindow3" parent="." instance=ExtResource( 34 )]
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow3" index="0"]
+polygon = PoolVector2Array( 346, 101, 346, 122, 351, 122, 351, 130, 366, 130, 366, 114 )
+
+[node name="PointToWindow" parent="LookThroughWindow3" index="1"]
+position = Vector2( 352, 152 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/day = SubResource( 59 )
@@ -1336,3 +1365,9 @@ anims/night = SubResource( 60 )
 [editable path="Char"]
 
 [editable path="Smoke"]
+
+[editable path="LookThroughWindow"]
+
+[editable path="LookThroughWindow2"]
+
+[editable path="LookThroughWindow3"]

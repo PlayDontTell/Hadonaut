@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://chapters/01_hadoscaphe/common_resources/AutoScrollingSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/char/Char.tscn" type="PackedScene" id=2]
@@ -8,9 +8,14 @@
 [ext_resource path="res://chapters/01_hadoscaphe/locations/flora/Flora.gd" type="Script" id=6]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_door.png" type="Texture" id=7]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_door_right.png" type="Texture" id=8]
-[ext_resource path="res://objects/InteractiveObject.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/LookThroughWindow.tscn" type="PackedScene" id=9]
 [ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_pad_shadow.png" type="Texture" id=10]
+[ext_resource path="res://objects/Passage.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/SlidingDoor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora/PadInstanceSprite.gd" type="Script" id=13]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora/MapModuleInstanceSprite.gd" type="Script" id=14]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_map_module.png" type="Texture" id=15]
+[ext_resource path="res://chapters/01_hadoscaphe/locations/flora/flora_map_module_shadow.png" type="Texture" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -60,74 +65,50 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 6.0
-height = 8.0
+[sub_resource type="GDScript" id=5]
+script/source = "extends Area2D
 
-[sub_resource type="Animation" id=12]
-resource_name = "day"
-tracks/0/type = "value"
-tracks/0/path = NodePath("NoHighlight/Shadow:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
 
-[sub_resource type="Animation" id=13]
-resource_name = "night"
-tracks/0/type = "value"
-tracks/0/path = NodePath("NoHighlight/Shadow:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
+export var to_room: String
+export var room_without_char: bool
+export var to_x: int
+export var to_y: int
+export var flip_h: bool
+export var action_type = \"idle\"
+var is_mouse_overlapping: bool = false
 
-[sub_resource type="Gradient" id=8]
+
+func _on_Passage_mouse_entered():
+	is_mouse_overlapping = true
+
+
+func _on_Passage_mouse_exited():
+	is_mouse_overlapping = false
+
+
+func _on_Passage_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		if is_mouse_overlapping:
+			var position_ordered = $PointToRoom.position + position
+			var action = get_node(\"../Char\").execute_action(to_room, position_ordered, flip_h, action_type)
+			yield(action, \"completed\")
+			if get_node(\"../Char\").action == to_room + \"_completed\":
+				if not room_without_char:
+					get_node(\"../..\").go_to_room(to_room, flip_h, to_x, to_y)
+				else:
+					get_node(\"../..\").go_to_room(to_room)
+"
+
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.668966 )
 colors = PoolColorArray( 0.776471, 0.635294, 0, 0, 1, 0.820313, 0, 1 )
 
-[sub_resource type="NavigationPolygon" id=9]
+[sub_resource type="NavigationPolygon" id=7]
 vertices = PoolVector2Array( 331, 146, 372, 167, 273, 182, 327, 148, 156, 157, 98, 155, 111, 141, 157, 140, 188, 150, 207, 182, 216, 148, 257, 145, 257, 133, 294, 135, 316, 146, 216, 146, 250, 144, 251, 145, 329, 146, 324, 146 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8 ), PoolIntArray( 9, 4, 8, 10, 2 ), PoolIntArray( 2, 11, 12, 13, 14 ), PoolIntArray( 2, 10, 15, 16, 17 ), PoolIntArray( 2, 17, 11 ), PoolIntArray( 3, 18, 0 ), PoolIntArray( 3, 2, 14, 19 ) ]
 outlines = [ PoolVector2Array( 98, 155, 111, 141, 157, 140, 188, 150, 216, 148, 216, 146, 250, 144, 251, 145, 257, 145, 257, 133, 294, 135, 316, 146, 324, 146, 327, 148, 329, 146, 331, 146, 372, 167, 273, 182, 207, 182, 156, 157 ) ]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 resource_name = "day"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Background:frame")
@@ -166,7 +147,7 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=9]
 resource_name = "night"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Background:frame")
@@ -211,20 +192,18 @@ position = Vector2( 1, 0 )
 script = ExtResource( 6 )
 
 [node name="AutoScrollingSprite" parent="." instance=ExtResource( 1 )]
-speed_x = -0.2
 
 [node name="Background" type="Sprite" parent="."]
 use_parent_material = true
 position = Vector2( 356, 131 )
 texture = ExtResource( 8 )
 hframes = 2
-frame = 1
 
 [node name="DoorRight" parent="." instance=ExtResource( 12 )]
 position = Vector2( 356, 131 )
 to_room = "cryopod"
 to_x = 93
-to_y = 153
+to_y = 169
 
 [node name="CollisionPolygon2D" parent="DoorRight" index="0"]
 polygon = PoolVector2Array( -3, -28, 8, -27, 9, 27, -9, 19 )
@@ -235,7 +214,6 @@ position = Vector2( -6, 26 )
 [node name="Sprite" parent="DoorRight" index="2"]
 texture = ExtResource( 7 )
 hframes = 2
-frame = 1
 
 [node name="AnimationPlayer" parent="DoorRight" index="6"]
 anims/day = SubResource( 3 )
@@ -247,7 +225,6 @@ position = Vector2( -1, 0 )
 texture = ExtResource( 4 )
 centered = false
 hframes = 2
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
@@ -257,32 +234,38 @@ position = Vector2( 340, 132 )
 action_name = "RightDoorButton"
 action_type = "push"
 
-[node name="Pad" parent="." instance=ExtResource( 9 )]
+[node name="PadAndModule" parent="." groups=[
+"cursor_eye",
+] instance=ExtResource( 11 )]
 position = Vector2( 230, 129 )
-action_name = "pad_and_module"
-action_type = "push"
+script = SubResource( 5 )
+to_room = "flora_desk"
+room_without_char = true
 flip_h = true
 
-[node name="CollisionShape2D" parent="Pad" index="0"]
-rotation = 1.57079
-shape = SubResource( 5 )
+[node name="CollisionPolygon2D" parent="PadAndModule" index="0"]
+polygon = PoolVector2Array( -2, 4.99998, 12, 2.99998, 11, -4.00002, -2, -6.00002, -16, -1.00002, -11, 4.99998 )
 
-[node name="Animation" parent="Pad" index="2"]
-anims/day = SubResource( 12 )
-anims/night = SubResource( 13 )
+[node name="PointToRoom" parent="PadAndModule" index="1"]
+position = Vector2( 6, 18 )
 
-[node name="PointOfInteraction" parent="Pad" index="3"]
-position = Vector2( 1, 1 )
-
-[node name="Shadow" type="Sprite" parent="Pad/NoHighlight" index="0"]
-texture = ExtResource( 10 )
-hframes = 2
-frame = 1
-
-[node name="Sprite" type="Sprite" parent="Pad"]
+[node name="PadInstanceSprite" type="Sprite" parent="PadAndModule"]
 texture = ExtResource( 5 )
 hframes = 2
-frame = 1
+script = ExtResource( 13 )
+
+[node name="Shade" type="Sprite" parent="PadAndModule/PadInstanceSprite"]
+texture = ExtResource( 10 )
+hframes = 2
+
+[node name="MapModuleInstanceSprite" type="Sprite" parent="PadAndModule"]
+texture = ExtResource( 15 )
+hframes = 2
+script = ExtResource( 14 )
+
+[node name="Shade" type="Sprite" parent="PadAndModule/MapModuleInstanceSprite"]
+texture = ExtResource( 16 )
+hframes = 2
 
 [node name="Char" parent="." instance=ExtResource( 2 )]
 
@@ -290,34 +273,54 @@ frame = 1
 visible = false
 points = PoolVector2Array( 319.547, 149.936 )
 default_color = Color( 1, 0.796078, 0, 1 )
-gradient = SubResource( 8 )
+gradient = SubResource( 6 )
 
 [node name="Sprite" parent="Char" index="1"]
 position = Vector2( 278, 155 )
 frame = 1
 
-[node name="Head" parent="Char/Sprite" index="0"]
-visible = false
-
 [node name="Eyes" parent="Char/Sprite" index="1"]
-visible = false
 position = Vector2( 1, -37 )
 
 [node name="NavigationPolygonInstance" parent="Char/Navigation2D" index="0"]
 visible = false
 position = Vector2( -1, 0 )
-navpoly = SubResource( 9 )
+navpoly = SubResource( 7 )
+
+[node name="LookThroughWindow" parent="." instance=ExtResource( 9 )]
+flip_h = true
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow" index="0"]
+polygon = PoolVector2Array( 195, 108, 277, 87, 289, 115, 225, 115, 196, 120 )
+
+[node name="PointToWindow" parent="LookThroughWindow" index="1"]
+position = Vector2( 271, 135 )
+
+[node name="LookThroughWindow2" parent="." instance=ExtResource( 9 )]
+
+[node name="CollisionPolygon2D" parent="LookThroughWindow2" index="0"]
+polygon = PoolVector2Array( 123, 122, 124, 125, 156, 123, 160, 113 )
+
+[node name="PointToWindow" parent="LookThroughWindow2" index="1"]
+position = Vector2( 146, 146 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/day = SubResource( 10 )
-anims/night = SubResource( 11 )
+anims/day = SubResource( 8 )
+anims/night = SubResource( 9 )
 [connection signal="order_interaction" from="RightDoorButton" to="." method="_on_RightDoorButton_order_interaction"]
-[connection signal="order_interaction" from="Pad" to="." method="_on_Pad_order_interaction"]
+[connection signal="area_entered" from="PadAndModule" to="PadAndModule/PadInstanceSprite" method="_on_PadAndModule_area_entered"]
+[connection signal="area_entered" from="PadAndModule" to="PadAndModule/MapModuleInstanceSprite" method="_on_PadAndModule_area_entered"]
+[connection signal="area_exited" from="PadAndModule" to="PadAndModule/PadInstanceSprite" method="_on_PadAndModule_area_exited"]
+[connection signal="area_exited" from="PadAndModule" to="PadAndModule/MapModuleInstanceSprite" method="_on_PadAndModule_area_exited"]
 
 [editable path="DoorRight"]
 
-[editable path="Pad"]
+[editable path="PadAndModule"]
 
 [editable path="Char"]
+
+[editable path="LookThroughWindow"]
+
+[editable path="LookThroughWindow2"]
